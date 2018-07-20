@@ -1,3 +1,7 @@
+package srallegro;
+
+import srallegro.Auction;
+
 import java.math.BigDecimal;
 import java.util.Scanner;
 
