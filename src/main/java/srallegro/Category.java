@@ -38,6 +38,4 @@ public class Category {
             subcategory.printCategories(level + 1);
         }
     }
-
-
 }
