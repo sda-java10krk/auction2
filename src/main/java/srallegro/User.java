@@ -1,3 +1,5 @@
+package srallegro;
+
 public class User {
 
     private String name;
@@ -72,7 +74,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "srallegro.User{" +
                 "name='" + name + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", birthday=" + birthday +

@@ -1,3 +1,5 @@
+package srallegro;
+
 import java.math.BigDecimal;
 import java.util.Locale;
 
@@ -50,7 +52,7 @@ public class Auction {
 
     @Override
     public String toString() {
-        return "Auction{" +
+        return "srallegro.Auction{" +
                 "title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", category=" + category +

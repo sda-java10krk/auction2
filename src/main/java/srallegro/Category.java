@@ -25,4 +25,19 @@ public class Category {
     public String getName() {
         return name;
     }
+
+    public void printCategories(int level){
+        if(this.name!=null) {
+            System.out.print("+");
+            for (int i = 0; i < level; i++) {
+                System.out.print("-");
+            }
+            System.out.println(this.name);
+        }
+        for(Category subcategory: this.subcategories){
+            subcategory.printCategories(level + 1);
+        }
+    }
+
+
 }
