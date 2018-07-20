@@ -3,6 +3,7 @@ import java.util.Locale;
 
 
 public class Auction {
+
     private String title;
     private String description;
     private Category category;
@@ -41,6 +42,10 @@ public class Auction {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
     }
 
     @Override
