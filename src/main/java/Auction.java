@@ -11,6 +11,7 @@ public class Auction {
     private User winner;
     private BigDecimal price;
 
+    public Auction(String title, String description, Category category, User seller, User winner, BigDecimal price, int bids) {
     public Auction(String title, String description, Category category, User seller, User winner, BigDecimal price) {
         this.title = title;
         this.description = description;
@@ -18,6 +19,11 @@ public class Auction {
         this.seller = seller;
         this.winner = winner;
         this.price = price;
+        this.bids = bids;
+    }
+
+    public int getBids() {
+        return bids;
     }
 
     public void setTitle(String title) {
