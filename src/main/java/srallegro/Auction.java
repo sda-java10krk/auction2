@@ -1,7 +1,5 @@
 package srallegro;
-
 import java.math.BigDecimal;
-
 
 public class Auction {
 
