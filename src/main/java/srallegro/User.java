@@ -1,4 +1,10 @@
+package srallegro;
+
 public class User {
+
+    public String getNick() {
+        return nick;
+    }
 
     private String name;
     private String lastName;
@@ -72,7 +78,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "srallegro.User{" +
                 "name='" + name + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", birthday=" + birthday +
@@ -81,5 +87,11 @@ public class User {
                 ", password='" + password + '\'' +
                 ", nick='" + nick + '\'' +
                 '}';
+    }
+
+    //user-atrapa; domyślny wygrywający każdej nowej aukcji
+    public static User noWinner () {
+        User newUser = new User ("", "", null, "", "", "", "Jeszcze nikt nie złożył oferty");
+        return newUser;
     }
 }
