@@ -17,7 +17,8 @@ public class AuctionController {
 
     public static BigDecimal bidUp(Auction auction , BigDecimal bidUp) throws PriceTooLowException {
          BigDecimal newPrice = bidUp;
-        if(auction.getPrice().compareTo(newPrice) <0 ){
+
+        if(newPrice.compareTo(auction.getPrice()) < 0 ){
          throw new PriceTooLowException();
         }else {
             auction.setPrice(newPrice);
@@ -25,7 +26,7 @@ public class AuctionController {
                 endOfAuction(auction, auction.getWinner());
             }
         }
-        return null;
+        return auction.getPrice();
     }
 
 
