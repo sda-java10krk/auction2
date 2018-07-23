@@ -30,10 +30,10 @@ public class AuctionActions {
         String cat = sc.nextLine(); //po nazwie kategorii będzie ją wybierał
         System.out.println("Podaj cenę początkową");
         double amount = sc.nextDouble();
-        User noWinner = new User(); //nieistniejący, domyślny wygrywający aukcję, który będzie zwracał info,
+        //nieistniejący, domyślny wygrywający aukcję, który będzie zwracał info,
         //że nikt nie wygrywa aktualnie aukcji? Nie mam lepszego pomysłu na to.
 
-        Auction newAuction = new Auction(title, description, new Category cat, currentUser, noWinner, new BigDecimal(amount));
+        Auction newAuction = new Auction(title, description, null, currentUser, User.noWinner(), new BigDecimal(amount));
         //zamiast "Category cat" będzie kategoria wyjęta z kolekcji po nazwie;
         System.out.println("Wystawiłeś przedmiot na aukcję: " + newAuction.toString());
 
