@@ -1,46 +1,22 @@
 package srallegro;
 
 import srallegro.Auction;
-import srallegro.Category;
 
 import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class AuctionActions {
 
-    public static void  endOfAuction(Auction auction, User user){
-        System.out.println("aukcja zakonczona, zwyciezył " + user);
-
-
-    }
-
     public static BigDecimal BidUp(Auction auction , BigDecimal bidUp) throws IllegalArgumentException{
-        int numberOfBidsofAuction= auction.getBids() ;
-        if (numberOfBidsofAuction==2){
-       //     endOfAuction(auction);v
-            //tutaj ma byc cos z userem ale jeszcze nie wiem
-        }
-        BigDecimal newPrice= bidUp.add(auction.getPrice());
+         BigDecimal newPrice = bidUp.add(auction.getPrice());
         if(auction.getPrice().compareTo(newPrice) <0 ){
          throw new IllegalArgumentException("Podaj oferte wyzsza od obecnej") ;
         }else {
             auction.setPrice(newPrice);
-
-           numberOfBidsofAuction ++;
-
-            if(numberOfBidsofAuction ==2){
-           //     endOfAuction(auction, user);
-            }
-
-
         }
-        return auction.getPrice();
+        return null;
     }
 
-
-import java.util.Scanner;
-
-public class AuctionActions {
 
     public static Auction createAuction(User currentUser) {
         Scanner sc = new Scanner(System.in);
