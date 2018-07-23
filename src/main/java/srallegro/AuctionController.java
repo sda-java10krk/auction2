@@ -5,14 +5,25 @@ import srallegro.Auction;
 import java.math.BigDecimal;
 import java.util.Scanner;
 
-public class AuctionActions {
+public class AuctionController {
 
-    public static BigDecimal BidUp(Auction auction , BigDecimal bidUp) throws IllegalArgumentException{
-         BigDecimal newPrice = bidUp.add(auction.getPrice());
+
+    public static void  endOfAuction( Auction auction, User user){
+        System.out.println("aukcja zakonczona, zwyciezył " + user);
+
+    }
+
+
+
+    public static BigDecimal bidUp(Auction auction , BigDecimal bidUp) throws PriceTooLowException {
+         BigDecimal newPrice = bidUp;
         if(auction.getPrice().compareTo(newPrice) <0 ){
-         throw new IllegalArgumentException("Podaj oferte wyzsza od obecnej") ;
+         throw new PriceTooLowException();
         }else {
             auction.setPrice(newPrice);
+            if (auction.getBids() == 2){
+                endOfAuction(auction, auction.getWinner());
+            }
         }
         return null;
     }

@@ -12,9 +12,10 @@ public class Auction {
     private User seller;
     private User winner;
     private BigDecimal price;
+    private  int bids;
 
     public Auction(String title, String description, Category category, User seller, User winner, BigDecimal price, int bids) {
-    public Auction(String title, String description, Category category, User seller, User winner, BigDecimal price) {
+
         this.title = title;
         this.description = description;
         this.category = category;
@@ -22,6 +23,10 @@ public class Auction {
         this.winner = winner;
         this.price = price;
         this.bids = bids;
+    }
+
+    public User getWinner() {
+        return winner;
     }
 
     public int getBids() {
@@ -55,6 +60,8 @@ public class Auction {
     public BigDecimal getPrice() {
         return price;
     }
+
+
 
     @Override
     public String toString() {
