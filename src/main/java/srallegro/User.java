@@ -25,10 +25,7 @@ public class User {
         this.nick = nick;
     }
 
-    public static User noWinner () {
-        User newUser = new User ("", "", null, "", "", "", "Jeszcze nikt nie złożył oferty");
-        return newUser;
-    }
+
 
     public static Builder personBuilder (){
         return new Builder();
