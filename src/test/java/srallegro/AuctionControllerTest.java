@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 
 import static org.junit.Assert.assertEquals;
 
-public class AuctionControlerTest {
+public class AuctionControllerTest {
 
 
     @Test
