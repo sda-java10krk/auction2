@@ -22,5 +22,10 @@ public class Main {
 
         Map<Integer, Auction> auctionsByNumber = new HashMap<>();
         //Auction tempAuction = new Auction(null, null, null, null, null, null, auctionNumber, 0);
+
+        AuctionController.createAuction(tempUser, categoriesByName, "sds", "dfdf", categoriesByName.get("Huśtawki pneumatyczne"), 10, auctionNumber);
+        AuctionController.createAuction(tempUser, categoriesByName, "sds", "dfdf", categoriesByName.get("Huśtawki pneumatyczne"), 10, auctionNumber);
+        AuctionController.createAuction(tempUser, categoriesByName, "sds", "dfdf", categoriesByName.get("Huśtawki pneumatyczne"), 10, auctionNumber);
+        System.out.println(auctionNumber);
     }
 }
