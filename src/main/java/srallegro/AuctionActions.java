@@ -1,21 +1,19 @@
-import java.math.BigDecimal;
+package srallegro;
 
+import java.math.BigDecimal;
+import java.util.Scanner;
 public class AuctionActions {
 
-    public static BigDecimal BidUp(Auction auction , BigDecimal bidUp) throws IllegalArgumentException{
-         BigDecimal newPrice= bidUp.add(auction.getPrice());
-        if(auction.getPrice().compareTo(newPrice) <0 ){
-         throw new IllegalArgumentException("Podaj oferte wyzsza od obecnej") ;
-        }else {
+    public static BigDecimal BidUp(Auction auction, BigDecimal bidUp) throws IllegalArgumentException {
+        BigDecimal newPrice = bidUp.add(auction.getPrice());
+        if (auction.getPrice().compareTo(newPrice) < 0) {
+            throw new IllegalArgumentException("Podaj oferte wyzsza od obecnej");
+        } else {
             auction.setPrice(newPrice);
         }
         return null;
     }
 
-
-import java.util.Scanner;
-
-public class AuctionActions {
 
     public static Auction createAuction(User currentUser) {
         Scanner sc = new Scanner(System.in);

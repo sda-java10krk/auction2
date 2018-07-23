@@ -1,6 +1,6 @@
-import java.math.BigDecimal;
-import java.util.Locale;
+package srallegro;
 
+import java.math.BigDecimal;
 
 public class Auction {
 
@@ -10,6 +10,7 @@ public class Auction {
     private User seller;
     private User winner;
     private BigDecimal price;
+
 
     public Auction(String title, String description, Category category, User seller, User winner, BigDecimal price) {
         this.title = title;
@@ -50,7 +51,7 @@ public class Auction {
 
     @Override
     public String toString() {
-        return "Auction{" +
+        return "srallegro.Auction{" +
                 "title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", category=" + category +
