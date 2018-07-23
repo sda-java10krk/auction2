@@ -95,8 +95,5 @@ public class User {
     }
 
     //user-atrapa; domyślny wygrywający każdej nowej aukcji
-    public static User noWinner () {
-        User newUser = new User ("", "", null, "", "", "", "Jeszcze nikt nie złożył oferty");
-        return newUser;
-    }
+
 }
