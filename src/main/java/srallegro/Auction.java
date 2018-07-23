@@ -1,7 +1,6 @@
 package srallegro;
 
 import java.math.BigDecimal;
-import java.util.Locale;
 
 
 public class Auction {
@@ -12,14 +11,23 @@ public class Auction {
     private User seller;
     private User winner;
     private BigDecimal price;
+    int auctionNumber;
 
-    public Auction(String title, String description, Category category, User seller, User winner, BigDecimal price) {
+    public int getAuctionNumber() {
+        return auctionNumber;
+    }
+
+    int counter = 0;
+
+    public Auction(String title, String description, Category category, User seller, User winner, BigDecimal price, int auctionNumber, int counter) {
         this.title = title;
         this.description = description;
         this.category = category;
         this.seller = seller;
         this.winner = winner;
         this.price = price;
+        this.auctionNumber = auctionNumber;
+        this.counter = counter;
     }
 
     public void setTitle(String title) {
@@ -59,6 +67,7 @@ public class Auction {
                 ", seller=" + seller +
                 ", winner=" + winner +
                 ", price=" + price +
+                ", auction number= " + auctionNumber +
                 '}';
     }
 }
