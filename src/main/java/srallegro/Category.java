@@ -1,12 +1,15 @@
 package srallegro;
 
+import java.io.PrintStream;
 import java.util.Set;
 import java.util.TreeSet;
 
+
+
 public class Category {
-    private String name;
+    protected String name;
     private Set<Auction> auctions;
-    private Set<Category> subcategories;
+    protected static Set<Category> subcategories;
 
     public Category(String name){
         this.name = name;
@@ -26,16 +29,23 @@ public class Category {
         return name;
     }
 
-    public void printCategories(int level){
-        if(this.name!=null) {
-            System.out.print("+");
-            for (int i = 0; i < level; i++) {
-                System.out.print("-");
-            }
-            System.out.println(this.name);
-        }
-        for(Category subcategory: this.subcategories){
-            subcategory.printCategories(level + 1);
-        }
+    public Set<Category> getSubcategories() {
+        return subcategories;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Set<Auction> getAuctions() {
+        return auctions;
+    }
+
+    public void setAuctions(Set<Auction> auctions) {
+        this.auctions = auctions;
+    }
+
+    public static void setSubcategories(Set<Category> subcategories) {
+        Category.subcategories = subcategories;
     }
 }
