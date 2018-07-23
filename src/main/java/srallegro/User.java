@@ -5,7 +5,6 @@ public class User {
     public String getNick() {
         return nick;
     }
-
     private String name;
     private String lastName;
     private Integer birthday;
@@ -23,59 +22,6 @@ public class User {
         this.mail = mail;
         this.password = password;
         this.nick = nick;
-    }
-
-
-
-    public static Builder personBuilder (){
-        return new Builder();
-    }
-    public static class Builder{
-        private String name;
-        private String lastName;
-        private Integer birthday;
-        private String adress;
-        private String mail;
-        private String password;
-        private String nick;
-
-        public Builder withName(String name) {
-
-            this.name = name;
-            return this;
-        }
-        public Builder withLastName(String lastName) {
-
-            this.lastName = lastName;
-            return this;
-        }
-        public Builder withBirthday(Integer birthday) {
-            this.birthday = birthday;
-            return this;
-        }
-        public Builder withAdress(String adress) {
-            this.adress = adress;
-            return this;
-        }
-        public Builder withMail(String mail) {
-            this.mail = mail;
-            return this;
-        }
-        public Builder withPassword(String password) {
-            this.password = password;
-            return this;
-        }
-        public Builder withNick(String nick) {
-            this.nick = nick;
-            return this;
-        }
-        public User build() {
-            return new User (name, lastName, birthday, adress, mail, password, nick);
-        }
-
-
-
-
     }
 
     @Override
