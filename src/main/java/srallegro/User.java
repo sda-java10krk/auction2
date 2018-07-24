@@ -2,6 +2,7 @@ package srallegro;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 public class User {
 
@@ -54,4 +55,23 @@ public class User {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(name, user.name) &&
+                Objects.equals(lastName, user.lastName) &&
+                Objects.equals(birthday, user.birthday) &&
+                Objects.equals(adress, user.adress) &&
+                Objects.equals(mail, user.mail) &&
+                Objects.equals(password, user.password) &&
+                Objects.equals(nick, user.nick);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(name, lastName, birthday, adress, mail, password, nick);
+    }
 }

@@ -17,7 +17,7 @@ public class AuctionControllerTest {
     Auction testAuction2 = AuctionController.createAuction(testSeller, "Title2", "Description2", category, 372.5);
 
     @Test
-    public void testIfBidUpSetsPriceToNewPrice () throws PriceTooLowException {
+    public void testIfBidUpSetsPriceToNewPrice () throws PriceTooLowException, YouCantBidUpYourOwnAuctionException {
         Category cat = new Category("lol");
         User user1 = new User("sad","sdf",124,"432","fsd", "fds" , "32");
         Auction sad = new Auction("lol","fs", cat,user1,user1,BigDecimal.valueOf(1000),0, 0);
@@ -27,7 +27,7 @@ public class AuctionControllerTest {
     }
 
     @Test
-    public void testIsBidUpIncreaseBids() throws PriceTooLowException {
+    public void testIsBidUpIncreaseBids() throws PriceTooLowException, YouCantBidUpYourOwnAuctionException {
         Category cat = new Category("lol");
         User user1 = new User("sad", "sdf", 124, "432", "fsd", "fds", "32");
         Auction auction = new Auction("lol", "fs", cat, user1, user1, BigDecimal.valueOf(1000), 0, 0);
@@ -38,7 +38,7 @@ public class AuctionControllerTest {
 
     }
     @Test
-    public void testIsPersonWhoBidIsTheNewWinner()throws PriceTooLowException{
+    public void testIsPersonWhoBidIsTheNewWinner() throws PriceTooLowException, YouCantBidUpYourOwnAuctionException {
         Category cat = new Category("lol");
         User user1 = new User("sad", "sdf", 124, "432", "fsd", "fds", "32");
         User user2 = new User("sad", "sdf", 124, "432", "fsd", "fds", "32");
@@ -50,7 +50,7 @@ public class AuctionControllerTest {
         }
 
     @Test (expected = PriceTooLowException.class)
-    public void testIsExceptionIsThrown () throws PriceTooLowException {
+    public void testIsExceptionIsThrown () throws PriceTooLowException, YouCantBidUpYourOwnAuctionException {
          Category cat = new Category("lol");
          User user1 = new User("sad", "sdf", 124, "432", "fsd", "fds", "32");
          Auction auction = new Auction("lol", "fs", cat, user1, user1, BigDecimal.valueOf(1000), 0, 0);
@@ -58,7 +58,7 @@ public class AuctionControllerTest {
      }
 
      @Test
-     public void testIsAuctionIsAddedToUserWonList () throws PriceTooLowException{
+     public void testIsAuctionIsAddedToUserWonList () throws PriceTooLowException, YouCantBidUpYourOwnAuctionException {
          Category cat = new Category("lol");
          User user1 = new User("sad", "Kowalski", 124, "432", "fsd", "fds", "32");
          User user2 = new User("sad", "Jan", 124, "432", "fsd", "fds", "32");
@@ -70,8 +70,23 @@ public class AuctionControllerTest {
          boolean result = auction.getWinner() == user1;
          assertEquals(expected, result);
      }
-
-
+     @Test (expected = YouCantBidUpYourOwnAuctionException.class)
+     public void testYouCantBidUpYourOwnAuction () throws YouCantBidUpYourOwnAuctionException, PriceTooLowException {
+         Category cat = new Category("lol");
+         User seller = new User("sad", "sdf", 124, "432", "fsd", "fds", "32");
+         User user1 = new User("sa", "sdf", 124, "432", "fsd", "fds", "32");
+         Auction auction = new Auction("lol", "fs", cat, seller, user1, BigDecimal.valueOf(1000), 0, 0);
+         BigDecimal bidUpAuction = AuctionController.bidUp(auction, BigDecimal.valueOf(194), seller);
+     }
+    @Test (expected = YouCantBidUpYourOwnAuctionException.class)
+    public void testYouCantBidUpAuctionThatYouBiddedUp () throws YouCantBidUpYourOwnAuctionException, PriceTooLowException {
+        Category cat = new Category("lol");
+        User seller = new User("sad", "sdf", 124, "432", "fsd", "fds", "32");
+        User user1 = new User("sa", "sdf", 124, "432", "fsd", "fds", "32");
+        Auction auction = new Auction("lol", "fs", cat, seller, user1, BigDecimal.valueOf(1000), 0, 0);
+        BigDecimal bidUpAuction = AuctionController.bidUp(auction, BigDecimal.valueOf(1194), user1);
+        BigDecimal bidUpAuction1 = AuctionController.bidUp(auction, BigDecimal.valueOf(1294), user1);
+    }
     @Test
     public void testCreateAuction() {
 

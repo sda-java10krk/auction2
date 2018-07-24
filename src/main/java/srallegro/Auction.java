@@ -47,6 +47,8 @@ public class Auction {
         this.bids = bids;
     }
 
+
+
     public void setBids(int bids) {
         this.bids = bids;
     }

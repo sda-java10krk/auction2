@@ -14,11 +14,18 @@ public class AuctionController {
         user.myWonList.add(auction);
     }
 
-    public static BigDecimal bidUp(Auction auction , BigDecimal bidUp, User user) throws PriceTooLowException {
-         BigDecimal newPrice = bidUp;
+    public static BigDecimal bidUp(Auction auction , BigDecimal bidUp, User user) throws PriceTooLowException, YouCantBidUpYourOwnAuctionException {
+
+        if (auction.getWinner().equals(user) || auction.getSeller().equals(user)){
+        throw new YouCantBidUpYourOwnAuctionException();
+        }
+
+        BigDecimal newPrice = bidUp;
+
 
         if(newPrice.compareTo(auction.getPrice()) < 0 ){
          throw new PriceTooLowException();
+
         }else {
             auction.setPrice(newPrice);
             auction.setWinner(user);
