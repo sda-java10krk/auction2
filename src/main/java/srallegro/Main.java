@@ -4,22 +4,24 @@ import java.util.Scanner;
 
 public class Main {
 
-
         public static void main(String[] args) {
-
             Database database = new Database();
-            Scanner scanner = new Scanner(System.in);
+            Scanner sc = new Scanner(System.in);
+            System.out.println("1 - zaloguj się, 2 - zarejestruj się");
+            int menuChoice = sc.nextInt();
 
-            System.out.println("Dzien dobty co chcesz szroibc");
-            System.out.println("1 - zalogowac sie");
-            System.out.println("2 - zarejestrowac");
-            String answer = scanner.nextLine();
+            if (menuChoice == 1) {
+                System.out.println("Podaj login");
+                String login = sc.next();
+                System.out.println("Podaj hasło");
+                String password = sc.next();
+                try {
+                    User currentUser = UserController.login(login, password);
+                } catch (NullPointerException npe) {
+                    System.out.println("Błędne dane, do widzenia");
+                }
+            } else if (menuChoice == 2) {
 
-            switch (answer) {
-                case ("2"):
-                    User user = RegisterUser.createUser();
-                    database.addUser(user);
-                    break;
             }
 
 
