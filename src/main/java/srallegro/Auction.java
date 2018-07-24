@@ -12,14 +12,32 @@ public class Auction {
     int auctionNumber;
     private  int bids;
 
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public User getSeller() {
+        return seller;
+    }
+
+    public void setAuctionNumber(int auctionNumber) {
+        this.auctionNumber = auctionNumber;
+    }
+
     public int getAuctionNumber() {
         return auctionNumber;
     }
 
-    int counter = 0;
 
-
-    public Auction(String title, String description, Category category, User seller, User winner, BigDecimal price, int auctionNumber, int counter, int bids) {
+    public Auction(String title, String description, Category category, User seller, User winner, BigDecimal price, int auctionNumber, int bids) {
         this.title = title;
         this.description = description;
         this.category = category;
