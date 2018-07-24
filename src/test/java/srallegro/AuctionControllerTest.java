@@ -71,6 +71,7 @@ public class AuctionControllerTest {
          assertEquals(expected, result);
      }
 
+
     @Test
     public void testCreateAuction() {
 
