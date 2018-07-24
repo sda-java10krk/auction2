@@ -4,6 +4,8 @@ import junit.framework.TestCase;
 import org.junit.Test;
 
 import java.math.BigDecimal;
+import java.util.LinkedList;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -42,6 +44,11 @@ public class AuctionControllerTest {
         TestCase.assertEquals(testAuction2.getWinner(), null);
 
         TestCase.assertEquals(Database.allAuctions.size(), 2);
+
+        List<Auction> testList = new LinkedList<>();
+        testList.add(testAuction1);
+        testList.add(testAuction2);
+        TestCase.assertEquals(testSeller.mySellingList, testList);
     }
 
 

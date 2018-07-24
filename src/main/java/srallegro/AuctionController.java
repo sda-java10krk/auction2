@@ -1,6 +1,10 @@
 package srallegro;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
 
 public class AuctionController {
 
@@ -9,8 +13,6 @@ public class AuctionController {
         System.out.println("aukcja zakonczona, zwyciezył " + user);
 
     }
-
-
 
     public static BigDecimal bidUp(Auction auction , BigDecimal bidUp) throws PriceTooLowException {
          BigDecimal newPrice = bidUp;
@@ -29,7 +31,15 @@ public class AuctionController {
         Integer auctionNumber = Database.allAuctions.size()+1;
         Auction newAuction = new Auction(title, description, category, currentUser, null, new BigDecimal(amount), auctionNumber, 0);
         Database.allAuctions.add(newAuction);
+        currentUser.getMySellingList().add(newAuction);
         return newAuction;
     }
+
+    //analogicznie zrobic viewBuyersAuctions. Wymaga zmian w metodzie konczacej aukcje.
+    public static List<Auction> viewSellersAuctions (User loggedInUser) {
+        return loggedInUser.getMySellingList();
+    }
+
+
 
 }

@@ -1,5 +1,8 @@
 package srallegro;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class User {
 
     public String getNick() {
@@ -13,6 +16,16 @@ public class User {
     private String password;
     private String nick;
 
+    List<Auction> mySellingList = new LinkedList<Auction>();
+    List<Auction> myWonList = new LinkedList<Auction>();
+
+    public List<Auction> getMyWonList() {
+        return myWonList;
+    }
+
+    public List<Auction> getMySellingList() {
+        return mySellingList;
+    }
 
     public User (String name, String lastName, Integer birthDay, String adress, String mail, String password, String nick) {
         this.name = name;
@@ -36,7 +49,5 @@ public class User {
                 ", nick='" + nick + '\'' +
                 '}';
     }
-
-    //user-atrapa; domyślny wygrywający każdej nowej aukcji
 
 }
