@@ -12,6 +12,34 @@ public class Auction {
     int auctionNumber;
     private  int bids;
 
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public User getSeller() {
+        return seller;
+    }
+
+    public User getWinner() {
+        return winner;
+    }
+
+    public int getCounter() {
+        return counter;
+    }
+
+    public void setAuctionNumber(int auctionNumber) {
+        this.auctionNumber = auctionNumber;
+    }
+
     public int getAuctionNumber() {
         return auctionNumber;
     }
