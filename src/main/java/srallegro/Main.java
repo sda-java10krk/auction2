@@ -25,6 +25,7 @@ public class Main {
                 RegisterUser.createUser();
                 System.out.println("Zarejestrowano użytkownika. Uruchom program ponownie i zaloguj się");
             }
+            
         }
     }
 
