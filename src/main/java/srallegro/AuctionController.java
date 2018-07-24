@@ -10,7 +10,7 @@ public class AuctionController {
 
 
     public static void  endOfAuction( Auction auction, User user){
-        System.out.println("aukcja zakonczona, zwyciezył " + user);
+        System.out.println("aukcja zakonczona, zwyciezył " + user.getNick());
         user.myWonList.add(auction);
     }
 

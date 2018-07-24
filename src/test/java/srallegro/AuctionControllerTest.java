@@ -48,12 +48,27 @@ public class AuctionControllerTest {
         User winner = auction.getWinner();
         assertEquals(user2 , auction.getWinner());
         }
-        @Test (expected = PriceTooLowException.class)
-        public void testIsExceptionIsThrown () throws PriceTooLowException {
+
+    @Test (expected = PriceTooLowException.class)
+    public void testIsExceptionIsThrown () throws PriceTooLowException {
          Category cat = new Category("lol");
          User user1 = new User("sad", "sdf", 124, "432", "fsd", "fds", "32");
          Auction auction = new Auction("lol", "fs", cat, user1, user1, BigDecimal.valueOf(1000), 0, 0);
          BigDecimal bidUpAuction = AuctionController.bidUp(auction, BigDecimal.valueOf(194), user1);
+     }
+
+     @Test
+     public void testIsAuctionIsAddedToUserWonList () throws PriceTooLowException{
+         Category cat = new Category("lol");
+         User user1 = new User("sad", "Kowalski", 124, "432", "fsd", "fds", "32");
+         User user2 = new User("sad", "Jan", 124, "432", "fsd", "fds", "32");
+         Auction auction = new Auction("lol", "fs", cat, user1, user1, BigDecimal.valueOf(1000), 0, 0);
+         BigDecimal bidUpAuction = AuctionController.bidUp(auction, BigDecimal.valueOf(1524), user1);
+         BigDecimal bidUpAuction2 = AuctionController.bidUp(auction, BigDecimal.valueOf(1524), user2);
+         BigDecimal bidUpAuction3 = AuctionController.bidUp(auction, BigDecimal.valueOf(1724), user1);
+         boolean expected = user1.myWonList.contains(auction);
+         boolean result = auction.getWinner() == user1;
+         assertEquals(expected, result);
      }
 
     @Test
