@@ -19,6 +19,10 @@ public class User {
     List<Auction> mySellingList = new LinkedList<Auction>();
     List<Auction> myWonList = new LinkedList<Auction>();
 
+    public String getPassword() {
+        return password;
+    }
+
     public List<Auction> getMyWonList() {
         return myWonList;
     }
