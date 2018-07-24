@@ -1,5 +1,6 @@
 package srallegro;
 
+import junit.framework.TestCase;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -13,10 +14,34 @@ public class AuctionControllerTest {
     public void testIfBidUpSetsPriceToNewPrice () throws PriceTooLowException {
         Category cat = new Category("lol");
         User user1 = new User("sad","sdf",124,"432","fsd", "fds" , "32");
-        Auction sad = new Auction("lol","fs", cat,user1,user1,BigDecimal.valueOf(1000),0, 0, 0);
+        Auction sad = new Auction("lol","fs", cat,user1,user1,BigDecimal.valueOf(1000),0, 0);
         BigDecimal result = AuctionController.bidUp(sad, BigDecimal.valueOf(324));
         BigDecimal expected = BigDecimal.valueOf(1324);
         assertEquals(expected,result);
+    }
+
+    @Test
+    public void testCreateAuction() {
+        User testSeller = new User ("", "", null, "", "", "", "Seller");
+        Category category = new Category("CategoryName");
+
+        Auction testAuction1 = AuctionController.createAuction(testSeller, "Title1", "Description1", category, 150.0);
+        TestCase.assertEquals(testSeller.getNick(), testAuction1.getSeller().getNick());
+        TestCase.assertEquals(testAuction1.getTitle(), "Title1");
+        TestCase.assertEquals(testAuction1.getDescription(), "Description1");
+        TestCase.assertEquals(testAuction1.getCategory(), category);
+        TestCase.assertEquals(testAuction1.getPrice(), new BigDecimal(150.0));
+        TestCase.assertEquals(testAuction1.getWinner(), null);
+
+        Auction testAuction2 = AuctionController.createAuction(testSeller, "Title2", "Description2", category, 372.5);
+        TestCase.assertEquals(testSeller.getNick(), testAuction2.getSeller().getNick());
+        TestCase.assertEquals(testAuction2.getTitle(), "Title2");
+        TestCase.assertEquals(testAuction2.getDescription(), "Description2");
+        TestCase.assertEquals(testAuction2.getCategory(), category);
+        TestCase.assertEquals(testAuction2.getPrice(), new BigDecimal(372.5));
+        TestCase.assertEquals(testAuction2.getWinner(), null);
+
+        TestCase.assertEquals(Database.allAuctions.size(), 2);
     }
 
 

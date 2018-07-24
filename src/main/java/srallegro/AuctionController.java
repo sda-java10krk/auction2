@@ -1,11 +1,6 @@
 package srallegro;
 
-import srallegro.Auction;
-
 import java.math.BigDecimal;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.Set;
 
 public class AuctionController {
 
@@ -31,9 +26,9 @@ public class AuctionController {
     }
 
     public static Auction createAuction(User currentUser, String title, String description, Category category, double amount)  {
-        Integer auctionNumber = DatabaseUsers.allAuctions.size()+1;
-        Auction newAuction = new Auction(title, description, category, currentUser, User.noWinner(), new BigDecimal(amount), auctionNumber, 0);
-        DatabaseUsers.allAuctions.add(newAuction);
+        Integer auctionNumber = Database.allAuctions.size()+1;
+        Auction newAuction = new Auction(title, description, category, currentUser, null, new BigDecimal(amount), auctionNumber, 0);
+        Database.allAuctions.add(newAuction);
         return newAuction;
     }
 

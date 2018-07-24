@@ -1,8 +1,5 @@
 package srallegro;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
@@ -10,7 +7,7 @@ public class Main {
 
         public static void main(String[] args) {
 
-            DatabaseUsers databaseUsers = new DatabaseUsers();
+            Database database = new Database();
             Scanner scanner = new Scanner(System.in);
 
             System.out.println("Dzien dobty co chcesz szroibc");
@@ -21,7 +18,7 @@ public class Main {
             switch (answer) {
                 case ("2"):
                     User user = RegisterUser.createUser();
-                    databaseUsers.addUser(user);
+                    database.addUser(user);
                     break;
             }
 

@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 
-public class DatabaseUsers {
+public class Database {
     Map<String, User> usersByName = new HashMap<>();
     public static Set<Auction> allAuctions = new HashSet<>();
 

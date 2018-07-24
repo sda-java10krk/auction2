@@ -28,14 +28,6 @@ public class Auction {
         return seller;
     }
 
-    public User getWinner() {
-        return winner;
-    }
-
-    public int getCounter() {
-        return counter;
-    }
-
     public void setAuctionNumber(int auctionNumber) {
         this.auctionNumber = auctionNumber;
     }
@@ -44,10 +36,8 @@ public class Auction {
         return auctionNumber;
     }
 
-    int counter = 0;
 
-
-    public Auction(String title, String description, Category category, User seller, User winner, BigDecimal price, int auctionNumber, int counter, int bids) {
+    public Auction(String title, String description, Category category, User seller, User winner, BigDecimal price, int auctionNumber, int bids) {
         this.title = title;
         this.description = description;
         this.category = category;
