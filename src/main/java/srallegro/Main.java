@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Main {
 
         public static void main(String[] args) {
-            Database database = new Database();
+            Database database = new Database();  // po co mi to
             Scanner sc = new Scanner(System.in);
             System.out.println("1 - zaloguj się, 2 - zarejestruj się");
             int menuChoice = sc.nextInt();
@@ -21,8 +21,10 @@ public class Main {
                     System.out.println("Błędne dane, do widzenia");
                 }
             } else if (menuChoice == 2) {
-
+                RegisterUser.createUser();
+                System.out.println("Zarejestrowano użytkownika. Uruchom program ponownie i zaloguj się");
             }
+
 
 
         }
