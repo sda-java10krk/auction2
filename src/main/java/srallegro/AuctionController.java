@@ -36,10 +36,13 @@ public class AuctionController {
         return newAuction;
     }
 
-    //analogicznie zrobic viewBuyersAuctions. Wymaga zmian w metodzie konczacej aukcje.
     public static List<Auction> viewSellersAuctions (User loggedInUser) {
         return loggedInUser.getMySellingList();
     }
+
+    public static List<Auction> viewWonAuctions (User loggedInUser) {
+        return loggedInUser.getMyWonList();
+        }
 
 
 

@@ -60,6 +60,18 @@ public class AuctionControllerTest {
         assertEquals(AuctionController.viewSellersAuctions(testSeller), testList);
     }
 
+    @Test
+    public void testViewWonAuctions() {
+
+        List<Auction> testList2 = new LinkedList<>();
+        testList2.add(testAuction1);
+        testList2.add(testAuction2);
+        testSeller.getMyWonList().add(testAuction1);
+        testSeller.getMyWonList().add(testAuction2);
+        assertEquals(AuctionController.viewWonAuctions(testSeller), testList2);
+    }
+
+
 
 
 }
