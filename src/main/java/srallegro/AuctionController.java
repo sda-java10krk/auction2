@@ -11,17 +11,21 @@ public class AuctionController {
 
     public static void  endOfAuction( Auction auction, User user){
         System.out.println("aukcja zakonczona, zwyciezył " + user);
-
+        user.myWonList.add(auction);
     }
 
-    public static BigDecimal bidUp(Auction auction , BigDecimal bidUp) throws PriceTooLowException {
+    public static BigDecimal bidUp(Auction auction , BigDecimal bidUp, User user) throws PriceTooLowException {
          BigDecimal newPrice = bidUp;
 
         if(newPrice.compareTo(auction.getPrice()) < 0 ){
          throw new PriceTooLowException();
         }else {
             auction.setPrice(newPrice);
-            if (auction.getBids() == 2){
+            auction.setWinner(user);
+            auction.setBids( auction.getBids()+1);
+
+            if (auction.getBids() == 3){
+
                 endOfAuction(auction, auction.getWinner());
             }
         }
