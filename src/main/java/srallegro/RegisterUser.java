@@ -4,9 +4,7 @@ import javax.xml.crypto.Data;
 import java.util.*;
 
 public class RegisterUser {
-
     protected static User createUser (){
-
         Scanner scanner = new Scanner(System.in);
         System.out.println("Podaj Imię");
         String userName = scanner.nextLine();
@@ -28,6 +26,14 @@ public class RegisterUser {
 
         System.out.println("Podaj hasło");
         String password = scanner.nextLine();
+        while (true){
+            if (password.length()<5){
+                System.out.println("Hasło jest za krótkie");
+                password = scanner.nextLine();
+            } else {
+                break;
+            }
+        }
         System.out.println("Powtórz hasło");
         String password2 = scanner.nextLine();
 
