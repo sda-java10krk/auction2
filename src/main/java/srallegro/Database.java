@@ -13,7 +13,7 @@ public class Database {
     public static Set<Auction> allAuctions = new HashSet<>();
 
 
-    protected void addUser(User user) throws FileNotFoundException {
+    public static void addUser(User user) throws FileNotFoundException {
         String  userNick = user.getNick();
         usersByName.put(userNick, user);
         PrintWriter saveDatabase = new PrintWriter("DatabaseUsers.txt");

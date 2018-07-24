@@ -7,6 +7,7 @@ public class Main {
         public static void main(String[] args) {
             Database database = new Database();  // po co mi to
             Scanner sc = new Scanner(System.in);
+            User currentUser;
             System.out.println("1 - zaloguj się, 2 - zarejestruj się");
             int menuChoice = sc.nextInt();
 
@@ -16,7 +17,7 @@ public class Main {
                 System.out.println("Podaj hasło");
                 String password = sc.next();
                 try {
-                    User currentUser = UserController.login(login, password);
+                    currentUser = UserController.login(login, password);
                 } catch (NullPointerException npe) {
                     System.out.println("Błędne dane, do widzenia");
                 }
@@ -24,9 +25,6 @@ public class Main {
                 RegisterUser.createUser();
                 System.out.println("Zarejestrowano użytkownika. Uruchom program ponownie i zaloguj się");
             }
-
-
-
         }
     }
 
