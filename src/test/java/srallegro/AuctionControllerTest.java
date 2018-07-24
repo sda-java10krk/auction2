@@ -11,6 +11,10 @@ import static org.junit.Assert.assertEquals;
 
 public class AuctionControllerTest {
 
+    User testSeller = new User ("", "", null, "", "", "", "Seller");
+    Category category = new Category("CategoryName");
+    Auction testAuction1 = AuctionController.createAuction(testSeller, "Title1", "Description1", category, 150.0);
+    Auction testAuction2 = AuctionController.createAuction(testSeller, "Title2", "Description2", category, 372.5);
 
     @Test
     public void testIfBidUpSetsPriceToNewPrice () throws PriceTooLowException {
@@ -24,10 +28,7 @@ public class AuctionControllerTest {
 
     @Test
     public void testCreateAuction() {
-        User testSeller = new User ("", "", null, "", "", "", "Seller");
-        Category category = new Category("CategoryName");
 
-        Auction testAuction1 = AuctionController.createAuction(testSeller, "Title1", "Description1", category, 150.0);
         TestCase.assertEquals(testSeller.getNick(), testAuction1.getSeller().getNick());
         TestCase.assertEquals(testAuction1.getTitle(), "Title1");
         TestCase.assertEquals(testAuction1.getDescription(), "Description1");
@@ -35,7 +36,6 @@ public class AuctionControllerTest {
         TestCase.assertEquals(testAuction1.getPrice(), new BigDecimal(150.0));
         TestCase.assertEquals(testAuction1.getWinner(), null);
 
-        Auction testAuction2 = AuctionController.createAuction(testSeller, "Title2", "Description2", category, 372.5);
         TestCase.assertEquals(testSeller.getNick(), testAuction2.getSeller().getNick());
         TestCase.assertEquals(testAuction2.getTitle(), "Title2");
         TestCase.assertEquals(testAuction2.getDescription(), "Description2");
@@ -49,6 +49,15 @@ public class AuctionControllerTest {
         testList.add(testAuction1);
         testList.add(testAuction2);
         TestCase.assertEquals(testSeller.mySellingList, testList);
+    }
+
+    @Test
+    public void testViewSellersAuctions() {
+
+        List<Auction> testList = new LinkedList<>();
+        testList.add(testAuction1);
+        testList.add(testAuction2);
+        assertEquals(AuctionController.viewSellersAuctions(testSeller), testList);
     }
 
 
