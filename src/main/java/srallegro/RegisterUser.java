@@ -13,39 +13,42 @@ public class RegisterUser {
         Integer userBirthday = scanner.nextInt();
 
         System.out.println("Podaj Nazwisko");
-        String userLastName = scanner.nextLine();
+        String userLastName = scanner.next();
 
         System.out.println("Podaj adres zamieszkania");
-        String userAdress = scanner.nextLine();
+        String userAdress = scanner.next();
 
         System.out.println("Podaj e-mail");
-        String userMail = scanner.nextLine();
+        String userMail = scanner.next();
 
         System.out.println("Podaj nick");
-        String userNick = scanner.nextLine();
+        String userNick = scanner.next();
 
         System.out.println("Podaj hasło");
-        String password = scanner.nextLine();
+        String password = scanner.next();
+
         while (true){
             if (password.length()<5){
                 System.out.println("Hasło jest za krótkie");
-                password = scanner.nextLine();
+                password = scanner.next();
             } else {
                 break;
             }
         }
         System.out.println("Powtórz hasło");
-        String password2 = scanner.nextLine();
+        String password2 = scanner.next();
 
                 while (true){
                 if (password.equals(password2)){
                     break;
                 } else {
                     System.out.println("Hasła nie są takie same");
-                     password2 = scanner.nextLine();
+                     password2 = scanner.next();
                     }
                 }
 
-                return new User(userName, userLastName,userBirthday,userAdress,userMail,password,userNick);
+                User newUser = new User (userName, userLastName,userBirthday,userAdress,userMail,password,userNick);
+                Database.usersByName.put(newUser.getNick(), newUser);
+                return newUser;
     }
 }
