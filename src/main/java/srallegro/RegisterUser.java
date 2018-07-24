@@ -1,6 +1,7 @@
 package srallegro;
 
 import javax.xml.crypto.Data;
+import java.io.FileNotFoundException;
 import java.util.*;
 
 public class RegisterUser {
@@ -48,7 +49,11 @@ public class RegisterUser {
                 }
 
                 User newUser = new User (userName, userLastName,userBirthday,userAdress,userMail,password,userNick);
-                Database.usersByName.put(newUser.getNick(), newUser);
-                return newUser;
+        try {
+            Database.addUser(newUser);
+        } catch (FileNotFoundException e) {
+            System.out.println("Nie udało się");;
+        }
+        return newUser;
     }
 }
