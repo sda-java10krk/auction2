@@ -17,9 +17,10 @@ public class AuctionController {
         return null;
     }
 
-    public static Auction createAuction(User currentUser, Map<String, Category> categories, String title, String description, Category category, double amount, Integer auctionNumber)  {
+    public static Auction createAuction(User currentUser, String title, String description, Category category, double amount)  {
+        Integer auctionNumber = DatabaseUsers.allAuctions.size()+1;
         Auction newAuction = new Auction(title, description, category, currentUser, User.noWinner(), new BigDecimal(amount), auctionNumber, 0);
-        auctionNumber++;
+        DatabaseUsers.allAuctions.add(newAuction);
         return newAuction;
     }
 

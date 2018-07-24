@@ -11,6 +11,10 @@ public class Auction {
     private BigDecimal price;
     int auctionNumber;
 
+    public void setAuctionNumber(int auctionNumber) {
+        this.auctionNumber = auctionNumber;
+    }
+
     public int getAuctionNumber() {
         return auctionNumber;
     }
