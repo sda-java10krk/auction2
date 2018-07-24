@@ -12,6 +12,8 @@ public class Database {
     public static Map<String, User> usersByName = new HashMap<>();
     public static Set<Auction> allAuctions = new HashSet<>();
 
+    public static Category category = new Category("All Categories");
+
 
     public static void addUser(User user) throws FileNotFoundException {
         String  userNick = user.getNick();
