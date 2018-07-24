@@ -21,10 +21,40 @@ public class AuctionControllerTest {
         Category cat = new Category("lol");
         User user1 = new User("sad","sdf",124,"432","fsd", "fds" , "32");
         Auction sad = new Auction("lol","fs", cat,user1,user1,BigDecimal.valueOf(1000),0, 0);
-        BigDecimal result = AuctionController.bidUp(sad, BigDecimal.valueOf(324));
-        BigDecimal expected = BigDecimal.valueOf(1324);
+        BigDecimal result = AuctionController.bidUp(sad, BigDecimal.valueOf(1524),user1);
+        BigDecimal expected = BigDecimal.valueOf(1524);
         assertEquals(expected,result);
     }
+
+    @Test
+    public void testIsBidUpIncreaseBids() throws PriceTooLowException {
+        Category cat = new Category("lol");
+        User user1 = new User("sad", "sdf", 124, "432", "fsd", "fds", "32");
+        Auction auction = new Auction("lol", "fs", cat, user1, user1, BigDecimal.valueOf(1000), 0, 0);
+        BigDecimal bidUpAuction = AuctionController.bidUp(auction, BigDecimal.valueOf(1524), user1);
+        BigDecimal bidUpAuction1 = AuctionController.bidUp(auction, BigDecimal.valueOf(1624), user1);
+        int result = auction.getBids();
+        assertEquals(2, result);
+
+    }
+    @Test
+    public void testIsPersonWhoBidIsTheNewWinner()throws PriceTooLowException{
+        Category cat = new Category("lol");
+        User user1 = new User("sad", "sdf", 124, "432", "fsd", "fds", "32");
+        User user2 = new User("sad", "sdf", 124, "432", "fsd", "fds", "32");
+        Auction auction = new Auction("lol", "fs", cat, user1, user1, BigDecimal.valueOf(1000), 0, 0);
+        BigDecimal bidUpAuction = AuctionController.bidUp(auction, BigDecimal.valueOf(1524), user1);
+        BigDecimal bidUpAuction2 = AuctionController.bidUp(auction, BigDecimal.valueOf(1524), user2);
+        User winner = auction.getWinner();
+        assertEquals(user2 , auction.getWinner());
+        }
+        @Test (expected = PriceTooLowException.class)
+        public void testIsExceptionIsThrown () throws PriceTooLowException {
+         Category cat = new Category("lol");
+         User user1 = new User("sad", "sdf", 124, "432", "fsd", "fds", "32");
+         Auction auction = new Auction("lol", "fs", cat, user1, user1, BigDecimal.valueOf(1000), 0, 0);
+         BigDecimal bidUpAuction = AuctionController.bidUp(auction, BigDecimal.valueOf(194), user1);
+     }
 
     @Test
     public void testCreateAuction() {
