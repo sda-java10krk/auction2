@@ -15,9 +15,7 @@ public class AuctionControllerTest {
 
     User testSeller = new User ("", "", null, "", "", "", "Seller");
     Category category = new Category("CategoryName");
-    Auction testAuction1 = AuctionController.createAuction(testSeller, "Title1", "Description1", category, 150.0);
-    Auction testAuction2 = AuctionController.createAuction(testSeller, "Title2", "Description2", category, 372.5);
-
+    
     //before i database na nowy hashset
     @Before
     public void allAuctionsSizeSetToZero () {
@@ -27,6 +25,8 @@ public class AuctionControllerTest {
     //test jest chujowy xd
     @Test
     public void testCreateAuction() {
+        Auction testAuction1 = AuctionController.createAuction(testSeller, "Title1", "Description1", category, 150.0);
+        Auction testAuction2 = AuctionController.createAuction(testSeller, "Title2", "Description2", category, 372.5);
 
         TestCase.assertEquals(testSeller.getNick(), testAuction1.getSeller().getNick());
         TestCase.assertEquals(testAuction1.getTitle(), "Title1");
@@ -53,6 +53,9 @@ public class AuctionControllerTest {
     @Test
     public void testViewSellersAuctions() {
 
+        Auction testAuction1 = AuctionController.createAuction(testSeller, "Title1", "Description1", category, 150.0);
+        Auction testAuction2 = AuctionController.createAuction(testSeller, "Title2", "Description2", category, 372.5);
+
         List<Auction> testList = new LinkedList<>();
         testList.add(testAuction1);
         testList.add(testAuction2);
@@ -61,6 +64,8 @@ public class AuctionControllerTest {
 
     @Test
     public void testViewWonAuctions() {
+        Auction testAuction1 = AuctionController.createAuction(testSeller, "Title1", "Description1", category, 150.0);
+        Auction testAuction2 = AuctionController.createAuction(testSeller, "Title2", "Description2", category, 372.5);
 
         List<Auction> testList2 = new LinkedList<>();
         testList2.add(testAuction1);
