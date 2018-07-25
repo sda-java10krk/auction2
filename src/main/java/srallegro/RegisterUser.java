@@ -53,11 +53,7 @@ public class RegisterUser {
         try {
             Database.addUser(newUser);
         } catch (FileNotFoundException e) {
-
-            System.out.println("Nie udało się");;
-
             System.out.println("Nie udało się. Plik");;
-
         } catch (IOException e) {
             e.printStackTrace();
         }
