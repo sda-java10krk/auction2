@@ -1,3 +1,5 @@
 .idea
 .out
-.Srallegro.iml
+.Srallegro
+target
+Database.txt
