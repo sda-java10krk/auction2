@@ -38,7 +38,7 @@ public class AuctionController {
         }
 
 
-    public static Auction createAuction(User currentUser, String title, String description, Category category, double amount) throws EmptyTitleException, AuctionPriceIsBelowZeroOrZeroException {
+    public static Auction createAuction(User currentUser, String title, String description, Category category, double amount) throws EmptyTitleException, AuctionPriceIsBelowZeroOrZeroException, EmptyDescriptionException {
         Integer auctionNumber = Database.allAuctions.size()+1;
         Auction newAuction = new Auction(title, description, category, currentUser, null, new BigDecimal(amount), auctionNumber, 0);
         if (title.length() == 0 ){
@@ -46,6 +46,9 @@ public class AuctionController {
         }
         if (amount <0 || amount ==0 ){
             throw new AuctionPriceIsBelowZeroOrZeroException();
+        }
+        if (description.length() ==0){
+            throw new EmptyDescriptionException();
         }
         Database.allAuctions.add(newAuction);
         currentUser.getMySellingList().add(newAuction);

@@ -27,7 +27,19 @@ public class AuctionControllerTest {
         Database.allAuctions = new HashSet<>();
     }
 
-    //test jest chujowy xd
+    @Test (expected = EmptyTitleException.class)
+    public void testCreateAuctionThrowEmptyTitleException () throws Exception{
+        Auction auction = AuctionController.createAuction(testSeller ,"","lol", category,342);
+    }
+    @Test (expected = AuctionPriceIsBelowZeroOrZeroException.class)
+    public void testCreateAuctionThrowBelowZeroException () throws Exception{
+        Auction auction = AuctionController.createAuction(testSeller ,"fsd","lol", category,-32);
+
+    }
+    @Test (expected = EmptyDescriptionException.class)
+    public void testCreateAuctionThrowEmptyDescribtionEmpty () throws Exception{
+        Auction auction = AuctionController.createAuction(testSeller ,"sfd","", category,342);
+    }
     @Test
     public void testCreateAuction() {
 
