@@ -1,9 +1,11 @@
 package srallegro;
 
 import junit.framework.TestCase;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -16,6 +18,13 @@ public class AuctionControllerTest {
     Auction testAuction1 = AuctionController.createAuction(testSeller, "Title1", "Description1", category, 150.0);
     Auction testAuction2 = AuctionController.createAuction(testSeller, "Title2", "Description2", category, 372.5);
 
+    //before i database na nowy hashset
+    @Before
+    public void allAuctionsSizeSetToZero () {
+        Database.allAuctions = new HashSet<>();
+    }
+
+    //test jest chujowy xd
     @Test
     public void testCreateAuction() {
 
