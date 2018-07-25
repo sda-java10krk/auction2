@@ -1,14 +1,23 @@
 package srallegro;
 
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.TreeSet;
+
+import static java.lang.System.out;
 
 public class Main {
 
     public static void printMenu() {
-        System.out.println("Co chcesz zrobić? \n 1. Wystaw przedmiot \n 2. Pokaż aukcje wg kategorii \n 3. Wyświetl moje aukcje \n 4. Wyświetl aukcje, które wygrałem \n ");
+        out.println("Co chcesz zrobić? \n 1. Wystaw przedmiot \n 2. Pokaż aukcje wg kategorii \n 3. Wyświetl moje aukcje \n 4. Wyświetl aukcje, które wygrałem \n ");
     }
 
         public static void main(String[] args) {
+
+        Category allcategories = CategoryController.createCategoryTree();
+
+
             Database database = new Database();  // po co mi to
             Scanner sc = new Scanner(System.in);
             User currentUser = null;
@@ -43,16 +52,27 @@ public class Main {
                     System.out.println("Podaj cenę wywoławczą");
                     double price = sc.nextDouble();
                     System.out.println("Wybierz kategorię");
-                    //CategoryView.printCategories();  //jak wyświetlić? jak wybrac kategorie?
+                    //CategoryController.printCategories();  //jak wyświetlić? jak wybrac kategorie?
                     String chosenCat = sc.next();
                     Category cat = new Category ("Robocza kategoria");
                     AuctionController.createAuction(currentUser, title, description, cat, price);
+                } else if (menuChoice == 2) {
+                    CategoryController.printCategories(allcategories, 0, out);
+                    System.out.println("Wybierz kategorię");
+                    String chosenCategory = sc.next();
+
+
+
                 } else if (menuChoice == 3) {
                     System.out.println(AuctionController.viewSellersAuctions(currentUser));
                 } else if (menuChoice == 4) {
                     System.out.println(AuctionController.viewWonAuctions(currentUser));
                 }
             }
+
+
+
+
 
 
 
