@@ -18,7 +18,7 @@ public class RegisterUser {
         String userLastName = scanner.next();
 
         System.out.println("Podaj adres zamieszkania");
-        String userAdress = scanner.next();
+        String userAdrdess = scanner.next();
 
         System.out.println("Podaj e-mail");
         String userMail = scanner.next();
@@ -49,7 +49,7 @@ public class RegisterUser {
                     }
                 }
 
-                User newUser = new User (userName, userLastName,userBirthday,userAdress,userMail,password,userNick);
+                User newUser = new User (userName, userLastName,userBirthday,userAdrdess,userMail,password,userNick);
         try {
             Database.addUser(newUser);
         } catch (FileNotFoundException e) {
