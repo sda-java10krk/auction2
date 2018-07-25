@@ -36,7 +36,7 @@ public class Auction {
         return auctionNumber;
     }
 
-
+    //dodac do aukcji wyjatki jestli tytul jest pusty title.lengt=0 throw new itp,
     public Auction(String title, String description, Category category, User seller, User winner, BigDecimal price, int auctionNumber, int bids ) {
         this.title = title;
         this.description = description;

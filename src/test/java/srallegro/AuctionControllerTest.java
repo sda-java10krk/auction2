@@ -18,6 +18,9 @@ public class AuctionControllerTest {
     Auction testAuction1 = AuctionController.createAuction(testSeller, "Title1", "Description1", category, 150.0);
     Auction testAuction2 = AuctionController.createAuction(testSeller, "Title2", "Description2", category, 372.5);
 
+    public AuctionControllerTest() throws Exception {
+    }
+
     //before i database na nowy hashset
     @Before
     public void allAuctionsSizeSetToZero () {
@@ -70,9 +73,8 @@ public class AuctionControllerTest {
         assertEquals(AuctionController.viewWonAuctions(testSeller), testList2);
     }
 
-
     @Test
-    public void testIfBidUpSetsPriceToNewPrice () throws PriceTooLowException, YouCantBidUpYourOwnAuctionException {
+    public void testIfBidUpSetsPriceToNewPrice () throws Exception {
         Category cat = new Category("lol");
         User user1 = new User("saf","sdf",124,"432","fsd", "fds" , "32");
         User user2 = new User("sad","sdf",124,"432","fsd", "fds" , "32");
@@ -84,7 +86,7 @@ public class AuctionControllerTest {
     }
 
     @Test
-    public void testIsBidUpIncreaseBids() throws PriceTooLowException, YouCantBidUpYourOwnAuctionException {
+    public void testIsBidUpIncreaseBids() throws Exception {
         Category cat = new Category("lol");
         User user1 = new User("sad","sdf",124,"432","fsd", "fds" , "32");
         User user2 = new User("saf", "sdf", 124, "432", "fsd", "fds", "32");
@@ -97,7 +99,7 @@ public class AuctionControllerTest {
 
     }
     @Test
-    public void testIsPersonWhoBidIsTheNewWinner() throws PriceTooLowException, YouCantBidUpYourOwnAuctionException {
+    public void testIsPersonWhoBidIsTheNewWinner() throws Exception {
         Category cat = new Category("lol");
         User user1 = new User("sad", "sdf", 124, "432", "fsd", "fds", "32");
         User user2 = new User("saf", "sdf", 124, "432", "fsd", "fds", "32");
@@ -110,7 +112,7 @@ public class AuctionControllerTest {
         }
 
     @Test (expected = PriceTooLowException.class)
-    public void testIsExceptionIsThrown () throws PriceTooLowException, YouCantBidUpYourOwnAuctionException {
+    public void testIsExceptionIsThrown () throws Exception {
          Category cat = new Category("lol");
          User user1 = new User("sad", "sdf", 124, "432", "fsd", "fds", "32");
         User user2 = new User("saf", "sdf", 124, "432", "fsd", "fds", "32");
@@ -120,7 +122,7 @@ public class AuctionControllerTest {
      }
 
      @Test
-     public void testIsAuctionIsAddedToUserWonList () throws PriceTooLowException, YouCantBidUpYourOwnAuctionException {
+     public void testIsAuctionIsAddedToUserWonList () throws Exception {
          Category cat = new Category("lol");
          User user1 = new User("sad", "Kowalski", 124, "432", "fsd", "fds", "32");
          User user2 = new User("sad", "Jan", 124, "432", "fsd", "fds", "32");
@@ -134,7 +136,7 @@ public class AuctionControllerTest {
          assertEquals(expected, result);
      }
      @Test (expected = YouCantBidUpYourOwnAuctionException.class)
-     public void testYouCantBidUpYourOwnAuction () throws YouCantBidUpYourOwnAuctionException, PriceTooLowException {
+     public void testYouCantBidUpYourOwnAuction () throws Exception {
          Category cat = new Category("lol");
          User seller = new User("sad", "sdf", 124, "432", "fsd", "fds", "32");
          User user1 = new User("sa", "sdf", 124, "432", "fsd", "fds", "32");
@@ -142,7 +144,7 @@ public class AuctionControllerTest {
          BigDecimal bidUpAuction = AuctionController.bidUp(auction, BigDecimal.valueOf(194), seller);
      }
     @Test (expected = YouCantBidUpYourOwnAuctionException.class)
-    public void testYouCantBidUpAuctionThatYouBiddedUp () throws YouCantBidUpYourOwnAuctionException, PriceTooLowException {
+    public void testYouCantBidUpAuctionThatYouBiddedUp () throws Exception {
         Category cat = new Category("lol");
         User seller = new User("sad", "sdf", 124, "432", "fsd", "fds", "32");
         User user1 = new User("sa", "sdf", 124, "432", "fsd", "fds", "32");

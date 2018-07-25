@@ -8,7 +8,7 @@ public class Main {
         System.out.println("Co chcesz zrobić? \n  1. Wystaw przedmiot \n 2. Pokaż aukcje wg kategorii ");
     }
 
-        public static void main(String[] args) {
+        public static void main(String[] args) throws EmptyTitleException, AuctionPriceIsBelowZeroOrZeroException {
             Database database = new Database();  // po co mi to
             Scanner sc = new Scanner(System.in);
             User currentUser = null;
