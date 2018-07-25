@@ -1,6 +1,5 @@
-package srallegro;
+package srallegro.User;
 
-import javax.xml.crypto.Data;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
@@ -49,7 +48,7 @@ public class RegisterUser {
                     }
                 }
 
-                User newUser = new User (userName, userLastName,userBirthday,userAdrdess,userMail,password,userNick);
+                User newUser = new User(userName, userLastName,userBirthday,userAdrdess,userMail,password,userNick);
         try {
             Database.addUser(newUser);
         } catch (FileNotFoundException e) {

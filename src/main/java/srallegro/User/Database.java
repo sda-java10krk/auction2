@@ -1,5 +1,5 @@
-package srallegro;
-import com.opencsv.CSVWriter;
+package srallegro.User;
+import srallegro.Auction.Auction;
 
 import java.io.*;
 import java.util.*;
@@ -11,20 +11,8 @@ public class Database {
 
 
     public static void addUser(User user) throws IOException {
-<<<<<<< HEAD
-        String  userNick = user.getNick();
-        usersByName.put(userNick, user);
-        //CSVWriter csvWriter = new CSVWriter(new FileWriter("databaseUser.csv"));
-
-
-    }
-
-
-=======
             String  userNick = user.getNick();
             usersByName.put(userNick, user);
             SaveUserOnDisk.writeCsvFile("databaseUser.csv", user);
-
     }
->>>>>>> AR9
 }

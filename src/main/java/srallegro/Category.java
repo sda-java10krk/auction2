@@ -1,6 +1,7 @@
 package srallegro;
 
-import java.io.PrintStream;
+import srallegro.Auction.Auction;
+
 import java.util.Set;
 import java.util.TreeSet;
 

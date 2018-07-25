@@ -1,5 +1,14 @@
 package srallegro;
 
+import srallegro.Auction.AuctionController;
+import srallegro.Exception.AuctionPriceIsBelowZeroOrZeroException;
+import srallegro.Exception.EmptyDescriptionException;
+import srallegro.Exception.EmptyTitleException;
+import srallegro.User.Database;
+import srallegro.User.RegisterUser;
+import srallegro.User.User;
+import srallegro.User.UserController;
+
 import java.util.Scanner;
 
 public class Main {

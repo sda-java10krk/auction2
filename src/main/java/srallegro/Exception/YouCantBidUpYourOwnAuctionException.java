@@ -1,4 +1,4 @@
-package srallegro;
+package srallegro.Exception;
 
 public class YouCantBidUpYourOwnAuctionException extends Exception {
     public YouCantBidUpYourOwnAuctionException(){

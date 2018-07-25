@@ -3,6 +3,11 @@ package srallegro;
 import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
+import srallegro.Auction.Auction;
+import srallegro.Auction.AuctionController;
+import srallegro.Exception.*;
+import srallegro.User.Database;
+import srallegro.User.User;
 
 import java.math.BigDecimal;
 import java.util.HashSet;
