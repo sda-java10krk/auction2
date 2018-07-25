@@ -1,4 +1,4 @@
-package srallegro;
+package srallegro.Exception;
 
 public class EmptyDescriptionException extends Exception {
     public EmptyDescriptionException() {

@@ -1,4 +1,6 @@
-package srallegro;
+package srallegro.User;
+
+import srallegro.Auction.Auction;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -44,7 +46,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "srallegro.User{" +
+        return "srallegro.User.User{" +
                 "name='" + name + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", birthday=" + birthday +

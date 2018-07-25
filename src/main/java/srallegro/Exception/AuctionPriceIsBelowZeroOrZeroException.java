@@ -1,4 +1,4 @@
-package srallegro;
+package srallegro.Exception;
 
 public class AuctionPriceIsBelowZeroOrZeroException extends Exception {
     public AuctionPriceIsBelowZeroOrZeroException() {

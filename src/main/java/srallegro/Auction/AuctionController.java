@@ -1,4 +1,9 @@
-package srallegro;
+package srallegro.Auction;
+
+import srallegro.Category;
+import srallegro.Exception.*;
+import srallegro.User.Database;
+import srallegro.User.User;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -29,7 +34,7 @@ public class AuctionController {
 
                 if (auction.getBids() == 3) {
                     System.out.println("aukcja zakonczona, zwyciezył " + user.getNick());
-                    user.myWonList.add(auction);
+                    user.getMyWonList().add(auction);
 
 
                 }

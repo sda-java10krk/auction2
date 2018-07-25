@@ -1,9 +1,16 @@
 package srallegro;
 
-import java.util.HashSet;
+
+import srallegro.Auction.AuctionController;
+import srallegro.Exception.AuctionPriceIsBelowZeroOrZeroException;
+import srallegro.Exception.EmptyDescriptionException;
+import srallegro.Exception.EmptyTitleException;
+import srallegro.User.Database;
+import srallegro.User.RegisterUser;
+import srallegro.User.User;
+import srallegro.User.UserController;
 import java.util.Scanner;
-import java.util.Set;
-import java.util.TreeSet;
+
 
 import static java.lang.System.out;
 
@@ -13,7 +20,7 @@ public class Main {
         System.out.println("Co chcesz zrobić? \n 1. Wystaw przedmiot \n 2. Pokaż aukcje wg kategorii \n 3. Wyświetl moje aukcje \n 4. Wyświetl aukcje, które wygrałem \n ");
     }
 
-        public static void main(String[] args) {
+        public static void main(String[] args) throws EmptyTitleException, EmptyDescriptionException, AuctionPriceIsBelowZeroOrZeroException {
 
         Category allcategories = CategoryController.createCategoryTree();
 

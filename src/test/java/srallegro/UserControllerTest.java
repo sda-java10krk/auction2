@@ -1,13 +1,15 @@
 package srallegro;
 
-import junit.framework.TestCase;
 import org.junit.Test;
+import srallegro.User.Database;
+import srallegro.User.User;
+import srallegro.User.UserController;
 
 import static org.junit.Assert.assertEquals;
 
 public class UserControllerTest {
 
-    User testSeller = new User ("", "", null, "", "", "SellerPassword", "Seller");
+    User testSeller = new User("", "", null, "", "", "SellerPassword", "Seller");
     User mrNull = null;
 
 

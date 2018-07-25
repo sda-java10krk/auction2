@@ -1,13 +1,9 @@
-package srallegro;
+package srallegro.User;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class SaveUserOnDisk {
-
-
     private static SaveUserOnDisk instance;
 
     private SaveUserOnDisk() {
@@ -18,9 +14,6 @@ public class SaveUserOnDisk {
             instance = new SaveUserOnDisk();
         }
         return instance;
-    }
-
-    public void SaveUserOnDiskInFile() {
     }
 
     private static final String COMMA_SEPARATOR = ",";
@@ -50,7 +43,6 @@ public class SaveUserOnDisk {
             fileWriter.append(COMMA_SEPARATOR);
             fileWriter.append(user.getNick());
             fileWriter.append(NEW_LINE_SEPARATOR);
-
 
         } catch (IOException e) {
             e.printStackTrace();
