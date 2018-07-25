@@ -11,20 +11,11 @@ public class Database {
 
 
     public static void addUser(User user) throws IOException {
-<<<<<<< HEAD
-        String  userNick = user.getNick();
-        usersByName.put(userNick, user);
-        //CSVWriter csvWriter = new CSVWriter(new FileWriter("databaseUser.csv"));
 
-
-    }
-
-
-=======
             String  userNick = user.getNick();
             usersByName.put(userNick, user);
             SaveUserOnDisk.writeCsvFile("databaseUser.csv", user);
 
     }
->>>>>>> AR9
+
 }
