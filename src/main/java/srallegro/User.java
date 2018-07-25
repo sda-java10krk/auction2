@@ -12,7 +12,7 @@ public class User {
     private String name;
     private String lastName;
     private Integer birthday;
-    private String adress;
+    private String address;
     private String mail;
     private String password;
     private String nick;
@@ -36,7 +36,7 @@ public class User {
         this.name = name;
         this.lastName = lastName;
         this.birthday = birthDay;
-        this.adress = adress;
+        this.address = adress;
         this.mail = mail;
         this.password = password;
         this.nick = nick;
@@ -48,7 +48,7 @@ public class User {
                 "name='" + name + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", birthday=" + birthday +
-                ", adress='" + adress + '\'' +
+                ", address='" + address + '\'' +
                 ", mail='" + mail + '\'' +
                 ", password='" + password + '\'' +
                 ", nick='" + nick + '\'' +
@@ -63,7 +63,7 @@ public class User {
         return Objects.equals(name, user.name) &&
                 Objects.equals(lastName, user.lastName) &&
                 Objects.equals(birthday, user.birthday) &&
-                Objects.equals(adress, user.adress) &&
+                Objects.equals(address, user.address) &&
                 Objects.equals(mail, user.mail) &&
                 Objects.equals(password, user.password) &&
                 Objects.equals(nick, user.nick);
@@ -72,6 +72,54 @@ public class User {
     @Override
     public int hashCode() {
 
-        return Objects.hash(name, lastName, birthday, adress, mail, password, nick);
+        return Objects.hash(name, lastName, birthday, address, mail, password, nick);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Integer getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Integer birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
     }
 }
