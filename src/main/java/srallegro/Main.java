@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void printMenu() {
-        System.out.println("Co chcesz zrobić? \n  1. Wystaw przedmiot \n 2. Pokaż aukcje wg kategorii ");
+        System.out.println("Co chcesz zrobić? \n 1. Wystaw przedmiot \n 2. Pokaż aukcje wg kategorii \n 3. Wyświetl moje aukcje \n 4. Wyświetl aukcje, które wygrałem \n ");
     }
 
         public static void main(String[] args) throws EmptyTitleException, AuctionPriceIsBelowZeroOrZeroException {
@@ -47,6 +47,10 @@ public class Main {
                     String chosenCat = sc.next();
                     Category cat = new Category ("Robocza kategoria");
                     AuctionController.createAuction(currentUser, title, description, cat, price);
+                } else if (menuChoice == 3) {
+                    System.out.println(AuctionController.viewSellersAuctions(currentUser));
+                } else if (menuChoice == 4) {
+                    System.out.println(AuctionController.viewWonAuctions(currentUser));
                 }
             }
 

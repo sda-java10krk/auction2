@@ -1,11 +1,8 @@
 package srallegro;
+import com.opencsv.CSVWriter;
 
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.io.*;
+import java.util.*;
 
 
 public class Database {
@@ -13,10 +10,13 @@ public class Database {
     public static Set<Auction> allAuctions = new HashSet<>();
 
 
-    public static void addUser(User user) throws FileNotFoundException {
+    public static void addUser(User user) throws IOException {
         String  userNick = user.getNick();
         usersByName.put(userNick, user);
-        PrintWriter saveDatabase = new PrintWriter("DatabaseUsers.txt");
+        //CSVWriter csvWriter = new CSVWriter(new FileWriter("databaseUser.csv"));
+
+
     }
+
 
 }

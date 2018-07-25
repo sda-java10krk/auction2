@@ -141,7 +141,7 @@ public class AuctionControllerTest {
          User seller = new User("sad", "sdf", 124, "432", "fsd", "fds", "32");
          User user1 = new User("sa", "sdf", 124, "432", "fsd", "fds", "32");
          Auction auction = new Auction("lol", "fs", cat, seller, user1, BigDecimal.valueOf(1000), 0, 0);
-         BigDecimal bidUpAuction = AuctionController.bidUp(auction, BigDecimal.valueOf(194), seller);
+         BigDecimal bidUpAuction = AuctionController.bidUp(auction, BigDecimal.valueOf(1194), seller);
      }
     @Test (expected = YouCantBidUpYourOwnAuctionException.class)
     public void testYouCantBidUpAuctionThatYouBiddedUp () throws Exception {
