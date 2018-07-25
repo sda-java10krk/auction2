@@ -1,6 +1,7 @@
 package srallegro.Auction;
 
 import srallegro.Category;
+import srallegro.Database;
 import srallegro.Exception.*;
 import srallegro.User.Database;
 import srallegro.User.User;

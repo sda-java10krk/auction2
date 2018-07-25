@@ -5,7 +5,7 @@ import srallegro.Auction.AuctionController;
 import srallegro.Exception.AuctionPriceIsBelowZeroOrZeroException;
 import srallegro.Exception.EmptyDescriptionException;
 import srallegro.Exception.EmptyTitleException;
-import srallegro.User.Database;
+
 import srallegro.User.RegisterUser;
 import srallegro.User.User;
 import srallegro.User.UserController;
@@ -25,7 +25,7 @@ public class Main {
         Category allcategories = CategoryController.createCategoryTree();
 
 
-            Database database = new Database();  // po co mi to
+            srallegro.Database database = new srallegro.Database();  // po co mi to
             Scanner sc = new Scanner(System.in);
             User currentUser = null;
             System.out.println("1 - zaloguj się, 2 - zarejestruj się");

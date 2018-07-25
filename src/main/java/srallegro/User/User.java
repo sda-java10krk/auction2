@@ -19,8 +19,8 @@ public class User {
     private String password;
     private String nick;
 
-    List<Auction> mySellingList = new LinkedList<Auction>();
-    List<Auction> myWonList = new LinkedList<Auction>();
+    public List<Auction> mySellingList = new LinkedList<Auction>();
+    public List<Auction> myWonList = new LinkedList<Auction>();
 
     public String getPassword() {
         return password;
