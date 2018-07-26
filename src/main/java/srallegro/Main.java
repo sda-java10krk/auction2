@@ -1,6 +1,7 @@
 package srallegro;
 
 
+import srallegro.Auction.Auction;
 import srallegro.Auction.AuctionController;
 import srallegro.Exception.AuctionPriceIsBelowZeroOrZeroException;
 import srallegro.Exception.EmptyDescriptionException;
@@ -71,8 +72,8 @@ public class Main {
                     double price = sc.nextDouble();
                     System.out.println("Wybierz kategorię");
                     //CategoryController.printCategories();  //jak wyświetlić? jak wybrac kategorie?
-                    String chosenCat = sc.next();
-                    Category cat = new Category("Robocza kategoria");
+                    String chosenCat = sc.next();   //do zmiany
+                    Category cat = new Category("Robocza kategoria");   //do zmiany
                     AuctionController.createAuction(currentUser, title, description, cat, price);
                 } else if (menuChoice == 2) {
                     CategoryController.printCategories(allcategories, 0, out);
@@ -87,7 +88,11 @@ public class Main {
                     System.out.println(AuctionController.viewSellersAuctions(currentUser));
                     break;
                 } else if (menuChoice == 4) {
-                    System.out.println(AuctionController.viewWonAuctions(currentUser));
+                    for (Auction a: AuctionController.viewWonAuctions(currentUser)) {
+                        if (a.getBids() >= 3) {
+                            System.out.println(a);
+                        }
+                    }
                     break;
                 }
             }
