@@ -11,6 +11,7 @@ public class Database {
 
 
     public static void addUser(User user) throws IOException {
+
         String userNick = user.getNick();
         usersByName.put(userNick, user);
         SaveUserOnDisk.writeCsvFile("databaseUser.csv", user);
