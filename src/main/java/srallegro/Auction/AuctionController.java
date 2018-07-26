@@ -1,7 +1,7 @@
 package srallegro.Auction;
 
 import srallegro.Category;
-import srallegro.Database;
+import srallegro.User.Database;
 import srallegro.Exception.*;
 import srallegro.User.Database;
 import srallegro.User.User;
@@ -47,8 +47,7 @@ public class AuctionController {
     public static Auction createAuction(User currentUser, String title, String description, Category category, double amount) throws EmptyTitleException, AuctionPriceIsBelowZeroOrZeroException, EmptyDescriptionException {
        Integer auctionNumber = Database.allAuctions.size() + 1;
 
-
-        Auction newAuction = new Auction(title, description, category, currentUser, null, new BigDecimal(amount), auctionNumber, 0);
+       Auction newAuction = new Auction(title, description, category, currentUser, null, new BigDecimal(amount), auctionNumber, 0);
         if (title.length() == 0) {
             throw new EmptyTitleException();
         }
