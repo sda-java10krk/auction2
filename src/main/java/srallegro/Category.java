@@ -12,12 +12,12 @@ import java.util.TreeSet;
 
 public class Category  {
     private String name;
-    private Set<Auction> auctions;
+    private List<Auction> auctions;
     private List<Category> subcategories;
 
     public Category(String name){
         this.name = name;
-        this.auctions = new TreeSet<>();
+        this.auctions = new LinkedList<>();
         this.subcategories = new LinkedList<>();
     }
 
@@ -41,11 +41,11 @@ public class Category  {
         this.name = name;
     }
 
-    public Set<Auction> getAuctions() {
+    public List<Auction> getAuctions() {
         return auctions;
     }
 
-    public void setAuctions(Set<Auction> auctions) {
+    public void setAuctions(List<Auction> auctions) {
         this.auctions = auctions;
     }
 
