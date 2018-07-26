@@ -7,6 +7,7 @@ import srallegro.user.User;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Random;
 
 public class AuctionController {
 
@@ -45,8 +46,13 @@ public class AuctionController {
 
     public static Auction createAuction(User currentUser, String title, String description, Category category, double amount) throws EmptyTitleException, AuctionPriceIsBelowZeroOrZeroException, EmptyDescriptionException {
         Database database = Database.getInstance();
-        Integer auctionNumber = database.getAllAuctionsByNumber().size() + 1;
-        Auction newAuction = new Auction(title, description, category, currentUser, null, new BigDecimal(amount), auctionNumber, 0);
+        Random rd = new Random();
+        Integer auctNumber = rd.nextInt(10000);
+        while (database.getAuctionByNumber(auctNumber) != null) {
+            auctNumber = rd.nextInt(10000);
+        }
+
+        Auction newAuction = new Auction(title, description, category, currentUser, null, new BigDecimal(amount), auctNumber, 0);
         if (title.length() == 0) {
             throw new EmptyTitleException();
         }
@@ -59,6 +65,7 @@ public class AuctionController {
         database.addAuctionToAllAuctions(newAuction);
         currentUser.getMySellingList().add(newAuction);
         category.addAuction(newAuction);
+
         return newAuction;
     }
 
