@@ -32,9 +32,9 @@ public class AuctionController {
             auction.setWinner(user);
             auction.setBids(auction.getBids() + 1);
 
-                if (auction.getBids() == 3) {
-                    System.out.println("aukcja zakonczona, zwyciezył " + user.getNick());
-                    user.getMyWonList().add(auction);
+            if (auction.getBids() == 3) {
+                System.out.println("aukcja zakonczona, zwyciezył " + user.getNick());
+                user.getMyWonList().add(auction);
 
 
             }
@@ -44,9 +44,9 @@ public class AuctionController {
 
 
     public static Auction createAuction(User currentUser, String title, String description, Category category, double amount) throws EmptyTitleException, AuctionPriceIsBelowZeroOrZeroException, EmptyDescriptionException {
-       Integer auctionNumber = Database.allAuctions.size() + 1;
-
-       Auction newAuction = new Auction(title, description, category, currentUser, null, new BigDecimal(amount), auctionNumber, 0);
+        Database database = Database.getInstance();
+        Integer auctionNumber = database.getAllAuctionsByNumber().size() + 1;
+        Auction newAuction = new Auction(title, description, category, currentUser, null, new BigDecimal(amount), auctionNumber, 0);
         if (title.length() == 0) {
             throw new EmptyTitleException();
         }
@@ -56,8 +56,9 @@ public class AuctionController {
         if (description.length() == 0) {
             throw new EmptyDescriptionException();
         }
-        Database.allAuctions.add(newAuction);
+        database.addAuctionToAllAuctions(newAuction);
         currentUser.getMySellingList().add(newAuction);
+        category.addAuction(newAuction);
         return newAuction;
     }
 
@@ -68,7 +69,6 @@ public class AuctionController {
     public static List<Auction> viewWonAuctions(User loggedInUser) {
         return loggedInUser.getMyWonList();
     }
-
 
 
 }
