@@ -23,15 +23,7 @@ public class Database {
     private static Map<String, Category> allCategoriesByName = new HashMap<>();
     private static Map <Integer, Auction> allAuctionsByNumber = new HashMap<>();
     private static Map<String, srallegro.user.User> allUsersByNickname = new HashMap<>();
-    private static Integer auctionNumber = 2;
 
-    public static void raiseAuctionNumber () {
-        Database.auctionNumber++;
-    }
-
-    public static Integer getAuctionNumber() {
-        return auctionNumber;
-    }
 
     //regarding Categories
     public static void addCategoryToAllCategories (Category category) {
