@@ -36,8 +36,10 @@ public class LoadUserFromDisk {
             filereader = new BufferedReader(new FileReader(fileName));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        };
-    }
+
+        }
+
+        }
 
 
 

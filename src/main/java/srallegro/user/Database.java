@@ -80,6 +80,7 @@ public class Database {
 
 
 
+
     public static void addUser(User user) throws IOException {
         Database database = Database.getInstance();
         String userNick = user.getNick();
