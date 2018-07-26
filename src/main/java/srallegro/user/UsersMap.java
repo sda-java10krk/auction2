@@ -15,13 +15,13 @@ public class UsersMap {
         return instance;
     }
 
-    private static Map<String, User> allUsersByNickname = new HashMap<>();
+    private static Map<String, srallegro.user.User> allUsersByNickname = new HashMap<>();
 
-    public static Map<String, User> getAllUsersByNickname() {
+    public static Map<String, srallegro.user.User> getAllUsersByNickname() {
         return allUsersByNickname;
     }
 
-    public static void addUserToAllUsers (User user) {
+    public static void addUserToAllUsers (srallegro.user.User user) {
         allUsersByNickname.put(user.getNick(), user);
     }
 

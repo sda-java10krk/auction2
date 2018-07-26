@@ -2,12 +2,12 @@ package srallegro.user;
 
 public class UserController {
 
-    public static User login (String loginn, String passwordd) {
-        UsersMap allusers = UsersMap.getInstance();
+    public static srallegro.user.User login (String loginn, String passwordd) {
+        srallegro.user.UsersMap allusers = srallegro.user.UsersMap.getInstance();
         try {
-            if (UsersMap.getAllUsersByNickname().get(loginn).getPassword().equals(passwordd)) {
+            if (srallegro.user.UsersMap.getAllUsersByNickname().get(loginn).getPassword().equals(passwordd)) {
                 System.out.println("Dziękuję za zalogowanie");
-                return UsersMap.getAllUsersByNickname().get(loginn);
+                return srallegro.user.UsersMap.getAllUsersByNickname().get(loginn);
             } else {
                 System.out.println("Błędne hasło");
                 return null;
