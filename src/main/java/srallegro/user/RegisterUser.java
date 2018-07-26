@@ -5,11 +5,12 @@ import srallegro.exception.PasswordTooShortException;
 import java.util.*;
 
 public class RegisterUser {
-    public static User createUser() throws PasswordTooShortException {
+    public static User createUser()throws PasswordTooShortException {
+        Database database = Database.getInstance();
+
         Scanner scanner = new Scanner(System.in);
         System.out.println("Podaj Imię");
         String userName = scanner.nextLine();
-
 
         System.out.println("Podaj datę urodzin");
         Integer userBirthday = scanner.nextInt();
@@ -23,11 +24,18 @@ public class RegisterUser {
         System.out.println("Podaj e-mail");
         String userMail = scanner.next();
 
-        System.out.println("Podaj nick");
-        String userNick = scanner.next();
+        String userNick = null;
+        while (userNick == null) {
+            System.out.println("Podaj nick");
+            userNick = scanner.next();
+
+            if (database.getUserByNickname(userNick) != null) {
+                System.out.println("Taki użytkownik już istnieje. Podaj inny nick");
+                userNick = null;
+            }
+        }
 
         System.out.println("Podaj hasło");
-
         String password = scanner.next();
 
 
@@ -56,7 +64,7 @@ public class RegisterUser {
 
                 UsersMap allusers = UsersMap.getInstance();
         //try {
-            allusers.addUserToAllUsers(newUser);
+            database.addUserToAllUsers(newUser);
             SaveUserOnDisk.writeCsvFile("databaseUser.txt", newUser);
        /* } catch (FileNotFoundException e) {
             System.out.println("Nie udało się. Plik");;

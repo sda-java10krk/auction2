@@ -21,7 +21,7 @@ public class UserControllerTest  {
 
     @Test
     public void testLogin()  throws Exception {
-        Database.usersByName.put("Seller", testSeller);
+        Database.addUserToAllUsers(testSeller);
         assertEquals(UserController.login("Seller", "SellerPassword"), testSeller);
         assertEquals(UserController.login( "nonExistingDude", "noPassword"), null);
 

@@ -59,6 +59,7 @@ public class Auction {
             throw new AuctionPriceIsBelowZeroOrZeroException();
         }
         this.bids = bids;
+        this.auctionNumber = auctionNumber;
     }
 
 

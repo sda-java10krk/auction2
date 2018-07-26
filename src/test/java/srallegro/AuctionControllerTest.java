@@ -10,9 +10,7 @@ import srallegro.user.Database;
 import srallegro.user.User;
 
 import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.Assert.assertEquals;
 
@@ -20,16 +18,20 @@ public class AuctionControllerTest {
 
     User testSeller = new User ("", "", null, "", "", "", "Seller");
     Category category = new Category("CategoryName");
-    Auction testAuction1 = AuctionController.createAuction(testSeller, "Title1", "Description1", category, 150.0);
-    Auction testAuction2 = AuctionController.createAuction(testSeller, "Title2", "Description2", category, 372.5);
+
 
     public AuctionControllerTest() throws Exception {
     }
+    Database database = Database.getInstance();
+    Map<Integer, Auction> allAuctions = database.getAllAuctionsByNumber();
+
 
     //before i database na nowy hashset
     @Before
     public void allAuctionsSizeSetToZero () {
-        Database.allAuctions = new HashSet<>();
+
+        database.getAllAuctionsByNumber().clear();
+        allAuctions.clear();
     }
 
     @Test (expected = EmptyTitleException.class)
@@ -47,6 +49,30 @@ public class AuctionControllerTest {
     }
     @Test
     public void testCreateAuction() {
+        Auction testAuction1 = null;
+        try {
+            testAuction1 = AuctionController.createAuction(testSeller, "Title1", "Description1", category, 150.0);
+        } catch (EmptyTitleException e) {
+            e.printStackTrace();
+        } catch (AuctionPriceIsBelowZeroOrZeroException e) {
+            e.printStackTrace();
+        } catch (EmptyDescriptionException e) {
+            e.printStackTrace();
+        }
+
+        Auction testAuction2 = null;
+
+        try {
+            testAuction2 = AuctionController.createAuction(testSeller, "Title2", "Description2", category, 372.5);
+        } catch (EmptyTitleException e) {
+            e.printStackTrace();
+        } catch (AuctionPriceIsBelowZeroOrZeroException e) {
+            e.printStackTrace();
+        } catch (EmptyDescriptionException e) {
+            e.printStackTrace();
+        }
+
+
 
         TestCase.assertEquals(testSeller.getNick(), testAuction1.getSeller().getNick());
         TestCase.assertEquals(testAuction1.getTitle(), "Title1");
@@ -62,7 +88,7 @@ public class AuctionControllerTest {
         TestCase.assertEquals(testAuction2.getPrice(), new BigDecimal(372.5));
         TestCase.assertEquals(testAuction2.getWinner(), null);
 
-        TestCase.assertEquals(Database.allAuctions.size(), 2);
+        TestCase.assertEquals(database.getAllAuctionsByNumber().size(), 2);
 
         List<Auction> testList = new LinkedList<>();
         testList.add(testAuction1);
@@ -71,7 +97,9 @@ public class AuctionControllerTest {
     }
 
     @Test
-    public void testViewSellersAuctions() {
+    public void testViewSellersAuctions() throws EmptyTitleException, EmptyDescriptionException, AuctionPriceIsBelowZeroOrZeroException {
+        Auction testAuction1 = AuctionController.createAuction(testSeller, "Title1", "Description1", category, 150.0);
+        Auction testAuction2 = AuctionController.createAuction(testSeller, "Title2", "Description2", category, 372.5);
 
         List<Auction> testList = new LinkedList<>();
         testList.add(testAuction1);
@@ -80,7 +108,9 @@ public class AuctionControllerTest {
     }
 
     @Test
-    public void testViewWonAuctions() {
+    public void testViewWonAuctions() throws EmptyTitleException, EmptyDescriptionException, AuctionPriceIsBelowZeroOrZeroException {
+        Auction testAuction1 = AuctionController.createAuction(testSeller, "Title1", "Description1", category, 150.0);
+        Auction testAuction2 = AuctionController.createAuction(testSeller, "Title2", "Description2", category, 372.5);
 
         List<Auction> testList2 = new LinkedList<>();
         testList2.add(testAuction1);
