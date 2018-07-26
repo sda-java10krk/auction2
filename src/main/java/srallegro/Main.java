@@ -20,7 +20,7 @@ public class Main {
 
     public static void printMenu() {
         System.out.println("Co chcesz zrobić? \n 1. Wystaw przedmiot \n 2. Pokaż aukcje wg kategorii \n " +
-                "3. Wyświetl moje aukcje \n 4. Wyświetl aukcje, które wygrałem \n ");
+                "3. Wyświetl moje aukcje \n 4. Wyświetl aukcje, które wygrałem \n 99. Zamknij aplikację");
     }
 
     public static void main(String[] args) throws EmptyTitleException, EmptyDescriptionException, AuctionPriceIsBelowZeroOrZeroException {
@@ -32,7 +32,7 @@ public class Main {
         Map<String, Category> categoriesByName = new HashMap<>(); // all categories stored here
         Category allcategories = CategoryController.createCategoryTree(categoriesByName);
 
-        Database database = new Database();  // po co mi to
+        //Database database = new Database();  // po co mi to
         Scanner sc = new Scanner(System.in);
         User currentUser = null;
         System.out.println("1 - zaloguj się, 2 - zarejestruj się");
@@ -40,14 +40,16 @@ public class Main {
             int menuChoice = sc.nextInt();
 
             if (menuChoice == 1) {
-                System.out.println("Podaj login");
-                String login = sc.next();
-                System.out.println("Podaj hasło");
-                String password = sc.next();
-                try {
-                    currentUser = UserController.login(login, password);
-                } catch (NullPointerException npe) {
-                    System.out.println("Błędne dane, do widzenia");
+                while (currentUser == null) {
+                    System.out.println("Podaj login");
+                    String login = sc.next();
+                    System.out.println("Podaj hasło");
+                    String password = sc.next();
+                    try {
+                        currentUser = UserController.login(login, password);
+                    } catch (NullPointerException npe) {
+                        System.out.println("Błędne dane, do widzenia");
+                    }
                 }
             } else if (menuChoice == 2) {
                 RegisterUser.createUser();
@@ -56,13 +58,16 @@ public class Main {
                 System.out.println("Do widzenia");
             }
         } catch (InputMismatchException ime) {
-            System.out.println("Spierdalaj");
+            System.out.println(":-(");
         }
 
         while (currentUser != null) {
             printMenu();
             int menuChoice = sc.nextInt();
-            if (menuChoice == 1) {
+            if (menuChoice == 99) {
+                System.out.println("Do widzenia");
+                break;
+            } else if (menuChoice == 1) {
                 System.out.println("Podaj tytuł aukcji");
                 String title = sc.next();
                 System.out.println("Podaj opis");
