@@ -3,6 +3,7 @@ package srallegro.user;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 
 public class LoadUserFromDisk {
     private static LoadUserFromDisk instance;
@@ -29,18 +30,24 @@ public class LoadUserFromDisk {
 
     public static void readFileCSV(String fileName, User user){
 
-        BufferedReader filereader =null;
+        BufferedReader fileReader =null;
 
         String line ="";
         try {
-            filereader = new BufferedReader(new FileReader(fileName));
+            fileReader = new BufferedReader(new FileReader(fileName));
+            fileReader.readLine();
+
+            while ((line = fileReader.readLine()) != null){
+                String[] tokens =line.split(COMMA_SEPARATOR);
+                if (tokens.length>0){
+                    //   User user1 = new User();
+                }
+            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-        }
-
-
+    }
 
 }
