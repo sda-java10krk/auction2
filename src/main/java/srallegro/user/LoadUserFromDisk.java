@@ -3,6 +3,7 @@ package srallegro.user;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 
 public class LoadUserFromDisk {
     private static LoadUserFromDisk instance;
@@ -29,15 +30,43 @@ public class LoadUserFromDisk {
 
     public static void readFileCSV(String fileName, User user){
 
-        BufferedReader filereader =null;
+        BufferedReader fileReader =null;
 
         String line ="";
         try {
-            filereader = new BufferedReader(new FileReader(fileName));
+            fileReader = new BufferedReader(new FileReader(fileName));
+            fileReader.readLine();
+
+            while ((line = fileReader.readLine()) != null){
+                String[] tokens =line.split(COMMA_SEPARATOR);
+                if (tokens.length>0){
+                 //   User user1 = new User();
+                }
+            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        }k
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+////Read the file line by line starting from the second line
+//        while ((line = fileReader.readLine()) != null) {
+//        44
+//        //Get all tokens available in line
+//        45
+//        String[] tokens = line.split(COMMA_DELIMITER);
+//        46
+//        if (tokens.length > 0) {
+//            47
+//            //Create a new student object and fill his  data
+//            48
+//            Student student = new Student(Long.parseLong(tokens[STUDENT_ID_IDX]), tokens[STUDENT_FNAME_IDX], tokens[STUDENT_LNAME_IDX], tokens[STUDENT_GENDER], Integer.parseInt(tokens[STUDENT_AGE]));
+//            49
+//            students.add(student);
+//            50
+//        }
+//        51
+
 
 
 

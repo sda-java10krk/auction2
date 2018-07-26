@@ -51,6 +51,7 @@ public class RegisterUser {
                 UsersMap allusers = UsersMap.getInstance();
         //try {
             allusers.addUserToAllUsers(newUser);
+            SaveUserOnDisk.writeCsvFile("databaseUser.txt", newUser);
        /* } catch (FileNotFoundException e) {
             System.out.println("Nie udało się. Plik");;
         } catch (IOException e) {
