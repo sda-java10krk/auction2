@@ -7,10 +7,7 @@ import srallegro.Exception.AuctionPriceIsBelowZeroOrZeroException;
 import srallegro.Exception.EmptyDescriptionException;
 import srallegro.Exception.EmptyTitleException;
 
-import srallegro.User.Database;
-import srallegro.User.RegisterUser;
-import srallegro.User.User;
-import srallegro.User.UserController;
+import srallegro.User.*;
 
 import java.util.Map;
 import java.util.Scanner;
@@ -27,76 +24,78 @@ public class Main {
     }
 
     public static void main(String[] args) throws EmptyTitleException, EmptyDescriptionException, AuctionPriceIsBelowZeroOrZeroException {
-            User janek = new User("janek", "janek", 0, "janek", "janek", "janek", "janek");
-            Database.usersByName.put("janek", janek); //tymczasowy ziomek do testow
+        UsersMap allusers = UsersMap.getInstance();
 
-            Map<String, Category> categoriesByName = new HashMap<>(); // all categories stored here
-            Category allcategories = CategoryController.createCategoryTree(categoriesByName);
+        User janek = new User("janek", "janek", 0, "janek", "janek", "janek", "janek");
+        allusers.addUserToAllUsers(janek); //tymczasowy ziomek do testow
 
-            Database database = new Database();  // po co mi to
-            Scanner sc = new Scanner(System.in);
-            User currentUser = null;
-            System.out.println("1 - zaloguj się, 2 - zarejestruj się");
-            try {
-                int menuChoice = sc.nextInt();
+        Map<String, Category> categoriesByName = new HashMap<>(); // all categories stored here
+        Category allcategories = CategoryController.createCategoryTree(categoriesByName);
 
-                if (menuChoice == 1) {
-                    System.out.println("Podaj login");
-                    String login = sc.next();
-                    System.out.println("Podaj hasło");
-                    String password = sc.next();
-                    try {
-                        currentUser = UserController.login(login, password);
-                    } catch (NullPointerException npe) {
-                        System.out.println("Błędne dane, do widzenia");
-                    }
-                } else if (menuChoice == 2) {
-                    RegisterUser.createUser();
-                    System.out.println("Zarejestrowano użytkownika. Uruchom program ponownie i zaloguj się");
-                } else {
-                    System.out.println("Do widzenia");
+        Database database = new Database();  // po co mi to
+        Scanner sc = new Scanner(System.in);
+        User currentUser = null;
+        System.out.println("1 - zaloguj się, 2 - zarejestruj się");
+        try {
+            int menuChoice = sc.nextInt();
+
+            if (menuChoice == 1) {
+                System.out.println("Podaj login");
+                String login = sc.next();
+                System.out.println("Podaj hasło");
+                String password = sc.next();
+                try {
+                    currentUser = UserController.login(login, password);
+                } catch (NullPointerException npe) {
+                    System.out.println("Błędne dane, do widzenia");
                 }
-            } catch (InputMismatchException ime) {
-                System.out.println("Spierdalaj");
+            } else if (menuChoice == 2) {
+                RegisterUser.createUser();
+                System.out.println("Zarejestrowano użytkownika. Uruchom program ponownie i zaloguj się");
+            } else {
+                System.out.println("Do widzenia");
             }
+        } catch (InputMismatchException ime) {
+            System.out.println("Spierdalaj");
+        }
 
-            while (currentUser != null) {
-                printMenu();
-                int menuChoice = sc.nextInt();
-                if (menuChoice == 1) {
-                    System.out.println("Podaj tytuł aukcji");
-                    String title = sc.next();
-                    System.out.println("Podaj opis");
-                    String description = sc.next();
-                    System.out.println("Podaj cenę wywoławczą");
-                    double price = sc.nextDouble();
-                    System.out.println("Wybierz kategorię");
-                    //CategoryController.printCategories();  //jak wyświetlić? jak wybrac kategorie?
-                    String chosenCat = sc.next();   //do zmiany
-                    Category cat = new Category("Robocza kategoria");   //do zmiany
-                    AuctionController.createAuction(currentUser, title, description, cat, price);
-                } else if (menuChoice == 2) {
-                    CategoryController.printCategories(allcategories, 0, out);
-                    System.out.println("Wybierz kategorię");
-                    String chosenCategory = sc.next();
-                    try {
-                        System.out.println(categoriesByName.get(chosenCategory).getAuctions());
-                    } catch (NullPointerException npe) {
-                        System.out.println("Zła kategoria, npe");
-                    }
-                } else if (menuChoice == 3) {
-                    System.out.println(AuctionController.viewSellersAuctions(currentUser));
-                    break;
-                } else if (menuChoice == 4) {
-                    for (Auction a: AuctionController.viewWonAuctions(currentUser)) {
-                        if (a.getBids() >= 3) {
-                            System.out.println(a);
-                        }
-                    }
-                    break;
+        while (currentUser != null) {
+            printMenu();
+            int menuChoice = sc.nextInt();
+            if (menuChoice == 1) {
+                System.out.println("Podaj tytuł aukcji");
+                String title = sc.next();
+                System.out.println("Podaj opis");
+                String description = sc.next();
+                System.out.println("Podaj cenę wywoławczą");
+                double price = sc.nextDouble();
+                System.out.println("Wybierz kategorię");
+                //CategoryController.printCategories();  //jak wyświetlić? jak wybrac kategorie?
+                String chosenCat = sc.next();   //do zmiany
+                Category cat = new Category("Robocza kategoria");   //do zmiany
+                AuctionController.createAuction(currentUser, title, description, cat, price);
+            } else if (menuChoice == 2) {
+                CategoryController.printCategories(allcategories, 0, out);
+                System.out.println("Wybierz kategorię");
+                String chosenCategory = sc.next();
+                try {
+                    System.out.println(categoriesByName.get(chosenCategory).getAuctions());
+                } catch (NullPointerException npe) {
+                    System.out.println("Zła kategoria, npe");
                 }
+            } else if (menuChoice == 3) {
+                System.out.println(AuctionController.viewSellersAuctions(currentUser));
+                break;
+            } else if (menuChoice == 4) {
+                for (Auction a : AuctionController.viewWonAuctions(currentUser)) {
+                    if (a.getBids() >= 3) {
+                        System.out.println(a);
+                    }
+                }
+                break;
             }
         }
     }
+}
 
 

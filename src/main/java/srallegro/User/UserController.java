@@ -3,11 +3,13 @@ package srallegro.User;
 public class UserController {
 
     public static User login (String loginn, String passwordd) {
+        UsersMap allusers = UsersMap.getInstance();
         try {
-            if (Database.usersByName.get(loginn).getPassword().equals(passwordd)) {
+            if (UsersMap.getAllUsersByNickname().get(loginn).getPassword().equals(passwordd)) {
                 System.out.println("Dziękuję za zalogowanie");
-                return Database.usersByName.get(loginn);
+                return UsersMap.getAllUsersByNickname().get(loginn);
             } else {
+                System.out.println("Błędne hasło");
                 return null;
             }
         } catch (NullPointerException npe) {

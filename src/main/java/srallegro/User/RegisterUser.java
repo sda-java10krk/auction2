@@ -49,13 +49,15 @@ public class RegisterUser {
                 }
 
                 User newUser = new User(userName, userLastName,userBirthday,userAdrdess,userMail,password,userNick);
-        try {
-            Database.addUser(newUser);
-        } catch (FileNotFoundException e) {
+
+                UsersMap allusers = UsersMap.getInstance();
+        //try {
+            allusers.addUserToAllUsers(newUser);
+       /* } catch (FileNotFoundException e) {
             System.out.println("Nie udało się. Plik");;
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        } */
         return newUser;
     }
 }
