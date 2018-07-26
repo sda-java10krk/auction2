@@ -3,11 +3,7 @@ package srallegro;
 
 import java.util.LinkedList;
 import java.util.List;
-import srallegro.Auction.Auction;
-
-import java.util.Set;
-import java.util.TreeSet;
-
+import srallegro.auction.Auction;
 
 
 public class Category  {

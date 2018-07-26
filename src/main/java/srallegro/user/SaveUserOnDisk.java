@@ -1,4 +1,4 @@
-package srallegro.User;
+package srallegro.user;
 
 import java.io.FileWriter;
 import java.io.IOException;

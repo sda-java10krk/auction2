@@ -1,7 +1,5 @@
-package srallegro.User;
+package srallegro.user;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.*;
 
 public class RegisterUser {

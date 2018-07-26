@@ -1,10 +1,9 @@
-package srallegro.Auction;
+package srallegro.auction;
 
 import srallegro.Category;
-import srallegro.User.Database;
-import srallegro.Exception.*;
-import srallegro.User.Database;
-import srallegro.User.User;
+import srallegro.user.Database;
+import srallegro.exception.*;
+import srallegro.user.User;
 
 import java.math.BigDecimal;
 import java.util.List;

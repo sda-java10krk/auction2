@@ -1,9 +1,9 @@
 package srallegro;
 
 import org.junit.Test;
-import srallegro.User.Database;
-import srallegro.User.User;
-import srallegro.User.UserController;
+import srallegro.user.Database;
+import srallegro.user.User;
+import srallegro.user.UserController;
 
 import static org.junit.Assert.assertEquals;
 

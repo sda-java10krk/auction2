@@ -1,6 +1,6 @@
-package srallegro.Auction;
+package srallegro.auction;
 import srallegro.Category;
-import srallegro.User.User;
+import srallegro.user.User;
 
 import java.math.BigDecimal;
 
@@ -96,7 +96,7 @@ public class Auction {
 
     @Override
     public String toString() {
-        return "srallegro.Auction.Auction{" +
+        return "srallegro.auction.auction{" +
                 "title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", category=" + category +

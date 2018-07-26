@@ -1,4 +1,4 @@
-package srallegro.User;
+package srallegro.user;
 
 public class UserController {
 

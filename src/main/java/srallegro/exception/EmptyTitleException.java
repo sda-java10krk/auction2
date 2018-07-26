@@ -1,4 +1,4 @@
-package srallegro.Exception;
+package srallegro.exception;
 
 public class EmptyTitleException extends Exception {
     public EmptyTitleException() {

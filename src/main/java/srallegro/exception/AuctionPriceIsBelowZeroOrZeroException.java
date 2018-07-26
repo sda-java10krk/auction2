@@ -1,7 +1,7 @@
-package srallegro.Exception;
+package srallegro.exception;
 
 public class AuctionPriceIsBelowZeroOrZeroException extends Exception {
     public AuctionPriceIsBelowZeroOrZeroException() {
-        System.out.println("Auction price is below zero or zero");
+        System.out.println("auction price is below zero or zero");
     }
 }

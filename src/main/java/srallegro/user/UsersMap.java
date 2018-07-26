@@ -1,4 +1,4 @@
-package srallegro.User;
+package srallegro.user;
 
 import java.util.HashMap;
 import java.util.Map;

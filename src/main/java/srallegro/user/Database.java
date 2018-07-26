@@ -1,6 +1,5 @@
-package srallegro.User;
-import com.opencsv.CSVWriter;
-import srallegro.Auction.Auction;
+package srallegro.user;
+import srallegro.auction.Auction;
 
 import java.io.*;
 import java.util.*;

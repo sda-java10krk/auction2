@@ -1,13 +1,13 @@
 package srallegro;
 
 
-import srallegro.Auction.Auction;
-import srallegro.Auction.AuctionController;
-import srallegro.Exception.AuctionPriceIsBelowZeroOrZeroException;
-import srallegro.Exception.EmptyDescriptionException;
-import srallegro.Exception.EmptyTitleException;
+import srallegro.auction.Auction;
+import srallegro.auction.AuctionController;
+import srallegro.exception.AuctionPriceIsBelowZeroOrZeroException;
+import srallegro.exception.EmptyDescriptionException;
+import srallegro.exception.EmptyTitleException;
 
-import srallegro.User.*;
+import srallegro.user.*;
 
 import java.util.Map;
 import java.util.Scanner;
