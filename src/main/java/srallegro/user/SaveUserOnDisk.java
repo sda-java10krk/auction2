@@ -23,7 +23,6 @@ public class SaveUserOnDisk {
     public static void writeCsvFile(String filename, User user) {
         FileWriter fileWriter = null;
 
-
         try {
             fileWriter = new FileWriter(filename);
             fileWriter.append(PARAMETRS.toString());
