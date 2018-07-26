@@ -29,10 +29,10 @@ public class Main {
 
 
     public static void main(String[] args) throws EmptyTitleException, EmptyDescriptionException, AuctionPriceIsBelowZeroOrZeroException {
-        UsersMap allusers = UsersMap.getInstance();
+        Database database = Database.getInstance();
 
         User janek = new User("janek", "janek", 0, "janek", "janek", "janek", "janek");
-        allusers.addUserToAllUsers(janek); //tymczasowy ziomek do testow
+        database.addUserToAllUsers(janek); //tymczasowy ziomek do testow
 
         Map<String, Category> categoriesByName = new HashMap<>(); // all categories stored here
         Category allcategories = CategoryController.createCategoryTree(categoriesByName);
