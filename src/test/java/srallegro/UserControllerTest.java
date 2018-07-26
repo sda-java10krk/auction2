@@ -14,7 +14,9 @@ public class UserControllerTest  {
 
     User testSeller = new User("", "", null, "", "", "SellerPassword", "Seller");
     User mrNull = null;
-
+        //to jest chyba chujowe ale nie wiem bo bez tego nie dziala
+    public UserControllerTest() throws BirthdayException, PasswordTooShortException, EmptyNickException {
+    }
 
 
     @Test
