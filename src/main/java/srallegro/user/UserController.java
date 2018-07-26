@@ -2,6 +2,8 @@ package srallegro.user;
 
 public class UserController {
 
+
+
     public static srallegro.user.User login (String loginn, String passwordd) {
         srallegro.user.UsersMap allusers = srallegro.user.UsersMap.getInstance();
         try {

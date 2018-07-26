@@ -4,6 +4,8 @@ package srallegro;
 import java.util.LinkedList;
 import java.util.List;
 import srallegro.auction.Auction;
+import srallegro.exception.EmptyCategoryNameException;
+import srallegro.exception.EmptyTitleException;
 
 
 public class Category  {
@@ -11,8 +13,11 @@ public class Category  {
     private List<Auction> auctions;
     private List<Category> subcategories;
 
-    public Category(String name){
+    public Category(String name) throws EmptyCategoryNameException {
         this.name = name;
+        if(name.length()==0){
+            throw new EmptyCategoryNameException();
+        }
         this.auctions = new LinkedList<>();
         this.subcategories = new LinkedList<>();
     }

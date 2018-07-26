@@ -1,12 +1,15 @@
 package srallegro.user;
 
+import srallegro.exception.PasswordTooShortException;
+
 import java.util.*;
 
 public class RegisterUser {
-    public static User createUser(){
+    public static User createUser() throws PasswordTooShortException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Podaj Imię");
         String userName = scanner.nextLine();
+
 
         System.out.println("Podaj datę urodzin");
         Integer userBirthday = scanner.nextInt();
@@ -24,16 +27,19 @@ public class RegisterUser {
         String userNick = scanner.next();
 
         System.out.println("Podaj hasło");
+
         String password = scanner.next();
 
-        while (true){
-            if (password.length()<5){
-                System.out.println("Hasło jest za krótkie");
-                password = scanner.next();
-            } else {
-                break;
-            }
-        }
+
+//        while (true) {
+//            if (password.length() < 5) {
+//                throw new PasswordTooShortException();
+//            } else {
+//                break;
+//            }
+//
+//        }
+
         System.out.println("Powtórz hasło");
         String password2 = scanner.next();
 

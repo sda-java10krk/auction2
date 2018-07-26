@@ -47,15 +47,7 @@ public class AuctionController {
         Database database = Database.getInstance();
         Integer auctionNumber = database.getAllAuctionsByNumber().size() + 1;
         Auction newAuction = new Auction(title, description, category, currentUser, null, new BigDecimal(amount), auctionNumber, 0);
-        if (title.length() == 0) {
-            throw new EmptyTitleException();
-        }
-        if (amount < 0 || amount == 0) {
-            throw new AuctionPriceIsBelowZeroOrZeroException();
-        }
-        if (description.length() == 0) {
-            throw new EmptyDescriptionException();
-        }
+
         database.addAuctionToAllAuctions(newAuction);
         currentUser.getMySellingList().add(newAuction);
         category.addAuction(newAuction);
