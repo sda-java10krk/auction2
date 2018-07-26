@@ -3,11 +3,15 @@ package srallegro.user;
 public class UserController {
 
     public static srallegro.user.User login (String loginn, String passwordd) {
-        srallegro.user.UsersMap allusers = srallegro.user.UsersMap.getInstance();
+
+        //Zmienić usersmap na databejsy!
+
+        Database database = Database.getInstance();
         try {
-            if (srallegro.user.UsersMap.getAllUsersByNickname().get(loginn).getPassword().equals(passwordd)) {
+            if (
+                    database.getUserByNickname(loginn).getPassword().equals(passwordd) ) {
                 System.out.println("Dziękuję za zalogowanie");
-                return srallegro.user.UsersMap.getAllUsersByNickname().get(loginn);
+                return database.getUserByNickname(loginn);
             } else {
                 System.out.println("Błędne hasło");
                 return null;

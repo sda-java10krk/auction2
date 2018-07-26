@@ -48,6 +48,7 @@ public class Auction {
         this.winner = winner;
         this.price = price;
         this.bids = bids;
+        this.auctionNumber = auctionNumber;
     }
 
 

@@ -59,7 +59,6 @@ public class CategoryController {
         sw.addSubcategory(stormtrooper);
         uberCat.addSubcategory(cars);
 
-
         allcategories = allcategories;
         return uberCat;
     }
