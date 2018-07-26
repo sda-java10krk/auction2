@@ -1,20 +1,20 @@
 package srallegro;
 
-import java.io.PrintStream;
-import java.util.Set;
-import java.util.TreeSet;
+
+import java.util.LinkedList;
+import java.util.List;
+import srallegro.auction.Auction;
 
 
-
-public class Category {
-    protected String name;
-    private Set<Auction> auctions;
-    protected static Set<Category> subcategories;
+public class Category  {
+    private String name;
+    private List<Auction> auctions;
+    private List<Category> subcategories;
 
     public Category(String name){
         this.name = name;
-        this.auctions = new TreeSet<>();
-        this.subcategories = new TreeSet<>();
+        this.auctions = new LinkedList<>();
+        this.subcategories = new LinkedList<>();
     }
 
     public void addAuction(Auction auction){
@@ -29,7 +29,7 @@ public class Category {
         return name;
     }
 
-    public Set<Category> getSubcategories() {
+    public List<Category> getSubcategories() {
         return subcategories;
     }
 
@@ -37,15 +37,23 @@ public class Category {
         this.name = name;
     }
 
-    public Set<Auction> getAuctions() {
+    public List<Auction> getAuctions() {
         return auctions;
     }
 
-    public void setAuctions(Set<Auction> auctions) {
+    public void setAuctions(List<Auction> auctions) {
         this.auctions = auctions;
     }
 
-    public static void setSubcategories(Set<Category> subcategories) {
-        Category.subcategories = subcategories;
+//    public static void setSubcategories(Set<Category> subcategories) {
+//        Category.subcategories = subcategories;
+//    }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "name='" + name + '\'' +
+                '}';
     }
+
 }

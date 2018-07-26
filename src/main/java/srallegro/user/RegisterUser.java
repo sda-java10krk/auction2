@@ -1,11 +1,9 @@
-package srallegro;
+package srallegro.user;
 
-import javax.xml.crypto.Data;
-import java.io.FileNotFoundException;
 import java.util.*;
 
 public class RegisterUser {
-    protected static User createUser (){
+    public static User createUser(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Podaj Imię");
         String userName = scanner.nextLine();
@@ -17,7 +15,7 @@ public class RegisterUser {
         String userLastName = scanner.next();
 
         System.out.println("Podaj adres zamieszkania");
-        String userAdress = scanner.next();
+        String userAdrdess = scanner.next();
 
         System.out.println("Podaj e-mail");
         String userMail = scanner.next();
@@ -48,12 +46,16 @@ public class RegisterUser {
                     }
                 }
 
-                User newUser = new User (userName, userLastName,userBirthday,userAdress,userMail,password,userNick);
-        try {
-            Database.addUser(newUser);
-        } catch (FileNotFoundException e) {
-            System.out.println("Nie udało się");;
-        }
+                User newUser = new User(userName, userLastName,userBirthday,userAdrdess,userMail,password,userNick);
+
+                UsersMap allusers = UsersMap.getInstance();
+        //try {
+            allusers.addUserToAllUsers(newUser);
+       /* } catch (FileNotFoundException e) {
+            System.out.println("Nie udało się. Plik");;
+        } catch (IOException e) {
+            e.printStackTrace();
+        } */
         return newUser;
     }
 }

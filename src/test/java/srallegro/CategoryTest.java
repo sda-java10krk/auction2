@@ -22,7 +22,7 @@ public class CategoryTest {
     @Test
     public void testPrintCategories(){
         Category category = new Category("test");
-        CategoryView.printCategories(category, 1, out);
+        CategoryController.printCategories(category, 1, out);
         verify(out).println("test");
     }
 

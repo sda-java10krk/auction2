@@ -1,4 +1,4 @@
-package srallegro;
+package srallegro.exception;
 
 public class PriceTooLowException extends Exception {
 

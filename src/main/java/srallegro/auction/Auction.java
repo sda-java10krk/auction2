@@ -1,4 +1,7 @@
-package srallegro;
+package srallegro.auction;
+import srallegro.Category;
+import srallegro.user.User;
+
 import java.math.BigDecimal;
 
 public class Auction {
@@ -36,7 +39,7 @@ public class Auction {
         return auctionNumber;
     }
 
-
+    //dodac do aukcji wyjatki jestli tytul jest pusty title.lengt=0 throw new itp,
     public Auction(String title, String description, Category category, User seller, User winner, BigDecimal price, int auctionNumber, int bids ) {
         this.title = title;
         this.description = description;
@@ -93,7 +96,7 @@ public class Auction {
 
     @Override
     public String toString() {
-        return "srallegro.Auction{" +
+        return "srallegro.auction.auction{" +
                 "title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", category=" + category +
