@@ -1,5 +1,7 @@
 package srallegro;
 
+import srallegro.exception.EmptyCategoryNameException;
+
 import java.io.PrintStream;
 import java.util.LinkedList;
 import java.util.List;
@@ -22,7 +24,7 @@ public class CategoryController {
         }
     }
 
-    public static Category createCategoryTree (Map<String, Category> allcategories) {
+    public static Category createCategoryTree (Map<String, Category> allcategories) throws EmptyCategoryNameException {
         Category uberCat = new Category ("All");
         allcategories.put(uberCat.getName(), uberCat);
         Category cars = new Category("Samochody");

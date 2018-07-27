@@ -3,9 +3,7 @@ package srallegro;
 
 import srallegro.auction.Auction;
 import srallegro.auction.AuctionController;
-import srallegro.exception.AuctionPriceIsBelowZeroOrZeroException;
-import srallegro.exception.EmptyDescriptionException;
-import srallegro.exception.EmptyTitleException;
+import srallegro.exception.*;
 
 import srallegro.user.*;
 
@@ -28,7 +26,7 @@ public class Main {
     }
 
 
-    public static void main(String[] args) throws EmptyTitleException, EmptyDescriptionException, AuctionPriceIsBelowZeroOrZeroException {
+    public static void main(String[] args) throws EmptyTitleException, EmptyDescriptionException, AuctionPriceIsBelowZeroOrZeroException, BirthdayException, PasswordTooShortException, EmptyNickException, EmptyCategoryNameException {
         UsersMap allusers = UsersMap.getInstance();
 
         User janek = new User("janek", "janek", 0, "janek", "janek", "janek", "janek");

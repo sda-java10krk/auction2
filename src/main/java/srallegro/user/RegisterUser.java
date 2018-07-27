@@ -1,11 +1,13 @@
 package srallegro.user;
 
+import srallegro.exception.BirthdayException;
+import srallegro.exception.EmptyNickException;
 import srallegro.exception.PasswordTooShortException;
 
 import java.util.*;
 
 public class RegisterUser {
-    public static User createUser()throws PasswordTooShortException {
+    public static User createUser() throws PasswordTooShortException, EmptyNickException, BirthdayException {
         Database database = Database.getInstance();
 
         Scanner scanner = new Scanner(System.in);
