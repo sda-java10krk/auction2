@@ -1,11 +1,11 @@
 .idea
-.out
-
-.Srallegro
 target
+.out
+.Srallegro
 Database.txt
 .Srallegro.iml
 databaseUser.csv
+databaseAuction.txt
 databaseUser.txt
 
 
