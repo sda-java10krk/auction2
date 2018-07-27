@@ -30,7 +30,7 @@ public class Main {
 
         User janek = new User("janek", "janek", 0, "janek", "janek", "janek", "janek");
         database.addUserToAllUsers(janek); //tymczasowy ziomek do testow
-        LoadUserFromDisk.readFileCSV("databaseUser.txt");
+        LoadUserFromDisk.readFileCSV("databaseUser.csv");
         Category allcategories = CategoryController.createCategoryTree();
         Scanner sc = new Scanner(System.in);
         User currentUser = null;
@@ -64,9 +64,9 @@ public class Main {
                 }
                 case DURING_LOGIN: {
                     System.out.println("Podaj login");
-                    String login = sc.nextLine();
+                    String login = sc.next();
                     System.out.println("Podaj hasło");
-                    String password = sc.nextLine();
+                    String password = sc.next();
                     currentUser = UserController.login(login, password);
                     if (currentUser != null) {
                         state = State.LOGGED_IN;
@@ -88,7 +88,6 @@ public class Main {
                     System.out.println("Proba zalogowania nieudana, spobój ponownie");
                     state = State.DURING_REGISTRATION;
                     break;
-
                 }
                 case STOP: {
                     state = State.STOP;
@@ -99,7 +98,6 @@ public class Main {
                     String answer = sc.next();
                     switch (answer) {
                         case "1": {
-
                             System.out.println("Podaj tytuł aukcji");
                             String title = sc.next();
                             System.out.println("Podaj opis");

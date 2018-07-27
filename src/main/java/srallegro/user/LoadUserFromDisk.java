@@ -18,7 +18,6 @@ public class LoadUserFromDisk {
         }
         return instance;
     }
-
     private static final String COMMA_SEPARATOR = ",";
     private static final int USER_NAME = 0;
     private static final int USER_LASTNAME = 1;
