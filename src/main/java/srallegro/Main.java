@@ -7,6 +7,7 @@ import srallegro.exception.*;
 
 import srallegro.user.*;
 
+import java.math.BigDecimal;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -105,7 +106,7 @@ public class Main {
                             System.out.println("Podaj opis");
                             String description = sc.next();
                             System.out.println("Podaj cenę wywoławczą");
-                            double price = sc.nextDouble();
+                            BigDecimal price = sc.nextBigDecimal();
                             System.out.println("Wybierz kategorię");
                             //CategoryController.printCategories();  //jak wyświetlić? jak wybrac kategorie?
                             String chosenCat = sc.next();   //do zmiany

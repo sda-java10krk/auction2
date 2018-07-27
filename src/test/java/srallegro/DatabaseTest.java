@@ -8,6 +8,8 @@ import srallegro.exception.*;
 import srallegro.user.Database;
 import srallegro.user.User;
 
+import java.math.BigDecimal;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -41,10 +43,10 @@ public class DatabaseTest {
     public void testIfAuctionsAreStoredCorrectly() throws EmptyTitleException, EmptyDescriptionException, AuctionPriceIsBelowZeroOrZeroException, BirthdayException, PasswordTooShortException, EmptyNickException, EmptyCategoryNameException {
         Category testCategory = new Category("Test");
         User janek = new User("janek", "janek", 0, "janek", "janek", "janek", "janek");
-        Auction testAuction1 = AuctionController.createAuction(janek, "Title1", "descr1", testCategory, 10.0);
-        Auction testAuction2 = AuctionController.createAuction(janek, "Title2", "descr2", testCategory, 12.0);
-        Auction testAuction3 = AuctionController.createAuction(janek, "Title3", "descr3", testCategory, 13.0);
-        Auction testAuction4 = AuctionController.createAuction(janek, "Title4", "descr4", testCategory, 14.0);
+        Auction testAuction1 = AuctionController.createAuction(janek, "Title1", "descr1", testCategory, BigDecimal.valueOf(10));
+        Auction testAuction2 = AuctionController.createAuction(janek, "Title2", "descr2", testCategory,  BigDecimal.valueOf(12.0));
+        Auction testAuction3 = AuctionController.createAuction(janek, "Title3", "descr3", testCategory,  BigDecimal.valueOf(13.0));
+        Auction testAuction4 = AuctionController.createAuction(janek, "Title4", "descr4", testCategory,  BigDecimal.valueOf(14.0));
 
         assertEquals(database.getAllAuctionsByNumber().size(), 4);
 
