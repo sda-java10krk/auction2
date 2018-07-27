@@ -58,4 +58,23 @@ public class DatabaseTest {
         assertEquals(database.getAuctionByNumber(testAuction3.getAuctionNumber()), testAuction3);
         assertEquals(database.getAuctionByNumber(testAuction4.getAuctionNumber()), testAuction4);
     }
+
+    @Test
+    public void testIfUsersAreStoredCorrectly() {
+        Database database = Database.getInstance();
+
+        User janek = new User("janek", "janek", 0, "janek", "janek", "janek", "janek");
+        User janek2 = new User("janek", "janek", 0, "janek", "janek", "janek", "janek2");
+        User janek3 = new User("janek", "janek", 0, "janek", "janek", "janek", "janek3");
+        User janek4 = new User("piotrek", "janek", 0, "janek", "janek", "janek", "janek4");
+
+        database.addUserToAllUsers(janek);
+        database.addUserToAllUsers(janek2);
+        database.addUserToAllUsers(janek3);
+        database.addUserToAllUsers(janek4);
+
+        assertEquals(database.getAllUsersByNickname().size(), 4);
+        assertEquals(database.getUserByNickname("janek3").getName(), "janek");
+        assertEquals(database.getUserByNickname("janek4").getName(), "piotrek");
+    }
 }

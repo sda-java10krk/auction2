@@ -27,6 +27,8 @@ public class CategoryTest {
         verify(out).println("test");
     }
 
+    //TODO: test metody createCategoryTree
+
 
 
 }
