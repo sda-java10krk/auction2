@@ -18,12 +18,10 @@ public class UserControllerTest  {
     public UserControllerTest() throws BirthdayException, PasswordTooShortException, EmptyNickException {
     }
 
-
     @Test
     public void testLogin()  throws Exception {
         Database.addUserToAllUsers(testSeller);
         assertEquals(UserController.login("Seller", "SellerPassword"), testSeller);
         assertEquals(UserController.login( "nonExistingDude", "noPassword"), null);
-
     }
 }
