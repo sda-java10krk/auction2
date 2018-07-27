@@ -15,7 +15,6 @@ public class SaveUserOnDisk {
         }
         return instance;
     }
-
     private static final String COMMA_SEPARATOR = ",";
     private static final String NEW_LINE_SEPARATOR = "\n";
     private static final String PARAMETRS = "name,lastName,,birthDay,address,mail,password,nick";
@@ -27,7 +26,6 @@ public class SaveUserOnDisk {
             fileWriter = new FileWriter(filename);
             fileWriter.append(PARAMETRS.toString());
             fileWriter.append(NEW_LINE_SEPARATOR);
-
             fileWriter.append(user.getName());
             fileWriter.append(COMMA_SEPARATOR);
             fileWriter.append(user.getLastName());
@@ -42,7 +40,6 @@ public class SaveUserOnDisk {
             fileWriter.append(COMMA_SEPARATOR);
             fileWriter.append(user.getNick());
             fileWriter.append(NEW_LINE_SEPARATOR);
-
         } catch (IOException e) {
             e.printStackTrace();
         }

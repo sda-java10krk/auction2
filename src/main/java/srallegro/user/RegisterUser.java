@@ -59,7 +59,7 @@ public class RegisterUser {
         }
         User newUser = new User(userName, userLastName, userBirthday, userAdrdess, userMail, password, userNick);
         database.addUserToAllUsers(newUser);
-        SaveUserOnDisk.writeCsvFile("databaseUser.txt", newUser);
+        SaveUserOnDisk.writeCsvFile("databaseUser.csv", newUser);
         return newUser;
     }
 }
