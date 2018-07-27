@@ -1,2 +1,0 @@
-name,lastName,,birthDay,address,mail,password,nick
-artur,gb,44,ulica,lol,blablabla,argur
