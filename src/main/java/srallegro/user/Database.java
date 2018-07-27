@@ -6,7 +6,6 @@ import java.io.*;
 import java.util.*;
 
 
-
 public class Database {
 
     private static Database instance;
@@ -17,16 +16,13 @@ public class Database {
         }
         return instance;
     }
-
     private static Map<String, Category> allCategoriesByName = new HashMap<>();
     private static Map <Integer, Auction> allAuctionsByNumber = new HashMap<>();
     private static Map<String, User> allUsersByNickname = new HashMap<>();
-
     //regarding Categories
     public static void addCategoryToAllCategories (Category category) {
         allCategoriesByName.put(category.getName(), category);
     }
-
     public static Category getCategoryByName (String catname) {
         try {
             Category category = allCategoriesByName.get(catname);
@@ -36,16 +32,13 @@ public class Database {
         }
         return null;
     }
-
     public static Map<String, Category> getAllCategoriesByName () {
         return allCategoriesByName;
     }
-
     // regarding Auctions
     public static void addAuctionToAllAuctions (Auction auction) {
         allAuctionsByNumber.put(auction.getAuctionNumber(), auction);
     }
-
     public static Auction getAuctionByNumber (Integer number) {
         try {
             Auction auction = allAuctionsByNumber.get(number);
@@ -55,20 +48,16 @@ public class Database {
         }
         return null;
     }
-
     public static Map<Integer, Auction> getAllAuctionsByNumber() {
         return allAuctionsByNumber;
     }
-
     //regarding Users
     public static Map<String, srallegro.user.User> getAllUsersByNickname() {
         return allUsersByNickname;
     }
-
     public static void addUserToAllUsers (User user) {
         allUsersByNickname.put(user.getNick(), user);
     }
-
     public static User getUserByNickname (String nickname) {
         try {
             User user = allUsersByNickname.get(nickname);
@@ -78,7 +67,6 @@ public class Database {
         }
         return null;
     }
-
     public static void addUser(User user) throws IOException {
         String userNick = user.getNick();
         addUserToAllUsers(user);
