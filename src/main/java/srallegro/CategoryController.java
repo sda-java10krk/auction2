@@ -1,6 +1,10 @@
 package srallegro;
 
+
 import srallegro.user.Database;
+
+import srallegro.exception.EmptyCategoryNameException;
+
 
 import java.io.PrintStream;
 import java.util.LinkedList;
@@ -24,8 +28,10 @@ public class CategoryController {
         }
     }
 
-    public static Category createCategoryTree () {
+
+    public static Category createCategoryTree () throws EmptyCategoryNameException {
         Database database = Database.getInstance();
+
         Category uberCat = new Category ("All");
         database.addCategoryToAllCategories(uberCat);
         Category cars = new Category("Samochody");

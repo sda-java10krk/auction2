@@ -1,10 +1,15 @@
 package srallegro.user;
 
+import srallegro.exception.BirthdayException;
+import srallegro.exception.EmptyNickException;
+import srallegro.exception.PasswordTooShortException;
+
 import java.util.*;
 
 public class RegisterUser {
-    public static User createUser(){
+    public static User createUser() throws PasswordTooShortException, EmptyNickException, BirthdayException {
         Database database = Database.getInstance();
+
         Scanner scanner = new Scanner(System.in);
         System.out.println("Podaj Imię");
         String userName = scanner.nextLine();
@@ -35,14 +40,16 @@ public class RegisterUser {
         System.out.println("Podaj hasło");
         String password = scanner.next();
 
-        while (true){
-            if (password.length()<5){
-                System.out.println("Hasło jest za krótkie");
-                password = scanner.next();
-            } else {
-                break;
-            }
-        }
+
+//        while (true) {
+//            if (password.length() < 5) {
+//                throw new PasswordTooShortException();
+//            } else {
+//                break;
+//            }
+//
+//        }
+
         System.out.println("Powtórz hasło");
         String password2 = scanner.next();
 
@@ -57,10 +64,10 @@ public class RegisterUser {
 
                 User newUser = new User(userName, userLastName,userBirthday,userAdrdess,userMail,password,userNick);
 
-
+       //         UsersMap allusers = UsersMap.getInstance();
         //try {
-            database.addUserToAllUsers(newUser);
-            SaveUserOnDisk.writeCsvFile("databaseUser.txt", newUser);
+        database.addUserToAllUsers(newUser);
+        SaveUserOnDisk.writeCsvFile("databaseUser.txt", newUser);
        /* } catch (FileNotFoundException e) {
             System.out.println("Nie udało się. Plik");;
         } catch (IOException e) {

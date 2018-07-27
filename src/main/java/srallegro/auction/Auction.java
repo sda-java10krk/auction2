@@ -1,5 +1,8 @@
 package srallegro.auction;
 import srallegro.Category;
+import srallegro.exception.AuctionPriceIsBelowZeroOrZeroException;
+import srallegro.exception.EmptyDescriptionException;
+import srallegro.exception.EmptyTitleException;
 import srallegro.user.User;
 
 import java.math.BigDecimal;
@@ -39,14 +42,22 @@ public class Auction {
         return auctionNumber;
     }
 
-    //dodac do aukcji wyjatki jestli tytul jest pusty title.lengt=0 throw new itp,
-    public Auction(String title, String description, Category category, User seller, User winner, BigDecimal price, int auctionNumber, int bids ) {
+    public Auction(String title, String description, Category category, User seller, User winner, BigDecimal price, int auctionNumber, int bids ) throws EmptyTitleException, AuctionPriceIsBelowZeroOrZeroException, EmptyDescriptionException {
         this.title = title;
+        if (title.length() == 0) {
+            throw new EmptyTitleException();
+        }
         this.description = description;
+        if (description.length() == 0) {
+            throw new EmptyDescriptionException();
+        }
         this.category = category;
         this.seller = seller;
         this.winner = winner;
         this.price = price;
+        if ((price.compareTo(BigDecimal.valueOf(0)) < 0) || price.equals(BigDecimal.valueOf(0))) {
+            throw new AuctionPriceIsBelowZeroOrZeroException();
+        }
         this.bids = bids;
         this.auctionNumber = auctionNumber;
     }

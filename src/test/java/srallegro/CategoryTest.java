@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
+import srallegro.exception.EmptyCategoryNameException;
 
 import java.io.PrintStream;
 
@@ -20,7 +21,7 @@ public class CategoryTest {
     }
 
     @Test
-    public void testPrintCategories(){
+    public void testPrintCategories() throws EmptyCategoryNameException {
         Category category = new Category("test");
         CategoryController.printCategories(category, 1, out);
         verify(out).println("test");

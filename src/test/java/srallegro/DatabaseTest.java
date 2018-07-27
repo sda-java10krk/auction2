@@ -4,9 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import srallegro.auction.Auction;
 import srallegro.auction.AuctionController;
-import srallegro.exception.AuctionPriceIsBelowZeroOrZeroException;
-import srallegro.exception.EmptyDescriptionException;
-import srallegro.exception.EmptyTitleException;
+import srallegro.exception.*;
 import srallegro.user.Database;
 import srallegro.user.User;
 
@@ -25,7 +23,7 @@ public class DatabaseTest {
     }
 
     @Test
-    public void testIfCategoriesAreStoredCorrectly() {
+    public void testIfCategoriesAreStoredCorrectly() throws EmptyCategoryNameException {
         CategoryController.createCategoryTree();
         assertEquals(database.getAllCategoriesByName().size(), 12);
         assertNotNull(database.getCategoryByName("Samochody"));
@@ -40,7 +38,7 @@ public class DatabaseTest {
     }
 
     @Test
-    public void testIfAuctionsAreStoredCorrectly() throws EmptyTitleException, EmptyDescriptionException, AuctionPriceIsBelowZeroOrZeroException {
+    public void testIfAuctionsAreStoredCorrectly() throws EmptyTitleException, EmptyDescriptionException, AuctionPriceIsBelowZeroOrZeroException, BirthdayException, PasswordTooShortException, EmptyNickException, EmptyCategoryNameException {
         Category testCategory = new Category ("Test");
         User janek = new User("janek", "janek", 0, "janek", "janek", "janek", "janek");
         Auction testAuction1 = AuctionController.createAuction(janek, "Title1", "descr1", testCategory, 10.0);
