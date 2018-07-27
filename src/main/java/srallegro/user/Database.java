@@ -40,6 +40,10 @@ public class Database {
         return null;
     }
 
+    public static Map<String, Category> getAllCategoriesByName () {
+        return allCategoriesByName;
+    }
+
     // regarding Auctions
     public static void addAuctionToAllAuctions (Auction auction) {
         allAuctionsByNumber.put(auction.getAuctionNumber(), auction);
@@ -77,10 +81,6 @@ public class Database {
         }
         return null;
     }
-
-
-
-
 
     public static void addUser(User user) throws IOException {
         Database database = Database.getInstance();

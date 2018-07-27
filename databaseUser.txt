@@ -1,0 +1,2 @@
+name,lastName,,birthDay,address,mail,password,nick
+jan,pies,0,pies,pies@pies,piesek,piesek

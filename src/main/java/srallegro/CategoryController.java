@@ -1,5 +1,7 @@
 package srallegro;
 
+import srallegro.user.Database;
+
 import java.io.PrintStream;
 import java.util.LinkedList;
 import java.util.List;
@@ -22,31 +24,32 @@ public class CategoryController {
         }
     }
 
-    public static Category createCategoryTree (Map<String, Category> allcategories) {
+    public static Category createCategoryTree () {
+        Database database = Database.getInstance();
         Category uberCat = new Category ("All");
-        allcategories.put(uberCat.getName(), uberCat);
+        database.addCategoryToAllCategories(uberCat);
         Category cars = new Category("Samochody");
-        allcategories.put(cars.getName(), cars);
+        database.addCategoryToAllCategories(cars);
         Category electr = new Category ("Elektronika");
-        allcategories.put(electr.getName(), electr);
+        database.addCategoryToAllCategories(electr);
         Category toys = new Category ("Zabawki");
-        allcategories.put(toys.getName(), toys);
+        database.addCategoryToAllCategories(toys);
         Category tv = new Category("Telewizory");
-        allcategories.put(tv.getName(), tv);
+        database.addCategoryToAllCategories(tv);
         Category mp3 = new Category("Empetrójki");
-        allcategories.put(mp3.getName(), mp3);
+        database.addCategoryToAllCategories(mp3);
         Category horse = new Category("Elektroniczne konie");
-        allcategories.put(horse.getName(), horse);
+        database.addCategoryToAllCategories(horse);
         Category bears = new Category("Misie pluszowe");
-        allcategories.put(bears.getName(),bears);
+        database.addCategoryToAllCategories(bears);
         Category sm = new Category("Zabawki sadomaso");
-        allcategories.put(sm.getName(),sm);
+        database.addCategoryToAllCategories(sm);
         Category sw = new Category("Zabawki z 'Gwiezdnych Wojen'");
-        allcategories.put(sw.getName(),sw);
+        database.addCategoryToAllCategories(sw);
         Category hansolo = new Category("Zabawki z Hanem Solo");
-        allcategories.put(hansolo.getName(),hansolo);
+        database.addCategoryToAllCategories(hansolo);
         Category stormtrooper = new Category("Stormtrooperzy");
-        allcategories.put(stormtrooper.getName(),stormtrooper);
+        database.addCategoryToAllCategories(stormtrooper);
         uberCat.addSubcategory(toys);
         uberCat.addSubcategory(electr);
         toys.addSubcategory(bears);
@@ -59,7 +62,6 @@ public class CategoryController {
         sw.addSubcategory(stormtrooper);
         uberCat.addSubcategory(cars);
 
-        allcategories = allcategories;
         return uberCat;
     }
 

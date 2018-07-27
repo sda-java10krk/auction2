@@ -34,10 +34,8 @@ public class Main {
         User janek = new User("janek", "janek", 0, "janek", "janek", "janek", "janek");
         database.addUserToAllUsers(janek); //tymczasowy ziomek do testow
 
-        Map<String, Category> categoriesByName = new HashMap<>(); // all categories stored here
-        Category allcategories = CategoryController.createCategoryTree(categoriesByName);
+        Category allcategories = CategoryController.createCategoryTree();
 
-        //Database database = new Database();  // po co mi to
         Scanner sc = new Scanner(System.in);
         User currentUser = null;
         
@@ -125,7 +123,7 @@ public class Main {
                             System.out.println("Wybierz kategorię");
                             String chosenCategory = sc.next();
                             try {
-                                System.out.println(categoriesByName.get(chosenCategory).getAuctions());
+                                System.out.println(database.getCategoryByName(chosenCategory).getAuctions());
                             } catch (NullPointerException npe) {
                                 System.out.println("Zła kategoria, npe");
                             }
