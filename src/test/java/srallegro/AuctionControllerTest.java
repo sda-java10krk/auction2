@@ -28,25 +28,28 @@ public class AuctionControllerTest {
 
     //before i database na nowy hashset
     @Before
-    public void allAuctionsSizeSetToZero () {
+    public void allAuctionsSizeSetToZero() {
 
         database.getAllAuctionsByNumber().clear();
         allAuctions.clear();
     }
 
-    @Test (expected = EmptyTitleException.class)
-    public void testCreateAuctionThrowEmptyTitleException () throws Exception{
-        Auction auction = AuctionController.createAuction(testSeller ,"","lol", category,342);
+    @Test(expected = EmptyTitleException.class)
+    public void testCreateAuctionThrowEmptyTitleException() throws Exception {
+        Auction auction = AuctionController.createAuction(testSeller, "", "lol", category, 342);
     }
-    @Test (expected = AuctionPriceIsBelowZeroOrZeroException.class)
-    public void testCreateAuctionThrowBelowZeroException () throws Exception{
-        Auction auction = AuctionController.createAuction(testSeller ,"fsd","lol", category,-32);
+
+    @Test(expected = AuctionPriceIsBelowZeroOrZeroException.class)
+    public void testCreateAuctionThrowBelowZeroException() throws Exception {
+        Auction auction = AuctionController.createAuction(testSeller, "fsd", "lol", category, -32);
 
     }
-    @Test (expected = EmptyDescriptionException.class)
-    public void testCreateAuctionThrowEmptyDescribtionEmpty () throws Exception{
-        Auction auction = AuctionController.createAuction(testSeller ,"sfd","", category,342);
+
+    @Test(expected = EmptyDescriptionException.class)
+    public void testCreateAuctionThrowEmptyDescribtionEmpty() throws Exception {
+        Auction auction = AuctionController.createAuction(testSeller, "sfd", "", category, 342);
     }
+
     @Test
     public void testCreateAuction() {
         Auction testAuction1 = null;
@@ -71,7 +74,6 @@ public class AuctionControllerTest {
         } catch (EmptyDescriptionException e) {
             e.printStackTrace();
         }
-
 
 
         TestCase.assertEquals(testSeller.getNick(), testAuction1.getSeller().getNick());
@@ -121,21 +123,21 @@ public class AuctionControllerTest {
     }
 
     @Test
-    public void testIfBidUpSetsPriceToNewPrice () throws Exception {
+    public void testIfBidUpSetsPriceToNewPrice() throws Exception {
         Category cat = new Category("lol");
-        User user1 = new User("saf","sdf",124,"432","fsd", "fddgs" , "32");
-        User user2 = new User("sad","sdf",124,"432","fsd", "fgfdgdds" , "32");
+        User user1 = new User("saf", "sdf", 124, "432", "fsd", "fddgs", "32");
+        User user2 = new User("sad", "sdf", 124, "432", "fsd", "fgfdgdds", "32");
 
-        Auction sad = new Auction("lol","fs", cat,user1,user1,BigDecimal.valueOf(1000),0, 0);
-        BigDecimal result = AuctionController.bidUp(sad, BigDecimal.valueOf(1524),user2);
+        Auction sad = new Auction("lol", "fs", cat, user1, user1, BigDecimal.valueOf(1000), 0, 0);
+        BigDecimal result = AuctionController.bidUp(sad, BigDecimal.valueOf(1524), user2);
         BigDecimal expected = BigDecimal.valueOf(1524);
-        assertEquals(expected,result);
+        assertEquals(expected, result);
     }
 
     @Test
     public void testIsBidUpIncreaseBids() throws Exception {
         Category cat = new Category("lol");
-        User user1 = new User("sad","sdf",124,"432","fsd", "fdswer" , "32");
+        User user1 = new User("sad", "sdf", 124, "432", "fsd", "fdswer", "32");
         User user2 = new User("saf", "sdf", 124, "432", "fsd", "fdstre", "32");
         User user3 = new User("s2", "sdf", 124, "432", "fsd", "fdsfgd", "32");
         Auction auction = new Auction("lol", "fs", cat, user1, user1, BigDecimal.valueOf(1000), 0, 0);
@@ -145,6 +147,7 @@ public class AuctionControllerTest {
         assertEquals(2, result);
 
     }
+
     @Test
     public void testIsPersonWhoBidIsTheNewWinner() throws Exception {
         Category cat = new Category("lol");
@@ -155,43 +158,45 @@ public class AuctionControllerTest {
         BigDecimal bidUpAuction = AuctionController.bidUp(auction, BigDecimal.valueOf(1524), user2);
         BigDecimal bidUpAuction2 = AuctionController.bidUp(auction, BigDecimal.valueOf(1524), user3);
         User winner = auction.getWinner();
-        assertEquals(user3 , auction.getWinner());
-        }
+        assertEquals(user3, auction.getWinner());
+    }
 
-    @Test (expected = PriceTooLowException.class)
-    public void testIsExceptionIsThrown () throws Exception {
-         Category cat = new Category("lol");
-         User user1 = new User("sad", "sdf", 124, "432", "fsd", "ffdgdfds", "32");
+    @Test(expected = PriceTooLowException.class)
+    public void testIsExceptionIsThrown() throws Exception {
+        Category cat = new Category("lol");
+        User user1 = new User("sad", "sdf", 124, "432", "fsd", "ffdgdfds", "32");
         User user2 = new User("saf", "sdf", 124, "432", "fsd", "fdfdgds", "32");
 
-         Auction auction = new Auction("lol", "fs", cat, user1, user1, BigDecimal.valueOf(1000), 0, 0);
-         BigDecimal bidUpAuction = AuctionController.bidUp(auction, BigDecimal.valueOf(194), user2);
-     }
+        Auction auction = new Auction("lol", "fs", cat, user1, user1, BigDecimal.valueOf(1000), 0, 0);
+        BigDecimal bidUpAuction = AuctionController.bidUp(auction, BigDecimal.valueOf(194), user2);
+    }
 
-     @Test
-     public void testIsAuctionIsAddedToUserWonList () throws Exception {
-         Category cat = new Category("lol");
-         User user1 = new User("sad", "Kowalski", 124, "432", "fsd", "fdgfds", "32");
-         User user2 = new User("sad", "Jan", 124, "432", "fsd", "fdfdgs", "32");
-         User user3 = new User("saf", "sf", 124, "432", "fsd", "gfdfds", "32");
-         Auction auction = new Auction("lol", "fs", cat, user1, user1, BigDecimal.valueOf(1000), 0, 0);
-         BigDecimal bidUpAuction = AuctionController.bidUp(auction, BigDecimal.valueOf(1524), user2);
-         BigDecimal bidUpAuction2 = AuctionController.bidUp(auction, BigDecimal.valueOf(1524), user3);
-         BigDecimal bidUpAuction3 = AuctionController.bidUp(auction, BigDecimal.valueOf(1724), user2);
-         boolean expected = user1.myWonList.contains(auction);
-         boolean result = auction.getWinner() == user1;
-         assertEquals(expected, result);
-     }
-     @Test (expected = YouCantBidUpYourOwnAuctionException.class)
-     public void testYouCantBidUpYourOwnAuction () throws Exception {
-         Category cat = new Category("lol");
-         User seller = new User("sad", "sdf", 124, "432", "fsd", "dfgfds", "32");
-         User user1 = new User("sa", "sdf", 124, "432", "fsd", "ffgdds", "32");
-         Auction auction = new Auction("lol", "fs", cat, seller, user1, BigDecimal.valueOf(1000), 0, 0);
-         BigDecimal bidUpAuction = AuctionController.bidUp(auction, BigDecimal.valueOf(1194), seller);
-     }
-    @Test (expected = YouCantBidUpYourOwnAuctionException.class)
-    public void testYouCantBidUpAuctionThatYouBiddedUp () throws Exception {
+    @Test
+    public void testIsAuctionIsAddedToUserWonList() throws Exception {
+        Category cat = new Category("lol");
+        User user1 = new User("sad", "Kowalski", 124, "432", "fsd", "fdgfds", "32");
+        User user2 = new User("sad", "Jan", 124, "432", "fsd", "fdfdgs", "32");
+        User user3 = new User("saf", "sf", 124, "432", "fsd", "gfdfds", "32");
+        Auction auction = new Auction("lol", "fs", cat, user1, user1, BigDecimal.valueOf(1000), 0, 0);
+        BigDecimal bidUpAuction = AuctionController.bidUp(auction, BigDecimal.valueOf(1524), user2);
+        BigDecimal bidUpAuction2 = AuctionController.bidUp(auction, BigDecimal.valueOf(1524), user3);
+        BigDecimal bidUpAuction3 = AuctionController.bidUp(auction, BigDecimal.valueOf(1724), user2);
+        boolean expected = user1.myWonList.contains(auction);
+        boolean result = auction.getWinner() == user1;
+        assertEquals(expected, result);
+    }
+
+    @Test(expected = YouCantBidUpYourOwnAuctionException.class)
+    public void testYouCantBidUpYourOwnAuction() throws Exception {
+        Category cat = new Category("lol");
+        User seller = new User("sad", "sdf", 124, "432", "fsd", "dfgfds", "32");
+        User user1 = new User("sa", "sdf", 124, "432", "fsd", "ffgdds", "32");
+        Auction auction = new Auction("lol", "fs", cat, seller, user1, BigDecimal.valueOf(1000), 0, 0);
+        BigDecimal bidUpAuction = AuctionController.bidUp(auction, BigDecimal.valueOf(1194), seller);
+    }
+
+    @Test(expected = YouCantBidUpYourOwnAuctionException.class)
+    public void testYouCantBidUpAuctionThatYouBiddedUp() throws Exception {
         Category cat = new Category("lol");
         User seller = new User("sad", "sdf", 124, "432", "fsd", "fdfgds", "32");
         User user1 = new User("sa", "sdf", 124, "432", "fsd", "ffdgds", "32");
@@ -199,7 +204,6 @@ public class AuctionControllerTest {
         BigDecimal bidUpAuction = AuctionController.bidUp(auction, BigDecimal.valueOf(1194), user1);
         BigDecimal bidUpAuction1 = AuctionController.bidUp(auction, BigDecimal.valueOf(1294), user1);
     }
-
 
 
 }

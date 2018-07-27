@@ -31,7 +31,7 @@ public class DatabaseTest {
         assertNotNull(database.getCategoryByName("Elektroniczne konie"));
         assertNotNull(database.getCategoryByName("Telewizory"));
         assertNull(database.getCategoryByName("NullCategory"));
-        Category testCategory = new Category ("Test");
+        Category testCategory = new Category("Test");
         database.addCategoryToAllCategories(testCategory);
         assertNotNull(database.getCategoryByName("Test"));
         assertEquals(database.getAllCategoriesByName().size(), 13);
@@ -39,7 +39,7 @@ public class DatabaseTest {
 
     @Test
     public void testIfAuctionsAreStoredCorrectly() throws EmptyTitleException, EmptyDescriptionException, AuctionPriceIsBelowZeroOrZeroException, BirthdayException, PasswordTooShortException, EmptyNickException, EmptyCategoryNameException {
-        Category testCategory = new Category ("Test");
+        Category testCategory = new Category("Test");
         User janek = new User("janek", "janek", 0, "janek", "janek", "janek", "janek");
         Auction testAuction1 = AuctionController.createAuction(janek, "Title1", "descr1", testCategory, 10.0);
         Auction testAuction2 = AuctionController.createAuction(janek, "Title2", "descr2", testCategory, 12.0);
