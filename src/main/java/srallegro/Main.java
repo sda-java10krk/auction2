@@ -15,7 +15,7 @@ import java.util.*;
 import static java.lang.System.out;
 
 public class Main {
-    
+
     public enum State {
         INIT,
         DURING_LOGIN,
@@ -25,20 +25,15 @@ public class Main {
 
     }
 
-
-
     public static void main(String[] args) throws EmptyTitleException, EmptyDescriptionException, AuctionPriceIsBelowZeroOrZeroException, BirthdayException, PasswordTooShortException, EmptyNickException, EmptyCategoryNameException {
         Database database = Database.getInstance();
 
-
         User janek = new User("janek", "janek", 0, "janek", "janek", "janek", "janek");
         database.addUserToAllUsers(janek); //tymczasowy ziomek do testow
-
+        LoadUserFromDisk.readFileCSV("databaseUser.txt");
         Category allcategories = CategoryController.createCategoryTree();
-
         Scanner sc = new Scanner(System.in);
         User currentUser = null;
-        
         State state = State.INIT;
         while (state != State.STOP) {
             switch (state) {
@@ -90,10 +85,10 @@ public class Main {
                         state = State.LOGGED_IN;
                         break;
                     }
-                        System.out.println("Proba zalogowania nieudana, spobój ponownie");
-                        state = State.DURING_REGISTRATION;
-                        break;
-                        
+                    System.out.println("Proba zalogowania nieudana, spobój ponownie");
+                    state = State.DURING_REGISTRATION;
+                    break;
+
                 }
                 case STOP: {
                     state = State.STOP;

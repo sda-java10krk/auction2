@@ -16,20 +16,19 @@ import static org.junit.Assert.assertEquals;
 
 public class AuctionControllerTest {
 
-    User testSeller = new User ("", "", 12-12-1992, "", "", "ieterw", "Seller");
+    User testSeller = new User("", "", 12 - 12 - 1992, "", "", "ieterw", "Seller");
     Category category = new Category("CategoryName");
 
 
     public AuctionControllerTest() throws Exception {
     }
+
     Database database = Database.getInstance();
     Map<Integer, Auction> allAuctions = database.getAllAuctionsByNumber();
 
 
-    //before i database na nowy hashset
     @Before
     public void allAuctionsSizeSetToZero() {
-
         database.getAllAuctionsByNumber().clear();
         allAuctions.clear();
     }
@@ -89,7 +88,6 @@ public class AuctionControllerTest {
         TestCase.assertEquals(testAuction2.getCategory(), category);
         TestCase.assertEquals(testAuction2.getPrice(), new BigDecimal(372.5));
         TestCase.assertEquals(testAuction2.getWinner(), null);
-
         TestCase.assertEquals(database.getAllAuctionsByNumber().size(), 2);
 
         List<Auction> testList = new LinkedList<>();
