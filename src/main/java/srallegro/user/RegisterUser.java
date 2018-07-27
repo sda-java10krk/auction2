@@ -3,7 +3,7 @@ package srallegro.user;
 import java.util.*;
 
 public class RegisterUser {
-    public static User createUser(){
+    public static User createUser() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Podaj Imię");
         String userName = scanner.nextLine();
@@ -26,8 +26,8 @@ public class RegisterUser {
         System.out.println("Podaj hasło");
         String password = scanner.next();
 
-        while (true){
-            if (password.length()<5){
+        while (true) {
+            if (password.length() < 5) {
                 System.out.println("Hasło jest za krótkie");
                 password = scanner.next();
             } else {
@@ -36,27 +36,18 @@ public class RegisterUser {
         }
         System.out.println("Powtórz hasło");
         String password2 = scanner.next();
-
-                while (true){
-                if (password.equals(password2)){
-                    break;
-                } else {
-                    System.out.println("Hasła nie są takie same");
-                     password2 = scanner.next();
-                    }
-                }
-
-                User newUser = new User(userName, userLastName,userBirthday,userAdrdess,userMail,password,userNick);
-
-                UsersMap allusers = UsersMap.getInstance();
-        //try {
-            allusers.addUserToAllUsers(newUser);
-            SaveUserOnDisk.writeCsvFile("databaseUser.txt", newUser);
-       /* } catch (FileNotFoundException e) {
-            System.out.println("Nie udało się. Plik");;
-        } catch (IOException e) {
-            e.printStackTrace();
-        } */
+        while (true) {
+            if (password.equals(password2)) {
+                break;
+            } else {
+                System.out.println("Hasła nie są takie same");
+                password2 = scanner.next();
+            }
+        }
+        User newUser = new User(userName, userLastName, userBirthday, userAdrdess, userMail, password, userNick);
+        UsersMap allusers = UsersMap.getInstance();
+        allusers.addUserToAllUsers(newUser);
+        SaveUserOnDisk.writeCsvFile("databaseUser.txt", newUser);
         return newUser;
     }
 }

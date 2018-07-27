@@ -24,10 +24,9 @@ public class Main {
     }
 
     public static void main(String[] args) throws EmptyTitleException, EmptyDescriptionException, AuctionPriceIsBelowZeroOrZeroException {
-        UsersMap allusers = UsersMap.getInstance();
 
-        User janek = new User("janek", "janek", 0, "janek", "janek", "janek", "janek");
-        allusers.addUserToAllUsers(janek); //tymczasowy ziomek do testow
+        LoadUserFromDisk.readFileCSV("databaseUser.txt" );
+
 
         Map<String, Category> categoriesByName = new HashMap<>(); // all categories stored here
         Category allcategories = CategoryController.createCategoryTree(categoriesByName);

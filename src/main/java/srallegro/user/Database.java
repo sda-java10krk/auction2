@@ -22,7 +22,7 @@ public class Database {
 
     private static Map<String, Category> allCategoriesByName = new HashMap<>();
     private static Map <Integer, Auction> allAuctionsByNumber = new HashMap<>();
-    private static Map<String, srallegro.user.User> allUsersByNickname = new HashMap<>();
+    private static Map<String, User> allUsersByNickname = new HashMap<>();
 
     //regarding Categories
     public static void addCategoryToAllCategories (Category category) {
@@ -63,7 +63,7 @@ public class Database {
         return allUsersByNickname;
     }
 
-    public static void addUserToAllUsers (srallegro.user.User user) {
+    public static void addUserToAllUsers (User user) {
         allUsersByNickname.put(user.getNick(), user);
     }
 
@@ -81,7 +81,6 @@ public class Database {
 
 
     public static void addUser(User user) throws IOException {
-        Database database = Database.getInstance();
         String userNick = user.getNick();
         addUserToAllUsers(user);
         SaveUserOnDisk.writeCsvFile("databaseUser.csv", user);
