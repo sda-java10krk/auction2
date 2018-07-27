@@ -53,7 +53,7 @@ public class AuctionControllerTest {
     public void testCreateAuction() {
         Auction testAuction1 = null;
         try {
-            testAuction1 = AuctionController.createAuction(testSeller, "Title1", "Description1", category,  BigDecimal.valueOf(150.0));
+            testAuction1 = AuctionController.createAuction(testSeller, "Title1", "Description1", category,  BigDecimal.valueOf(150));
         } catch (EmptyTitleException e) {
             e.printStackTrace();
         } catch (AuctionPriceIsBelowZeroOrZeroException e) {
@@ -79,7 +79,7 @@ public class AuctionControllerTest {
         TestCase.assertEquals(testAuction1.getTitle(), "Title1");
         TestCase.assertEquals(testAuction1.getDescription(), "Description1");
         TestCase.assertEquals(testAuction1.getCategory(), category);
-        TestCase.assertEquals(testAuction1.getPrice(), new BigDecimal(150.0));
+        TestCase.assertEquals(testAuction1.getPrice(), new BigDecimal(150));
         TestCase.assertEquals(testAuction1.getWinner(), null);
 
         TestCase.assertEquals(testSeller.getNick(), testAuction2.getSeller().getNick());

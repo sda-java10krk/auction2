@@ -1,0 +1,2 @@
+currentUserLogin,title,description,categoryName,amount
+Seller,Title2,Description2,Category{name='CategoryName'},372.5
