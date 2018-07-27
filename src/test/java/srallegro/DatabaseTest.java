@@ -60,7 +60,7 @@ public class DatabaseTest {
     }
 
     @Test
-    public void testIfUsersAreStoredCorrectly() {
+    public void testIfUsersAreStoredCorrectly() throws BirthdayException, PasswordTooShortException, EmptyNickException {
         Database database = Database.getInstance();
 
         User janek = new User("janek", "janek", 0, "janek", "janek", "janek", "janek");
