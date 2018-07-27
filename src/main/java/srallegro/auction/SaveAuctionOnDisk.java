@@ -19,7 +19,7 @@ public class SaveAuctionOnDisk {
         return instance;
     }
 
-    public static void writeCsvFile(String filename, Auction auction){
+    public static void writeCsvFile(String filename, Auction auction) {
         FileWriter fileWriter = null;
         try {
             fileWriter = new FileWriter(filename);

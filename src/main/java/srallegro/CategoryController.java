@@ -1,44 +1,38 @@
 package srallegro;
 
-
 import srallegro.user.Database;
-
 import srallegro.exception.EmptyCategoryNameException;
 
-
 import java.io.PrintStream;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+
 
 public class CategoryController {
 
 
-    public static void printCategories(Category category, int level, PrintStream out){
-        if(category.getName()!=null) {
+    public static void printCategories(Category category, int level, PrintStream out) {
+        if (category.getName() != null) {
             out.print("+");
             for (int i = 0; i < level; i++) {
                 out.print("-");
             }
             out.println(category.getName());
         }
-        for(Category subcategory: category.getSubcategories()){
+        for (Category subcategory : category.getSubcategories()) {
             printCategories(subcategory, level + 1, out);
         }
     }
 
 
-    public static Category createCategoryTree () throws EmptyCategoryNameException {
+    public static Category createCategoryTree() throws EmptyCategoryNameException {
         Database database = Database.getInstance();
 
-        Category uberCat = new Category ("All");
+        Category uberCat = new Category("All");
         database.addCategoryToAllCategories(uberCat);
         Category cars = new Category("Samochody");
         database.addCategoryToAllCategories(cars);
-        Category electr = new Category ("Elektronika");
+        Category electr = new Category("Elektronika");
         database.addCategoryToAllCategories(electr);
-        Category toys = new Category ("Zabawki");
+        Category toys = new Category("Zabawki");
         database.addCategoryToAllCategories(toys);
         Category tv = new Category("Telewizory");
         database.addCategoryToAllCategories(tv);
@@ -70,8 +64,6 @@ public class CategoryController {
 
         return uberCat;
     }
-
-
 
 
 }

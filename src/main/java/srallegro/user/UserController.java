@@ -3,15 +3,14 @@ package srallegro.user;
 public class UserController {
 
 
-
-    public static srallegro.user.User login (String login, String passwordd) {
+    public static srallegro.user.User login(String login, String passwordd) {
 
         //Zmienić usersmap na databejsy!
 
         Database database = Database.getInstance();
         try {
             if (
-                    database.getUserByNickname(login).getPassword().equals(passwordd) ) {
+                    database.getUserByNickname(login).getPassword().equals(passwordd)) {
                 System.out.println("Dziękuję za zalogowanie");
                 return database.getUserByNickname(login);
             } else {

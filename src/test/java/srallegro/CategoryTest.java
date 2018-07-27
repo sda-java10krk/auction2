@@ -30,5 +30,4 @@ public class CategoryTest {
     //TODO: test metody createCategoryTree
 
 
-
 }

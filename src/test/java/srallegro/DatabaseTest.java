@@ -44,17 +44,14 @@ public class DatabaseTest {
         Category testCategory = new Category("Test");
         User janek = new User("janek", "janek", 0, "janek", "janek", "janek", "janek");
         Auction testAuction1 = AuctionController.createAuction(janek, "Title1", "descr1", testCategory, BigDecimal.valueOf(10));
-        Auction testAuction2 = AuctionController.createAuction(janek, "Title2", "descr2", testCategory,  BigDecimal.valueOf(12.0));
-        Auction testAuction3 = AuctionController.createAuction(janek, "Title3", "descr3", testCategory,  BigDecimal.valueOf(13.0));
-        Auction testAuction4 = AuctionController.createAuction(janek, "Title4", "descr4", testCategory,  BigDecimal.valueOf(14.0));
-
+        Auction testAuction2 = AuctionController.createAuction(janek, "Title2", "descr2", testCategory, BigDecimal.valueOf(12.0));
+        Auction testAuction3 = AuctionController.createAuction(janek, "Title3", "descr3", testCategory, BigDecimal.valueOf(13.0));
+        Auction testAuction4 = AuctionController.createAuction(janek, "Title4", "descr4", testCategory, BigDecimal.valueOf(14.0));
         assertEquals(database.getAllAuctionsByNumber().size(), 4);
-
         assertNotNull(database.getAuctionByNumber(testAuction1.getAuctionNumber()));
         assertNotNull(database.getAuctionByNumber(testAuction2.getAuctionNumber()));
         assertNotNull(database.getAuctionByNumber(testAuction3.getAuctionNumber()));
         assertNotNull(database.getAuctionByNumber(testAuction4.getAuctionNumber()));
-
         assertEquals(database.getAuctionByNumber(testAuction1.getAuctionNumber()), testAuction1);
         assertEquals(database.getAuctionByNumber(testAuction2.getAuctionNumber()), testAuction2);
         assertEquals(database.getAuctionByNumber(testAuction3.getAuctionNumber()), testAuction3);

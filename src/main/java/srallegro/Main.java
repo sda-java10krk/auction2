@@ -1,18 +1,10 @@
 package srallegro;
-
-
 import srallegro.auction.Auction;
 import srallegro.auction.AuctionController;
 import srallegro.exception.*;
-
 import srallegro.user.*;
-
 import java.math.BigDecimal;
-import java.util.Map;
 import java.util.Scanner;
-
-import java.util.*;
-
 import static java.lang.System.out;
 
 public class Main {
@@ -26,7 +18,7 @@ public class Main {
 
     }
 
-    public static void main(String[] args) throws EmptyTitleException, EmptyDescriptionException, AuctionPriceIsBelowZeroOrZeroException, BirthdayException, PasswordTooShortException, EmptyNickException, EmptyCategoryNameException {
+    public static void main(String[] args) throws EmptyTitleException, EmptyDescriptionException, AuctionPriceIsBelowZeroOrZeroException, BirthdayException, PasswordTooShortException, EmptyNickException, EmptyCategoryNameException, InterruptedException {
         Database database = Database.getInstance();
 
         User janek = new User("janek", "janek", 0, "janek", "janek", "janek", "janek");

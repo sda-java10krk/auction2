@@ -8,16 +8,33 @@ import java.util.*;
 
 public class RegisterUser {
 
-    public static User createUser() throws PasswordTooShortException, EmptyNickException, BirthdayException {
+    public static User createUser() throws PasswordTooShortException, EmptyNickException, BirthdayException, InterruptedException {
         Database database = Database.getInstance();
 
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Podaj Imię");
         String userName = scanner.nextLine();
+//        int userNameCheck =0;
+//        while(userNameCheck ==0){
+//            userName =  scanner.nextLine();
+//            for (int i=0 ; i<userName.length();i++){
+//                if (userName.indexOf(i) ) ;
+//            }
+//        }
+
 
         System.out.println("Podaj datę urodzin");
-        Integer userBirthday = scanner.nextInt();
+        Integer userBirthday = 0;
+        while (userBirthday == 0) {
+            try {
+                userBirthday = scanner.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Data urodzenia powinna byc liczba ");
+                userBirthday = 0;
+                scanner.nextLine();
+            }
+        }
 
         System.out.println("Podaj Nazwisko");
         String userLastName = scanner.next();
@@ -38,7 +55,19 @@ public class RegisterUser {
             }
         }
         System.out.println("Podaj hasło");
-        String password = scanner.next();
+
+        String password = null;
+        int passwordCheck = 0;
+        while (passwordCheck == 0) {
+            password = scanner.next();
+            if (password.length() < 5) {
+                passwordCheck = 0;
+                System.out.println("Haslo powinno byc dluzsze niz 5 znakow");
+            } else {
+                passwordCheck = 1;
+            }
+
+        }
         System.out.println("Powtórz hasło");
         String password2 = scanner.next();
         while (true) {

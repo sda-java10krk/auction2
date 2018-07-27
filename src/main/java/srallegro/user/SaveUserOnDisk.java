@@ -15,6 +15,7 @@ public class SaveUserOnDisk {
         }
         return instance;
     }
+
     private static final String COMMA_SEPARATOR = ",";
     private static final String NEW_LINE_SEPARATOR = "\n";
     private static final String PARAMETRS = "name,lastName,,birthDay,address,mail,password,nick";

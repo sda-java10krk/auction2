@@ -1,4 +1,5 @@
 package srallegro.auction;
+
 import srallegro.Category;
 import srallegro.exception.AuctionPriceIsBelowZeroOrZeroException;
 import srallegro.exception.EmptyDescriptionException;
@@ -16,7 +17,7 @@ public class Auction {
     private User winner;
     private BigDecimal price;
     int auctionNumber;
-    private  int bids =0;
+    private int bids = 0;
 
     public String getTitle() {
         return title;
@@ -42,7 +43,7 @@ public class Auction {
         return auctionNumber;
     }
 
-    public Auction(String title, String description, Category category, User seller, User winner, BigDecimal price, int auctionNumber, int bids ) throws EmptyTitleException, AuctionPriceIsBelowZeroOrZeroException, EmptyDescriptionException {
+    public Auction(String title, String description, Category category, User seller, User winner, BigDecimal price, int auctionNumber, int bids) throws EmptyTitleException, AuctionPriceIsBelowZeroOrZeroException, EmptyDescriptionException {
         this.title = title;
         if (title.length() == 0) {
             throw new EmptyTitleException();
@@ -61,7 +62,6 @@ public class Auction {
         this.bids = bids;
         this.auctionNumber = auctionNumber;
     }
-
 
 
     public void setBids(int bids) {
@@ -103,7 +103,6 @@ public class Auction {
     public BigDecimal getPrice() {
         return price;
     }
-
 
 
     @Override

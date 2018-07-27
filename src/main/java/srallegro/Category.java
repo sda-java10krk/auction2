@@ -3,30 +3,31 @@ package srallegro;
 
 import java.util.LinkedList;
 import java.util.List;
+
 import srallegro.auction.Auction;
 import srallegro.exception.EmptyCategoryNameException;
 import srallegro.exception.EmptyTitleException;
 
 
-public class Category  {
+public class Category {
     private String name;
     private List<Auction> auctions;
     private List<Category> subcategories;
 
     public Category(String name) throws EmptyCategoryNameException {
         this.name = name;
-        if(name.length()==0){
+        if (name.length() == 0) {
             throw new EmptyCategoryNameException();
         }
         this.auctions = new LinkedList<>();
         this.subcategories = new LinkedList<>();
     }
 
-    public void addAuction(Auction auction){
+    public void addAuction(Auction auction) {
         this.auctions.add(auction);
     }
 
-    public void addSubcategory(Category category){
+    public void addSubcategory(Category category) {
         this.subcategories.add(category);
     }
 
@@ -50,9 +51,6 @@ public class Category  {
         this.auctions = auctions;
     }
 
-//    public static void setSubcategories(Set<Category> subcategories) {
-//        Category.subcategories = subcategories;
-//    }
 
     @Override
     public String toString() {

@@ -10,18 +10,19 @@ import srallegro.user.UserController;
 
 import static org.junit.Assert.assertEquals;
 
-public class UserControllerTest  {
+public class UserControllerTest {
 
     User testSeller = new User("", "", null, "", "", "SellerPassword", "Seller");
     User mrNull = null;
-        //to jest chyba chujowe ale nie wiem bo bez tego nie dziala
+
+    //to jest chyba chujowe ale nie wiem bo bez tego nie dziala
     public UserControllerTest() throws BirthdayException, PasswordTooShortException, EmptyNickException {
     }
 
     @Test
-    public void testLogin()  throws Exception {
+    public void testLogin() throws Exception {
         Database.addUserToAllUsers(testSeller);
         assertEquals(UserController.login("Seller", "SellerPassword"), testSeller);
-        assertEquals(UserController.login( "nonExistingDude", "noPassword"), null);
+        assertEquals(UserController.login("nonExistingDude", "noPassword"), null);
     }
 }

@@ -4,13 +4,13 @@ import srallegro.Category;
 import srallegro.user.Database;
 import srallegro.exception.*;
 import srallegro.user.User;
+
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Random;
 
 public class AuctionController {
 
-    //jezeli currentoffer !=null , throw new exce
     public static BigDecimal bidUp(Auction auction, BigDecimal bidUp, User user) throws PriceTooLowException, YouCantBidUpYourOwnAuctionException, AuctionPriceIsBelowZeroOrZeroException {
         if (auction.getPrice().compareTo(BigDecimal.valueOf(0)) <= 0) {
             throw new AuctionPriceIsBelowZeroOrZeroException();
@@ -35,7 +35,7 @@ public class AuctionController {
         return auction.getPrice();
     }
 
-
+//zrobiic tak jak sprawdzanie daty urodzenia
     public static Auction createAuction(User currentUser, String title, String description, Category category, BigDecimal price) throws EmptyTitleException, AuctionPriceIsBelowZeroOrZeroException, EmptyDescriptionException {
         Database database = Database.getInstance();
         Random rd = new Random();
@@ -48,7 +48,7 @@ public class AuctionController {
         if (title.length() == 0) {
             throw new EmptyTitleException();
         }
-        if (price.compareTo(BigDecimal.valueOf(0))<0  || price.equals(BigDecimal.valueOf(0))) {
+        if (price.compareTo(BigDecimal.valueOf(0)) < 0 || price.equals(BigDecimal.valueOf(0))) {
             throw new AuctionPriceIsBelowZeroOrZeroException();
         }
         if (description.length() == 0) {
@@ -60,9 +60,11 @@ public class AuctionController {
         SaveAuctionOnDisk.writeCsvFile("databaseAuction.txt", newAuction);
         return newAuction;
     }
+
     public static List<Auction> viewSellersAuctions(User loggedInUser) {
         return loggedInUser.getMySellingList();
     }
+
     public static List<Auction> viewWonAuctions(User loggedInUser) {
         return loggedInUser.getMyWonList();
     }

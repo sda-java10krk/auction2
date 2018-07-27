@@ -3,6 +3,7 @@ package srallegro.user;
 import srallegro.exception.BirthdayException;
 import srallegro.exception.EmptyNickException;
 import srallegro.exception.PasswordTooShortException;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -10,14 +11,17 @@ import java.io.IOException;
 
 public class LoadUserFromDisk {
     private static LoadUserFromDisk instance;
+
     private LoadUserFromDisk() {
     }
+
     private static LoadUserFromDisk getInstance() {
         if (instance == null) {
             instance = new LoadUserFromDisk();
         }
         return instance;
     }
+
     private static final String COMMA_SEPARATOR = ",";
     private static final int USER_NAME = 0;
     private static final int USER_LASTNAME = 1;

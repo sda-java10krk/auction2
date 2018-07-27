@@ -3,7 +3,9 @@ package srallegro.user;
 import srallegro.auction.Auction;
 import srallegro.exception.BirthdayException;
 import srallegro.exception.EmptyNickException;
+
 import srallegro.exception.PasswordTooShortException;
+
 
 import java.util.LinkedList;
 import java.util.List;
@@ -11,10 +13,10 @@ import java.util.Objects;
 
 public class User {
 
-    //dodac do konstruktora rzucenie wyjatku jesli hasla bedzie zbyt krotkie
     public String getNick() {
         return nick;
     }
+
     private String name;
     private String lastName;
     private Integer birthday;
@@ -38,24 +40,26 @@ public class User {
         return mySellingList;
     }
 
-    public User (String name, String lastName, Integer birthDay, String adress, String mail, String password, String nick) throws PasswordTooShortException, BirthdayException, EmptyNickException {
+    public User(String name, String lastName, Integer birthDay, String adress, String mail, String password, String nick) throws PasswordTooShortException, BirthdayException, EmptyNickException {
         this.name = name;
         this.lastName = lastName;
         this.birthday = birthDay;
-        if (birthDay == null){
+        if (birthDay == null) {
             throw new BirthdayException();
         }
+
         this.address = adress;
         this.mail = mail;
         this.password = password;
-        if(password.length()<5){
+        if (password.length() < 5) {
             throw new PasswordTooShortException();
         }
         this.nick = nick;
-        if (nick.length() ==0 ){
+        if (nick.length() == 0) {
             throw new EmptyNickException();
         }
     }
+
 
     @Override
     public String toString() {
