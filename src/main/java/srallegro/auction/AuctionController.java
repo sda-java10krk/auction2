@@ -36,7 +36,7 @@ public class AuctionController {
     }
 
 
-    public static Auction createAuction(User currentUser, String title, String description, Category category, double amount) throws EmptyTitleException, AuctionPriceIsBelowZeroOrZeroException, EmptyDescriptionException {
+    public static Auction createAuction(User currentUser, String title, String description, Category category, BigDecimal price) throws EmptyTitleException, AuctionPriceIsBelowZeroOrZeroException, EmptyDescriptionException {
         Database database = Database.getInstance();
         Random rd = new Random();
         Integer auctNumber = rd.nextInt(10000);
@@ -44,11 +44,11 @@ public class AuctionController {
             auctNumber = rd.nextInt(10000);
         }
 
-        Auction newAuction = new Auction(title, description, category, currentUser, null, new BigDecimal(amount), auctNumber, 0);
+        Auction newAuction = new Auction(title, description, category, currentUser, null, price, auctNumber, 0);
         if (title.length() == 0) {
             throw new EmptyTitleException();
         }
-        if (amount < 0 || amount == 0) {
+        if (price.compareTo(BigDecimal.valueOf(0))<0  || price.equals(BigDecimal.valueOf(0))) {
             throw new AuctionPriceIsBelowZeroOrZeroException();
         }
         if (description.length() == 0) {

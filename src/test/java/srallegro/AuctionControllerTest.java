@@ -35,25 +35,25 @@ public class AuctionControllerTest {
 
     @Test(expected = EmptyTitleException.class)
     public void testCreateAuctionThrowEmptyTitleException() throws Exception {
-        Auction auction = AuctionController.createAuction(testSeller, "", "lol", category, 342);
+        Auction auction = AuctionController.createAuction(testSeller, "", "lol", category, BigDecimal.valueOf(342));
     }
 
     @Test(expected = AuctionPriceIsBelowZeroOrZeroException.class)
     public void testCreateAuctionThrowBelowZeroException() throws Exception {
-        Auction auction = AuctionController.createAuction(testSeller, "fsd", "lol", category, -32);
+        Auction auction = AuctionController.createAuction(testSeller, "fsd", "lol", category,  BigDecimal.valueOf(-32));
 
     }
 
     @Test(expected = EmptyDescriptionException.class)
     public void testCreateAuctionThrowEmptyDescribtionEmpty() throws Exception {
-        Auction auction = AuctionController.createAuction(testSeller, "sfd", "", category, 342);
+        Auction auction = AuctionController.createAuction(testSeller, "sfd", "", category,  BigDecimal.valueOf(342));
     }
 
     @Test
     public void testCreateAuction() {
         Auction testAuction1 = null;
         try {
-            testAuction1 = AuctionController.createAuction(testSeller, "Title1", "Description1", category, 150.0);
+            testAuction1 = AuctionController.createAuction(testSeller, "Title1", "Description1", category,  BigDecimal.valueOf(150.0));
         } catch (EmptyTitleException e) {
             e.printStackTrace();
         } catch (AuctionPriceIsBelowZeroOrZeroException e) {
@@ -65,7 +65,7 @@ public class AuctionControllerTest {
         Auction testAuction2 = null;
 
         try {
-            testAuction2 = AuctionController.createAuction(testSeller, "Title2", "Description2", category, 372.5);
+            testAuction2 = AuctionController.createAuction(testSeller, "Title2", "Description2", category,  BigDecimal.valueOf(372.5));
         } catch (EmptyTitleException e) {
             e.printStackTrace();
         } catch (AuctionPriceIsBelowZeroOrZeroException e) {
@@ -98,8 +98,8 @@ public class AuctionControllerTest {
 
     @Test
     public void testViewSellersAuctions() throws EmptyTitleException, EmptyDescriptionException, AuctionPriceIsBelowZeroOrZeroException {
-        Auction testAuction1 = AuctionController.createAuction(testSeller, "Title1", "Description1", category, 150.0);
-        Auction testAuction2 = AuctionController.createAuction(testSeller, "Title2", "Description2", category, 372.5);
+        Auction testAuction1 = AuctionController.createAuction(testSeller, "Title1", "Description1", category,  BigDecimal.valueOf(150.0));
+        Auction testAuction2 = AuctionController.createAuction(testSeller, "Title2", "Description2", category,  BigDecimal.valueOf(372.5));
 
         List<Auction> testList = new LinkedList<>();
         testList.add(testAuction1);
@@ -109,8 +109,8 @@ public class AuctionControllerTest {
 
     @Test
     public void testViewWonAuctions() throws EmptyTitleException, EmptyDescriptionException, AuctionPriceIsBelowZeroOrZeroException {
-        Auction testAuction1 = AuctionController.createAuction(testSeller, "Title1", "Description1", category, 150.0);
-        Auction testAuction2 = AuctionController.createAuction(testSeller, "Title2", "Description2", category, 372.5);
+        Auction testAuction1 = AuctionController.createAuction(testSeller, "Title1", "Description1", category,  BigDecimal.valueOf(150.0));
+        Auction testAuction2 = AuctionController.createAuction(testSeller, "Title2", "Description2", category,  BigDecimal.valueOf(372.5));
 
         List<Auction> testList2 = new LinkedList<>();
         testList2.add(testAuction1);
