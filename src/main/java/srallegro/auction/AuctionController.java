@@ -38,6 +38,7 @@ public class AuctionController {
 //zrobiic tak jak sprawdzanie daty urodzenia
     public static Auction createAuction(User currentUser, String title, String description, Category category, BigDecimal price) throws EmptyTitleException, AuctionPriceIsBelowZeroOrZeroException, EmptyDescriptionException {
         Database database = Database.getInstance();
+        //do bani ten system numerowania aukcji. Ale działa
         Random rd = new Random();
         Integer auctNumber = rd.nextInt(10000);
         while (database.getAuctionByNumber(auctNumber) != null) {
