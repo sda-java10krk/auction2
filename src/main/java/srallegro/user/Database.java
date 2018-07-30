@@ -1,4 +1,5 @@
 package srallegro.user;
+
 import srallegro.Category;
 import srallegro.auction.Auction;
 
@@ -9,17 +10,19 @@ import java.util.*;
 public class Database {
 
     private static Database instance;
-    private Database(){}
+
+    private Database() {
+    }
+
     public static synchronized Database getInstance() {
-        if(instance == null) {
+        if (instance == null) {
             instance = new Database();
         }
         return instance;
     }
     private static Map<String, Category> allCategoriesByName = new HashMap<>();
-    private static Map <Integer, Auction> allAuctionsByNumber = new HashMap<>();
+    private static Map<Integer, Auction> allAuctionsByNumber = new HashMap<>();
     private static Map<String, User> allUsersByNickname = new HashMap<>();
-
 
     //regarding Categories
     public void addCategoryToAllCategories (Category category) {
@@ -35,13 +38,13 @@ public class Database {
         return null;
     }
     public Map<String, Category> getAllCategoriesByName () {
+
         return allCategoriesByName;
     }
     // regarding Auctions
     public void addAuctionToAllAuctions (Auction auction) {
         allAuctionsByNumber.put(auction.getAuctionNumber(), auction);
     }
-
     public Auction getAuctionByNumber (Integer number) {
         try {
             Auction auction = allAuctionsByNumber.get(number);
@@ -62,6 +65,7 @@ public class Database {
         allUsersByNickname.put(user.getNick(), user);
     }
     public User getUserByNickname (String nickname) {
+
         try {
             User user = allUsersByNickname.get(nickname);
             return user;
@@ -70,12 +74,4 @@ public class Database {
         }
         return null;
     }
-
-    /*  never used! usunąć?
-    public static void addUser(User user) throws IOException {
-        String userNick = user.getNick();
-        addUserToAllUsers(user);
-        SaveUserOnDisk.writeCsvFile("databaseUser.csv", user);
-    }
-    */
 }
