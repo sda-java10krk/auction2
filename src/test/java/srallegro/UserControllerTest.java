@@ -17,6 +17,7 @@ public class UserControllerTest {
 
     User testSeller = new User("", "", 42, "", "", "SellerPassword", "Seller");
     User mrNull = null;
+    Database database = Database.getInstance();
 
     //to jest chyba chujowe ale nie wiem bo bez tego nie dziala
     public UserControllerTest() throws BirthdayException, PasswordTooShortException, EmptyNickException, UserWithSameNicknameExists {
@@ -24,7 +25,7 @@ public class UserControllerTest {
 
     @Test
     public void testLogin() throws Exception {
-        Database.addUserToAllUsers(testSeller);
+        database.addUserToAllUsers(testSeller);
         assertEquals(UserController.login("Seller", "SellerPassword"), testSeller);
         assertEquals(UserController.login("nonExistingDude", "noPassword"), null);
     }
