@@ -36,7 +36,7 @@ public class AuctionController {
     }
 
 //zrobiic tak jak sprawdzanie daty urodzenia
-    public static Auction createAuction(User currentUser, String title, String description, Category category, BigDecimal price) throws EmptyTitleException, AuctionPriceIsBelowZeroOrZeroException, EmptyDescriptionException {
+    public static Auction createAuction(User currentUser, String title, String description, Category category, BigDecimal price) throws EmptyTitleException, AuctionPriceIsBelowZeroOrZeroException, EmptyDescriptionException, NotFinalCategoryException {
         Database database = Database.getInstance();
         //do bani ten system numerowania aukcji. Ale działa
         Random rd = new Random();
@@ -55,6 +55,10 @@ public class AuctionController {
         if (description.length() == 0) {
             throw new EmptyDescriptionException();
         }
+        if (category.getSubcategories().size() > 0) {
+            throw new NotFinalCategoryException();
+        }
+
         database.addAuctionToAllAuctions(newAuction);
         currentUser.getMySellingList().add(newAuction);
         category.addAuction(newAuction);
