@@ -5,6 +5,7 @@ import srallegro.exception.BirthdayException;
 import srallegro.exception.EmptyNickException;
 
 import srallegro.exception.PasswordTooShortException;
+import srallegro.exception.UserWithSameNicknameExists;
 
 
 import java.util.LinkedList;
@@ -40,7 +41,9 @@ public class User {
         return mySellingList;
     }
 
-    public User(String name, String lastName, Integer birthDay, String adress, String mail, String password, String nick) throws PasswordTooShortException, BirthdayException, EmptyNickException {
+    Database database = Database.getInstance();
+
+    public User(String name, String lastName, Integer birthDay, String adress, String mail, String password, String nick) throws PasswordTooShortException, BirthdayException, EmptyNickException, UserWithSameNicknameExists {
         this.name = name;
         this.lastName = lastName;
         this.birthday = birthDay;
@@ -54,7 +57,11 @@ public class User {
         if (password.length() < 5) {
             throw new PasswordTooShortException();
         }
-        this.nick = nick;
+        if (database.getUserByNickname(nick) == null) {
+            this.nick = nick;
+        } else {
+            throw new UserWithSameNicknameExists();
+        }
         if (nick.length() == 0) {
             throw new EmptyNickException();
         }

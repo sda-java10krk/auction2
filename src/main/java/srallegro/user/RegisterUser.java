@@ -3,12 +3,13 @@ package srallegro.user;
 import srallegro.exception.BirthdayException;
 import srallegro.exception.EmptyNickException;
 import srallegro.exception.PasswordTooShortException;
+import srallegro.exception.UserWithSameNicknameExists;
 
 import java.util.*;
 
 public class RegisterUser {
 
-    public static User createUser() throws PasswordTooShortException, EmptyNickException, BirthdayException, InterruptedException {
+    public static User createUser() throws PasswordTooShortException, EmptyNickException, BirthdayException, InterruptedException, UserWithSameNicknameExists {
         Database database = Database.getInstance();
 
 

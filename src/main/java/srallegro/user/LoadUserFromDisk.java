@@ -3,6 +3,7 @@ package srallegro.user;
 import srallegro.exception.BirthdayException;
 import srallegro.exception.EmptyNickException;
 import srallegro.exception.PasswordTooShortException;
+import srallegro.exception.UserWithSameNicknameExists;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -31,7 +32,7 @@ public class LoadUserFromDisk {
     private static final int USER_PASSWORD = 5;
     private static final int USER_NICK = 6;
 
-    public static void readFileCSV(String fileName) throws BirthdayException, PasswordTooShortException, EmptyNickException {
+    public static void readFileCSV(String fileName) throws BirthdayException, PasswordTooShortException, EmptyNickException, UserWithSameNicknameExists {
 
         BufferedReader fileReader = null;
         String line = "";

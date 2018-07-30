@@ -67,7 +67,7 @@ public class CategoryTest {
     }
 
     @Test
-    public void testIfAuctionsAreAddedToCategoriesWhenCreated () throws BirthdayException, PasswordTooShortException, EmptyNickException, EmptyTitleException, EmptyDescriptionException, AuctionPriceIsBelowZeroOrZeroException, EmptyCategoryNameException {
+    public void testIfAuctionsAreAddedToCategoriesWhenCreated () throws BirthdayException, PasswordTooShortException, EmptyNickException, EmptyTitleException, EmptyDescriptionException, AuctionPriceIsBelowZeroOrZeroException, EmptyCategoryNameException, UserWithSameNicknameExists {
         CategoryController.createCategoryTree();
 
         User testSeller = new User("", "", 12 - 12 - 1992, "", "", "ieterw", "Seller");
