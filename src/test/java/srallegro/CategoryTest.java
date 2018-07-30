@@ -82,4 +82,22 @@ public class CategoryTest {
         assertEquals(database.getCategoryByName("Empetrójki").getAuctions().size(), 0);
         assertEquals(database.getCategoryByName("Zabawki").getAuctions().size(), 0);
     }
+
+    @Test
+    public void testListAuctionsByCategory() throws EmptyCategoryNameException, UserWithSameNicknameExists, PasswordTooShortException, EmptyNickException, BirthdayException, EmptyTitleException, EmptyDescriptionException, AuctionPriceIsBelowZeroOrZeroException {
+        CategoryController.createCategoryTree();
+
+        User testSeller = new User("", "", 12 - 12 - 1992, "", "", "ieterw", "Seller");
+        Auction testAuction1 = AuctionController.createAuction(testSeller, "Stormtrooper1", "Descr", database.getCategoryByName("Stormtrooperzy"), new BigDecimal(10.0));
+        Auction testAuction2 = AuctionController.createAuction(testSeller, "Stormtrooper2", "Descr", database.getCategoryByName("Stormtrooperzy"), new BigDecimal(10.0));
+        Auction testAuction3 = AuctionController.createAuction(testSeller, "Misiu1", "Descr", database.getCategoryByName("Misie pluszowe"), new BigDecimal(10.0));
+        Auction testAuction4 = AuctionController.createAuction(testSeller, "Han Solo 1", "Descr", database.getCategoryByName("Zabawki z Hanem Solo"), new BigDecimal(10.0));
+        Auction testAuction5 = AuctionController.createAuction(testSeller, "Pejczyk1", "Descr", database.getCategoryByName("Zabawki sadomaso"), new BigDecimal(10.0));
+        Auction testAuction6 = AuctionController.createAuction(testSeller, "Pejczyk2", "Descr", database.getCategoryByName("Zabawki sadomaso"), new BigDecimal(10.0));
+
+        CategoryController.listAuctionsByCategory(database.getCategoryByName("Zabawki"), 0);
+
+
+
+    }
 }
