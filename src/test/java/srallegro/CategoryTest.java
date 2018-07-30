@@ -66,7 +66,7 @@ public class CategoryTest {
     }
 
     @Test
-    public void testIfAuctionsAreAddedToCategoriesWhenCreated () throws BirthdayException, PasswordTooShortException, EmptyNickException, EmptyTitleException, EmptyDescriptionException, AuctionPriceIsBelowZeroOrZeroException, EmptyCategoryNameException, UserWithSameNicknameExists {
+    public void testIfAuctionsAreAddedToCategoriesWhenCreated () throws BirthdayException, PasswordTooShortException, EmptyNickException, EmptyTitleException, EmptyDescriptionException, AuctionPriceIsBelowZeroOrZeroException, EmptyCategoryNameException, UserWithSameNicknameExists, NotFinalCategoryException {
         CategoryController.createCategoryTree();
 
         User testSeller = new User("", "", 12 - 12 - 1992, "", "", "ieterw", "Seller");
@@ -83,7 +83,7 @@ public class CategoryTest {
     }
 
     @Test
-    public void testListAuctionsByCategory() throws EmptyCategoryNameException, UserWithSameNicknameExists, PasswordTooShortException, EmptyNickException, BirthdayException, EmptyTitleException, EmptyDescriptionException, AuctionPriceIsBelowZeroOrZeroException {
+    public void testListAuctionsByCategory() throws EmptyCategoryNameException, UserWithSameNicknameExists, PasswordTooShortException, EmptyNickException, BirthdayException, EmptyTitleException, EmptyDescriptionException, AuctionPriceIsBelowZeroOrZeroException, NotFinalCategoryException {
         CategoryController.createCategoryTree();
 
         User testSeller = new User("", "", 12 - 12 - 1992, "", "", "ieterw", "Seller");

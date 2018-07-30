@@ -16,7 +16,6 @@ import static org.junit.Assert.assertEquals;
 public class UserControllerTest {
 
     User testSeller = new User("", "", 42, "", "", "SellerPassword", "Seller");
-    User mrNull = null;
     Database database = Database.getInstance();
 
     //to jest chyba chujowe ale nie wiem bo bez tego nie dziala
@@ -43,6 +42,13 @@ public class UserControllerTest {
     @Test (expected = PasswordTooShortException.class)
     public void testIsPasswordToShortExceptionIsThrown() throws Exception{
         User testUser = new User("re","reg", 87,"konwaliowa","gdf","test","ijj");
+    }
+
+    @Test (expected = UserWithSameNicknameExists.class)
+    public void testIfUserWithSameNicknameExists() throws Exception {
+        User testUser = new User("re","reg", 5,"konwaliowa","gdf","testtest","mateusz");
+        database.addUserToAllUsers(testUser);
+        User testUser2 = new User("rde","rdeg", 56,"konwaliowad","gdfh","testbtest","mateusz");
     }
 
 }
