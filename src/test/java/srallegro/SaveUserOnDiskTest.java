@@ -8,6 +8,8 @@ import srallegro.user.LoadUserFromDisk;
 import srallegro.user.SaveUserOnDisk;
 import srallegro.user.User;
 
+import javax.xml.crypto.Data;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -15,12 +17,14 @@ import static org.junit.Assert.assertTrue;
 public class SaveUserOnDiskTest {
 
     @Test
-    public void testIfUsersAreSavedOnDisk() throws UserIsntSavedException, BirthdayException, PasswordTooShortException, EmptyNickException {
+    public void testIfUsersAreSavedOnDisk() throws UserIsntSavedException, BirthdayException, PasswordTooShortException, EmptyNickException, UserWithSameNicknameExists {
         User testUser = new User("RandomName", "RandomLastName", 19870101,"RandomAddress","RandomMail","RandomPassword","RandomNick");
         SaveUserOnDisk.writeCsvFile("TestDatabaseUser.csv", testUser );
         LoadUserFromDisk.readFileCSV("TestDatabaseUser.csv");
+        Database database = Database.getInstance();
 
-        assertEquals(testUser, Database.getAllUsersByNickname().get("RandomNick"));
+
+        assertEquals(testUser, database.getAllUsersByNickname().get("RandomNick"));
     }
 
 
