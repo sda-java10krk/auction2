@@ -5,8 +5,6 @@ public class UserController {
 
     public static srallegro.user.User login(String login, String passwordd) {
 
-        //Zmienić usersmap na databejsy!
-
         Database database = Database.getInstance();
         try {
             if (

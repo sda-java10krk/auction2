@@ -69,8 +69,7 @@ public class Main {
                     }
                     break;
                 }
-                //FIXME
-                //brak metod do sprawdzania poprawnosci wprowadzonych danych
+
                 case DURING_REGISTRATION: {
                     currentUser = RegisterUser.createUser();
                     if (currentUser != null) {
