@@ -35,7 +35,6 @@ public class RegisterUser {
                 scanner.nextLine();
             }
         }
-
         System.out.println("Podaj Nazwisko");
         String userLastName = scanner.next();
 
@@ -55,7 +54,6 @@ public class RegisterUser {
             }
         }
         System.out.println("Podaj hasło");
-
         String password = null;
         int passwordCheck = 0;
         while (passwordCheck == 0) {
@@ -66,7 +64,6 @@ public class RegisterUser {
             } else {
                 passwordCheck = 1;
             }
-
         }
         System.out.println("Powtórz hasło");
         String password2 = scanner.next();

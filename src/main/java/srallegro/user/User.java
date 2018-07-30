@@ -47,7 +47,6 @@ public class User {
         if (birthDay == null) {
             throw new BirthdayException();
         }
-
         this.address = adress;
         this.mail = mail;
         this.password = password;
@@ -59,7 +58,6 @@ public class User {
             throw new EmptyNickException();
         }
     }
-
 
     @Override
     public String toString() {
