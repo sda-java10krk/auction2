@@ -18,15 +18,11 @@ public class SaveUserOnDisk {
 
     private static final String COMMA_SEPARATOR = ",";
     private static final String NEW_LINE_SEPARATOR = "\n";
-    private static final String PARAMETRS = "name,lastName,,birthDay,address,mail,password,nick";
 
-    public static void writeCsvFile(String filename, User user) {
+    public static void writeCsvFile(String filename, User user)  {
         FileWriter fileWriter = null;
-
         try {
-            fileWriter = new FileWriter(filename);
-            fileWriter.append(PARAMETRS.toString());
-            fileWriter.append(NEW_LINE_SEPARATOR);
+            fileWriter = new FileWriter(filename, true);
             fileWriter.append(user.getName());
             fileWriter.append(COMMA_SEPARATOR);
             fileWriter.append(user.getLastName());

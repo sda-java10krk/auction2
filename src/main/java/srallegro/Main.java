@@ -20,9 +20,6 @@ public class Main {
 
     public static void main(String[] args) throws EmptyTitleException, EmptyDescriptionException, AuctionPriceIsBelowZeroOrZeroException, BirthdayException, PasswordTooShortException, EmptyNickException, EmptyCategoryNameException, InterruptedException {
         Database database = Database.getInstance();
-
-        User janek = new User("janek", "janek", 0, "janek", "janek", "janek", "janek");
-        database.addUserToAllUsers(janek); //tymczasowy ziomek do testow
         LoadUserFromDisk.readFileCSV("databaseUser.csv");
         Category allcategories = CategoryController.createCategoryTree();
         Scanner sc = new Scanner(System.in);
@@ -36,7 +33,6 @@ public class Main {
                     System.out.println("1 - Zaloguj się");
                     System.out.println("2 - Zarejestruj się");
                     System.out.println("0 - wyjdź");
-
                     String answer = sc.next();
                     switch (answer) {
                         case "1":
