@@ -6,6 +6,7 @@ import srallegro.exception.EmptyCategoryNameException;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -68,15 +69,20 @@ public class CategoryController {
         return uberCat;
     }
 
-    //lists all auctions of the chosen category AND its subcategories etc.
-    //nietestowalna, ale lepiej nie umiałem tego napisać :-(
-    public static void listAuctionsByCategory(Category cat, int level) {
 
-        for (Auction a: cat.getAuctions()) {
-            System.out.println(a.toString());
-        }
+    public static List<Auction> listAuctionsByCategory(Category cat) {
+        LinkedList<Auction> auctions = new LinkedList<>();
+        listAuctionsByCategoryRecurse(cat, auctions);
+        return auctions;
+    }
+
+    //lists all auctions of the chosen category AND its subcategories etc.
+    //nie wywołujemy jej
+    private static void listAuctionsByCategoryRecurse(Category cat, List<Auction> auctions) {
+        auctions.addAll(cat.getAuctions());
+
         for (Category subcategory : cat.getSubcategories()) {
-            listAuctionsByCategory(subcategory, level + 1);
+            listAuctionsByCategoryRecurse(subcategory, auctions);
         }
     }
 

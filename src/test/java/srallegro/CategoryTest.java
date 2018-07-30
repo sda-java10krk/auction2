@@ -95,9 +95,7 @@ public class CategoryTest {
         Auction testAuction5 = AuctionController.createAuction(testSeller, "Pejczyk1", "Descr", database.getCategoryByName("Zabawki sadomaso"), new BigDecimal(10.0));
         Auction testAuction6 = AuctionController.createAuction(testSeller, "Pejczyk2", "Descr", database.getCategoryByName("Zabawki sadomaso"), new BigDecimal(10.0));
 
-        CategoryController.listAuctionsByCategory(database.getCategoryByName("Zabawki"), 0);
-
-
+        assertEquals(CategoryController.listAuctionsByCategory(database.getCategoryByName("Zabawki")).size(), 6);
 
     }
 }
