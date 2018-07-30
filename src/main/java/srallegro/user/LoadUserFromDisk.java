@@ -35,6 +35,7 @@ public class LoadUserFromDisk {
 
     public static void readFileCSV(String fileName) throws BirthdayException, PasswordTooShortException, EmptyNickException, UserWithSameNicknameExists, UserWithSameNicknameExists {
 
+        Database database = Database.getInstance();
         BufferedReader fileReader = null;
         String line = "";
         try {
@@ -45,7 +46,7 @@ public class LoadUserFromDisk {
                 if (data.length > 0) {
                     User user1 = new User(data[USER_NAME], data[USER_LASTNAME], Integer.parseInt(data[USER_BIRTHDAY]), data[USER_ADDRESS],
                             data[USER_MAIL], data[USER_PASSWORD], data[USER_NICK]);
-                    Database.addUserToAllUsers(user1);
+                    database.addUserToAllUsers(user1);
                 }
             }
         } catch (FileNotFoundException e) {

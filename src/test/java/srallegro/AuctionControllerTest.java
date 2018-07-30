@@ -50,7 +50,7 @@ public class AuctionControllerTest {
     }
 
     @Test
-    public void testCreateAuction() {
+    public void testCreateAuction() throws NotFinalCategoryException {
         Auction testAuction1 = null;
         try {
             testAuction1 = AuctionController.createAuction(testSeller, "Title1", "Description1", category, BigDecimal.valueOf(150));
@@ -97,7 +97,7 @@ public class AuctionControllerTest {
     }
 
     @Test
-    public void testViewSellersAuctions() throws EmptyTitleException, EmptyDescriptionException, AuctionPriceIsBelowZeroOrZeroException {
+    public void testViewSellersAuctions() throws EmptyTitleException, EmptyDescriptionException, AuctionPriceIsBelowZeroOrZeroException, NotFinalCategoryException {
         Auction testAuction1 = AuctionController.createAuction(testSeller, "Title1", "Description1", category, BigDecimal.valueOf(150.0));
         Auction testAuction2 = AuctionController.createAuction(testSeller, "Title2", "Description2", category, BigDecimal.valueOf(372.5));
 
@@ -108,7 +108,7 @@ public class AuctionControllerTest {
     }
 
     @Test
-    public void testViewWonAuctions() throws EmptyTitleException, EmptyDescriptionException, AuctionPriceIsBelowZeroOrZeroException {
+    public void testViewWonAuctions() throws EmptyTitleException, EmptyDescriptionException, AuctionPriceIsBelowZeroOrZeroException, NotFinalCategoryException {
         Auction testAuction1 = AuctionController.createAuction(testSeller, "Title1", "Description1", category, BigDecimal.valueOf(150.0));
         Auction testAuction2 = AuctionController.createAuction(testSeller, "Title2", "Description2", category, BigDecimal.valueOf(372.5));
 
