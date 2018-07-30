@@ -70,13 +70,13 @@ public class CategoryController {
     }
 
 
+    //lists all auctions of the chosen category AND its subcategories etc.
     public static List<Auction> listAuctionsByCategory(Category cat) {
         LinkedList<Auction> auctions = new LinkedList<>();
         listAuctionsByCategoryRecurse(cat, auctions);
         return auctions;
     }
 
-    //lists all auctions of the chosen category AND its subcategories etc.
     //nie wywołujemy jej
     private static void listAuctionsByCategoryRecurse(Category cat, List<Auction> auctions) {
         auctions.addAll(cat.getAuctions());

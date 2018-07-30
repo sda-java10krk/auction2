@@ -13,11 +13,10 @@ import srallegro.user.User;
 import java.io.PrintStream;
 import java.math.BigDecimal;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.junit.Assert.assertEquals;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CategoryTest {
@@ -97,5 +96,19 @@ public class CategoryTest {
 
         assertEquals(CategoryController.listAuctionsByCategory(database.getCategoryByName("Zabawki")).size(), 6);
 
+        assertTrue(CategoryController.listAuctionsByCategory(database.getCategoryByName("Zabawki")).contains(testAuction1));
+        assertTrue(CategoryController.listAuctionsByCategory(database.getCategoryByName("Zabawki")).contains(testAuction2));
+        assertTrue(CategoryController.listAuctionsByCategory(database.getCategoryByName("Zabawki")).contains(testAuction3));
+        assertTrue(CategoryController.listAuctionsByCategory(database.getCategoryByName("Zabawki")).contains(testAuction4));
+        assertTrue(CategoryController.listAuctionsByCategory(database.getCategoryByName("Zabawki")).contains(testAuction5));
+        assertTrue(CategoryController.listAuctionsByCategory(database.getCategoryByName("Zabawki")).contains(testAuction6));
+
+        assertTrue(CategoryController.listAuctionsByCategory(database.getCategoryByName("Stormtrooperzy")).contains(testAuction1));
+        assertTrue(CategoryController.listAuctionsByCategory(database.getCategoryByName("Zabawki z 'Gwiezdnych Wojen'")).contains(testAuction1));
+        assertTrue(CategoryController.listAuctionsByCategory(database.getCategoryByName("All")).contains(testAuction1));
+
+        assertFalse(CategoryController.listAuctionsByCategory(database.getCategoryByName("Samochody")).contains(testAuction1));
+        assertFalse(CategoryController.listAuctionsByCategory(database.getCategoryByName("Elektroniczne konie")).contains(testAuction1));
+        assertFalse(CategoryController.listAuctionsByCategory(database.getCategoryByName("Zabawki sadomaso")).contains(testAuction1));
     }
 }
