@@ -19,6 +19,8 @@ public class Database {
     private static Map<String, Category> allCategoriesByName = new HashMap<>();
     private static Map <Integer, Auction> allAuctionsByNumber = new HashMap<>();
     private static Map<String, User> allUsersByNickname = new HashMap<>();
+
+
     //regarding Categories
     public static void addCategoryToAllCategories (Category category) {
         allCategoriesByName.put(category.getName(), category);
@@ -39,6 +41,7 @@ public class Database {
     public static void addAuctionToAllAuctions (Auction auction) {
         allAuctionsByNumber.put(auction.getAuctionNumber(), auction);
     }
+
     public static Auction getAuctionByNumber (Integer number) {
         try {
             Auction auction = allAuctionsByNumber.get(number);

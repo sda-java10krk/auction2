@@ -40,7 +40,7 @@ public class DatabaseTest {
     }
 
     @Test
-    public void testIfAuctionsAreStoredCorrectly() throws EmptyTitleException, EmptyDescriptionException, AuctionPriceIsBelowZeroOrZeroException, BirthdayException, PasswordTooShortException, EmptyNickException, EmptyCategoryNameException {
+    public void testIfAuctionsAreStoredCorrectly() throws EmptyTitleException, EmptyDescriptionException, AuctionPriceIsBelowZeroOrZeroException, BirthdayException, PasswordTooShortException, EmptyNickException, EmptyCategoryNameException, UserWithSameNicknameExists {
         Category testCategory = new Category("Test");
         User janek = new User("janek", "janek", 0, "janek", "janek", "janek", "janek");
         Auction testAuction1 = AuctionController.createAuction(janek, "Title1", "descr1", testCategory, BigDecimal.valueOf(10));
@@ -59,7 +59,7 @@ public class DatabaseTest {
     }
 
     @Test
-    public void testIfUsersAreStoredCorrectly() throws BirthdayException, PasswordTooShortException, EmptyNickException {
+    public void testIfUsersAreStoredCorrectly() throws BirthdayException, PasswordTooShortException, EmptyNickException, UserWithSameNicknameExists {
         Database database = Database.getInstance();
 
         User janek = new User("janek", "janek", 0, "janek", "janek", "janek", "janek");

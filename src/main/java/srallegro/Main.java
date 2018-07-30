@@ -18,7 +18,7 @@ public class Main {
 
     }
 
-    public static void main(String[] args) throws EmptyTitleException, EmptyDescriptionException, AuctionPriceIsBelowZeroOrZeroException, BirthdayException, PasswordTooShortException, EmptyNickException, EmptyCategoryNameException, InterruptedException {
+    public static void main(String[] args) throws EmptyTitleException, EmptyDescriptionException, AuctionPriceIsBelowZeroOrZeroException, BirthdayException, PasswordTooShortException, EmptyNickException, EmptyCategoryNameException, InterruptedException, UserWithSameNicknameExists {
         Database database = Database.getInstance();
         LoadUserFromDisk.readFileCSV("databaseUser.csv");
         Category allcategories = CategoryController.createCategoryTree();

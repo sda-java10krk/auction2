@@ -2,6 +2,10 @@ package srallegro;
 
 import org.junit.Test;
 import srallegro.exception.*;
+import srallegro.exception.BirthdayException;
+import srallegro.exception.EmptyNickException;
+import srallegro.exception.PasswordTooShortException;
+import srallegro.exception.UserWithSameNicknameExists;
 import srallegro.user.Database;
 import srallegro.user.RegisterUser;
 import srallegro.user.User;
@@ -15,7 +19,7 @@ public class UserControllerTest {
     User mrNull = null;
 
     //to jest chyba chujowe ale nie wiem bo bez tego nie dziala
-    public UserControllerTest() throws BirthdayException, PasswordTooShortException, EmptyNickException {
+    public UserControllerTest() throws BirthdayException, PasswordTooShortException, EmptyNickException, UserWithSameNicknameExists {
     }
 
     @Test

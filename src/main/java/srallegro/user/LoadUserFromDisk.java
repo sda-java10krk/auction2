@@ -3,6 +3,8 @@ package srallegro.user;
 import srallegro.exception.BirthdayException;
 import srallegro.exception.EmptyNickException;
 import srallegro.exception.PasswordTooShortException;
+import srallegro.exception.UserWithSameNicknameExists;
+
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -14,12 +16,14 @@ public class LoadUserFromDisk {
 
     private LoadUserFromDisk() {
     }
+
     private static LoadUserFromDisk getInstance() {
         if (instance == null) {
             instance = new LoadUserFromDisk();
         }
         return instance;
     }
+
     private static final String COMMA_SEPARATOR = ",";
     private static final int USER_NAME = 0;
     private static final int USER_LASTNAME = 1;
@@ -29,11 +33,13 @@ public class LoadUserFromDisk {
     private static final int USER_PASSWORD = 5;
     private static final int USER_NICK = 6;
 
-    public static void readFileCSV(String fileName) throws BirthdayException, PasswordTooShortException, EmptyNickException {
+    public static void readFileCSV(String fileName) throws BirthdayException, PasswordTooShortException, EmptyNickException, UserWithSameNicknameExists, UserWithSameNicknameExists {
+
         BufferedReader fileReader = null;
         String line = "";
         try {
             fileReader = new BufferedReader(new FileReader(fileName));
+            fileReader.readLine();
             while ((line = fileReader.readLine()) != null) {
                 String[] data = line.split(COMMA_SEPARATOR);
                 if (data.length > 0) {

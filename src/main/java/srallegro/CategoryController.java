@@ -1,9 +1,12 @@
 package srallegro;
 
+import srallegro.auction.Auction;
 import srallegro.user.Database;
 import srallegro.exception.EmptyCategoryNameException;
 
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class CategoryController {
@@ -63,6 +66,18 @@ public class CategoryController {
         uberCat.addSubcategory(cars);
 
         return uberCat;
+    }
+
+    //lists all auctions of the chosen category AND its subcategories etc.
+    //nietestowalna, ale lepiej nie umiałem tego napisać :-(
+    public static void listAuctionsByCategory(Category cat, int level) {
+
+        for (Auction a: cat.getAuctions()) {
+            System.out.println(a.toString());
+        }
+        for (Category subcategory : cat.getSubcategories()) {
+            listAuctionsByCategory(subcategory, level + 1);
+        }
     }
 
 
