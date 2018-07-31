@@ -15,16 +15,14 @@ import static org.junit.Assert.assertTrue;
 public class SaveUserOnDiskTest {
 
     @Test
-    public void testIfUsersAreSavedOnDisk() throws UserIsntSavedException, BirthdayException, PasswordTooShortException, EmptyNickException {
-        User testUser = new User("RandomName", "RandomLastName", 19870101,"RandomAddress","RandomMail","RandomPassword","RandomNick");
-        SaveUserOnDisk.writeCsvFile("TestDatabaseUser.csv", testUser );
+    public void testIfUsersAreSavedOnDisk() throws UserIsntSavedException, BirthdayException, PasswordTooShortException, EmptyNickException, UserWithSameNicknameExists {
+        User testUser = new User("RandomName", "RandomLastName", 19870101, "RandomAddress", "RandomMail", "RandomPassword", "RandomNick");
+        SaveUserOnDisk.writeCsvFile("TestDatabaseUser.csv", testUser);
         LoadUserFromDisk.readFileCSV("TestDatabaseUser.csv");
-
-        assertEquals(testUser, Database.getAllUsersByNickname().get("RandomNick"));
+        assertEquals(testUser, Database.getInstance().getAllUsersByNickname().get("RandomNick"));
     }
 
-
-    }
+}
 
 
 

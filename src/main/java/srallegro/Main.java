@@ -86,11 +86,11 @@ public class Main {
                     String answer = sc.next();
                     switch (answer) {
                         case "1": {
-                            System.out.println("Podaj tytuł aukcji");
+                            System.out.print("Podaj tytuł aukcji");
                             String title = sc.next();
-                            System.out.println("Podaj opis");
+                            System.out.print("Podaj opis");
                             String description = sc.next();
-                            System.out.println("Podaj cenę wywoławczą");
+                            System.out.print("Podaj cenę wywoławczą");
                             BigDecimal price = sc.nextBigDecimal();
                             System.out.println("Wybierz kategorię");
                             //CategoryController.printCategories();  //jak wyświetlić? jak wybrac kategorie?
