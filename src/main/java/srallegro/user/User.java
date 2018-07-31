@@ -68,14 +68,8 @@ public class User {
 
     @Override
     public String toString() {
-        return "srallegro.user.user{" +
-                "name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", birthday=" + birthday +
-                ", address='" + address + '\'' +
-                ", mail='" + mail + '\'' +
-                ", password='" + password + '\'' +
-                ", nick='" + nick + '\'' +
+        return "User{" +
+                "nick='" + nick + '\'' +
                 '}';
     }
 

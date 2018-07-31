@@ -9,7 +9,7 @@ import java.util.*;
 
 public class RegisterUser {
 
-    public static User createUser() throws PasswordTooShortException, EmptyNickException, BirthdayException, InterruptedException, UserWithSameNicknameExists {
+    public static User createUser() throws Exception {
         Database database = Database.getInstance();
 
 

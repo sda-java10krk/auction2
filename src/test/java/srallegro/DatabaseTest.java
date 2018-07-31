@@ -4,7 +4,6 @@ import org.junit.Before;
 import org.junit.Test;
 import srallegro.auction.Auction;
 import srallegro.auction.AuctionController;
-import srallegro.exception.*;
 import srallegro.user.Database;
 import srallegro.user.User;
 
@@ -25,7 +24,7 @@ public class DatabaseTest {
     }
 
     @Test
-    public void testIfCategoriesAreStoredCorrectly() throws EmptyCategoryNameException {
+    public void testIfCategoriesAreStoredCorrectly() throws Exception {
         CategoryController.createCategoryTree();
         assertEquals(database.getAllCategoriesByName().size(), 12);
         assertNotNull(database.getCategoryByName("Samochody"));
@@ -40,7 +39,7 @@ public class DatabaseTest {
     }
 
     @Test
-    public void testIfAuctionsAreStoredCorrectly() throws EmptyTitleException, EmptyDescriptionException, AuctionPriceIsBelowZeroOrZeroException, BirthdayException, PasswordTooShortException, EmptyNickException, EmptyCategoryNameException, UserWithSameNicknameExists, NotFinalCategoryException {
+    public void testIfAuctionsAreStoredCorrectly() throws Exception {
         Category testCategory = new Category("Test");
         User janek = new User("janek", "janek", 0, "janek", "janek", "janek", "janek");
         Auction testAuction1 = AuctionController.createAuction(janek, "Title1", "descr1", testCategory, BigDecimal.valueOf(10));
@@ -59,7 +58,7 @@ public class DatabaseTest {
     }
 
     @Test
-    public void testIfUsersAreStoredCorrectly() throws BirthdayException, PasswordTooShortException, EmptyNickException, UserWithSameNicknameExists {
+    public void testIfUsersAreStoredCorrectly() throws Exception{
         Database database = Database.getInstance();
 
         User janek = new User("janek", "janek", 0, "janek", "janek", "janek", "janek");
