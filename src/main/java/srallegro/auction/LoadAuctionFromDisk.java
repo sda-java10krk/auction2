@@ -49,11 +49,17 @@ public class LoadAuctionFromDisk {
                     Auction auction = new Auction(data[AUCTION_TITLE], data[AUCTION_DESCRIPTION],new Category(data[AUCTION_CATEGORY]), Database.getInstance().getAllUsersByNickname().get(data[AUCTION_NAME_SELLER]),Database.getInstance().getAllUsersByNickname().get(data[AUCTION_NAME_WINNER]),
                      new BigDecimal(data[AUCTION_PRICE]), Integer.parseInt(data[AUCTION_NuMBER_AUCTION]), Integer.parseInt(data[AUCTION_BIDS]));
                     database.addAuctionToAllAuctions(auction);
+                    database.getAllUsersByNickname().get(data[AUCTION_NAME_SELLER]).getMySellingList().add(auction);
+                    if (auction.getBids() >=3) {
+                        database.getAllUsersByNickname().get(data[AUCTION_NAME_WINNER]).getMyWonList().add(auction);
+                    }
                 }
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
