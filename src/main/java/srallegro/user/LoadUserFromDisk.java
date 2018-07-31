@@ -47,7 +47,10 @@ public class LoadUserFromDisk {
                     User user1 = new User(data[USER_NAME], data[USER_LASTNAME], Integer.parseInt(data[USER_BIRTHDAY]), data[USER_ADDRESS],
                             data[USER_MAIL], data[USER_PASSWORD], data[USER_NICK]);
                     database.addUserToAllUsers(user1);
+                } else {
+                    System.out.println("Nie udało się wczytać");
                 }
+
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();

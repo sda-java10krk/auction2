@@ -1,16 +1,16 @@
 package srallegro;
 
+import org.junit.Before;
 import org.junit.Test;
+import srallegro.auction.Auction;
 import srallegro.exception.*;
-import srallegro.exception.BirthdayException;
-import srallegro.exception.EmptyNickException;
-import srallegro.exception.PasswordTooShortException;
-import srallegro.exception.UserWithSameNicknameExists;
 import srallegro.user.Database;
-import srallegro.user.RegisterUser;
 import srallegro.user.User;
 import srallegro.user.UserController;
 
+import java.math.BigDecimal;
+
+import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.assertEquals;
 
 public class UserControllerTest {
@@ -18,8 +18,30 @@ public class UserControllerTest {
     User testSeller = new User("", "", 42, "", "", "SellerPassword", "Seller");
     Database database = Database.getInstance();
 
-    //to jest chyba chujowe ale nie wiem bo bez tego nie dziala
     public UserControllerTest() throws BirthdayException, PasswordTooShortException, EmptyNickException, UserWithSameNicknameExists {
+    }
+
+    @Before
+    public void clearCollections() {
+        database.getAllUsersByNickname().clear();
+        database.getAllCategoriesByName().clear();
+        database.getAllAuctionsByNumber().clear();
+    }
+
+    @Test
+    public void testCreateUser() throws BirthdayException, UserWithSameNicknameExists, EmptyNickException, PasswordTooShortException, EmptyCategoryNameException, EmptyTitleException, EmptyDescriptionException, AuctionPriceIsBelowZeroOrZeroException {
+        User testUser = UserController.createUser2("Test", "Testson", 12-22-4323, "Testtown", "Test@test.com", "testpass", "tester");
+
+        assertEquals(testUser.getName(),"Test");
+        assertEquals(testUser.getLastName(),"Testson");
+        assertEquals(testUser.getAddress(),"Testtown");
+        assertEquals(testUser.getMail(),"Test@test.com");
+        assertEquals(testUser.getPassword(),"testpass");
+        assertEquals(testUser.getNick(),"tester");
+
+        assertEquals(testUser, database.getUserByNickname("tester"));
+        assertNotNull(database.getUserByNickname("tester").getMySellingList());
+        assertNotNull(database.getUserByNickname("tester").getMyWonList());
     }
 
     @Test
@@ -50,5 +72,4 @@ public class UserControllerTest {
         database.addUserToAllUsers(testUser);
         User testUser2 = new User("rde","rdeg", 56,"konwaliowad","gdfh","testbtest","mateusz");
     }
-
 }
