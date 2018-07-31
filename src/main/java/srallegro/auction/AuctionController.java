@@ -62,7 +62,7 @@ public class AuctionController {
         database.addAuctionToAllAuctions(newAuction);
         currentUser.getMySellingList().add(newAuction);
         category.addAuction(newAuction);
-        SaveAuctionOnDisk.writeCsvFile("databaseAuction.txt", newAuction);
+        SaveAuctionOnDisk.writeCsvFile("databaseAuction.csv", newAuction);
         return newAuction;
     }
 

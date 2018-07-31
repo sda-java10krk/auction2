@@ -1,6 +1,8 @@
 package srallegro;
 import srallegro.auction.Auction;
 import srallegro.auction.AuctionController;
+import srallegro.auction.LoadAuctionFromDisk;
+import srallegro.auction.SaveAuctionOnDisk;
 import srallegro.exception.*;
 import srallegro.user.*;
 import java.math.BigDecimal;
@@ -22,6 +24,7 @@ public class Main {
     public static void main(String[] args) throws EmptyTitleException, EmptyDescriptionException, AuctionPriceIsBelowZeroOrZeroException, BirthdayException, PasswordTooShortException, EmptyNickException, EmptyCategoryNameException, InterruptedException, UserWithSameNicknameExists, NotFinalCategoryException {
         Database database = Database.getInstance();
         LoadUserFromDisk.readFileCSV("databaseUser.csv");
+        LoadAuctionFromDisk.loadAuctionCSV("databaseAuction.csv");
         Category allcategories = CategoryController.createCategoryTree();
         Scanner sc = new Scanner(System.in);
         User currentUser = null;
