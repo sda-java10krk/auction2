@@ -63,7 +63,6 @@ public class Auction {
         this.auctionNumber = auctionNumber;
     }
 
-
     public void setBids(int bids) {
         this.bids = bids;
     }

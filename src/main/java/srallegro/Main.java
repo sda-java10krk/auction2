@@ -15,7 +15,6 @@ public class Main {
         DURING_REGISTRATION,
         LOGGED_IN,
         STOP,
-
     }
 
     public static void main(String[] args) throws EmptyTitleException, EmptyDescriptionException, AuctionPriceIsBelowZeroOrZeroException, BirthdayException, PasswordTooShortException, EmptyNickException, EmptyCategoryNameException, InterruptedException, UserWithSameNicknameExists, NotFinalCategoryException {
@@ -67,7 +66,7 @@ public class Main {
                 }
 
                 case DURING_REGISTRATION: {
-                    currentUser = RegisterUser.createUser();
+                    currentUser = UserController.createUser();
                     if (currentUser != null) {
                         System.out.println("Zarejestrowano użytkownika.");
                         state = State.LOGGED_IN;
@@ -92,8 +91,8 @@ public class Main {
                             String description = sc.next();
                             System.out.println("Podaj cenę wywoławczą");
                             BigDecimal price = sc.nextBigDecimal();
+                            CategoryController.printCategories(allcategories, 0, out);
                             System.out.println("Wybierz kategorię");
-                            //CategoryController.printCategories();  //jak wyświetlić? jak wybrac kategorie?
                             String chosenCat = sc.next();   //do zmiany
                             Category cat = new Category("Robocza kategoria");   //do zmiany
                             AuctionController.createAuction(currentUser, title, description, cat, price);

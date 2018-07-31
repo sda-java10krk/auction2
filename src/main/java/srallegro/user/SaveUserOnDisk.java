@@ -46,7 +46,5 @@ public class SaveUserOnDisk {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
-
 }
