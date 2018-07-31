@@ -33,6 +33,7 @@ public class CategoryTest {
         database.getAllAuctionsByNumber().clear();
         database.getAllUsersByNickname().clear();
         database.getAllCategoriesByName().clear();
+        database.getAllCategoriesByName().clear();
     }
 
     @Test
@@ -81,7 +82,7 @@ public class CategoryTest {
         assertEquals(database.getCategoryByName("Empetrójki").getAuctions().size(), 0);
         assertEquals(database.getCategoryByName("Zabawki").getAuctions().size(), 0);
     }
-
+ 
     @Test
     public void testListAuctionsByCategory() throws Exception {
         CategoryController.createCategoryTree();
@@ -95,6 +96,7 @@ public class CategoryTest {
         Auction testAuction6 = AuctionController.createAuction(testSeller, "Pejczyk2", "Descr", database.getCategoryByName("Zabawki sadomaso"), new BigDecimal(10.0));
 
         assertEquals(CategoryController.listAuctionsByCategory(database.getCategoryByName("Zabawki")).size(), 6);
+
 
         assertTrue(CategoryController.listAuctionsByCategory(database.getCategoryByName("Zabawki")).contains(testAuction1));
         assertTrue(CategoryController.listAuctionsByCategory(database.getCategoryByName("Zabawki")).contains(testAuction2));
