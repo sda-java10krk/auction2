@@ -4,6 +4,7 @@ import srallegro.auction.AuctionController;
 import srallegro.exception.*;
 import srallegro.user.*;
 import java.math.BigDecimal;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import static java.lang.System.out;
 
@@ -91,14 +92,24 @@ public class Main {
                             System.out.println("Podaj opis");
                             String description = sc.next();
                             System.out.println("Podaj cenę wywoławczą");
-                            BigDecimal price = sc.nextBigDecimal();
-                            System.out.println("Wybierz kategorię");
-                            //CategoryController.printCategories();  //jak wyświetlić? jak wybrac kategorie?
-                            String chosenCat = sc.next();   //do zmiany
-                            Category cat = new Category("Robocza kategoria");   //do zmiany
-                            AuctionController.createAuction(currentUser, title, description, cat, price);
-                            break;
-                        }
+                            BigDecimal price = BigDecimal.valueOf(1);
+                            while (price == BigDecimal.valueOf(1)) {
+                                try {
+                                    price = sc.nextBigDecimal();
+                                } catch (InputMismatchException e) {
+                                    System.out.println("Cena jest liczba");
+                                    price = BigDecimal.valueOf(1);
+                                    sc.nextLine();
+                                }
+                            }
+
+                                System.out.println("Wybierz kategorię");
+                                //CategoryController.printCategories();  //jak wyświetlić? jak wybrac kategorie?
+                                String chosenCat = sc.next();   //do zmiany
+                                Category cat = new Category("Robocza kategoria");   //do zmiany
+                                AuctionController.createAuction(currentUser, title, description, cat, price);
+                                break;
+                            }
                         case "2": {
                             CategoryController.printCategories(allcategories, 0, out);
                             System.out.println("Wybierz kategorię");
