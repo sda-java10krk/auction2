@@ -1,11 +1,14 @@
 package srallegro;
+
 import srallegro.auction.Auction;
 import srallegro.auction.AuctionController;
 import srallegro.exception.*;
 import srallegro.user.*;
+
 import java.math.BigDecimal;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
 import static java.lang.System.out;
 
 public class Main {
@@ -19,7 +22,7 @@ public class Main {
 
     }
 
-    public static void main(String[] args) throws EmptyTitleException, EmptyDescriptionException, AuctionPriceIsBelowZeroOrZeroException, BirthdayException, PasswordTooShortException, EmptyNickException, EmptyCategoryNameException, InterruptedException, UserWithSameNicknameExists, NotFinalCategoryException {
+    public static void main(String[] args) throws Exception {
         Database database = Database.getInstance();
         LoadUserFromDisk.readFileCSV("databaseUser.csv");
         Category allcategories = CategoryController.createCategoryTree();
@@ -110,6 +113,7 @@ public class Main {
                                 AuctionController.createAuction(currentUser, title, description, cat, price);
                                 break;
                             }
+
                         case "2": {
                             CategoryController.printCategories(allcategories, 0, out);
                             System.out.println("Wybierz kategorię");
@@ -142,7 +146,6 @@ public class Main {
                             state = State.LOGGED_IN;
                             break;
                         }
-
                     }
                     break;
                 }

@@ -11,7 +11,7 @@ import java.util.Random;
 
 public class AuctionController {
 
-    public static BigDecimal bidUp(Auction auction, BigDecimal bidUp, User user) throws PriceTooLowException, YouCantBidUpYourOwnAuctionException, AuctionPriceIsBelowZeroOrZeroException {
+    public static BigDecimal bidUp(Auction auction, BigDecimal bidUp, User user) throws Exception {
         if (auction.getPrice().compareTo(BigDecimal.valueOf(0)) <= 0) {
             throw new AuctionPriceIsBelowZeroOrZeroException();
         }
@@ -36,7 +36,7 @@ public class AuctionController {
     }
 
 //zrobiic tak jak sprawdzanie daty urodzenia
-    public static Auction createAuction(User currentUser, String title, String description, Category category, BigDecimal price) throws EmptyTitleException, AuctionPriceIsBelowZeroOrZeroException, EmptyDescriptionException, NotFinalCategoryException {
+    public static Auction createAuction(User currentUser, String title, String description, Category category, BigDecimal price) throws Exception {
         Database database = Database.getInstance();
         //do bani ten system numerowania aukcji. Ale działa
         Random rd = new Random();
@@ -45,7 +45,7 @@ public class AuctionController {
             auctNumber = rd.nextInt(10000);
         }
 
-        Auction newAuction = new Auction(title, description, category, currentUser, null, price, auctNumber, 0);
+        Auction newAuction = new Auction(title, description, category, currentUser,null, price, auctNumber, 0);
         if (title.length() == 0) {
             throw new EmptyTitleException();
         }

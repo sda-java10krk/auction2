@@ -43,7 +43,7 @@ public class Auction {
         return auctionNumber;
     }
 
-    public Auction(String title, String description, Category category, User seller, User winner, BigDecimal price, int auctionNumber, int bids) throws EmptyTitleException, AuctionPriceIsBelowZeroOrZeroException, EmptyDescriptionException {
+    public Auction(String title, String description, Category category, User seller, User winner, BigDecimal price, int auctionNumber, int bids) throws Exception {
         this.title = title;
         if (title.length() == 0) {
             throw new EmptyTitleException();
@@ -55,6 +55,12 @@ public class Auction {
         this.category = category;
         this.seller = seller;
         this.winner = winner;
+        if(winner == null){
+            User defaultWinner = new User("defwin","defwin",4,"defwin","defwin","defwin","Nikt nie zalicytowal tej aukcji");
+            setWinner(defaultWinner);
+
+        }
+
         this.price = price;
         if ((price.compareTo(BigDecimal.valueOf(0)) < 0) || price.equals(BigDecimal.valueOf(0))) {
             throw new AuctionPriceIsBelowZeroOrZeroException();

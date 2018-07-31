@@ -50,29 +50,16 @@ public class AuctionControllerTest {
     }
 
     @Test
-    public void testCreateAuction() throws NotFinalCategoryException {
+    public void testCreateAuction() throws Exception {
         Auction testAuction1 = null;
-        try {
+
             testAuction1 = AuctionController.createAuction(testSeller, "Title1", "Description1", category, BigDecimal.valueOf(150));
-        } catch (EmptyTitleException e) {
-            e.printStackTrace();
-        } catch (AuctionPriceIsBelowZeroOrZeroException e) {
-            e.printStackTrace();
-        } catch (EmptyDescriptionException e) {
-            e.printStackTrace();
-        }
 
         Auction testAuction2 = null;
 
-        try {
+
             testAuction2 = AuctionController.createAuction(testSeller, "Title2", "Description2", category, BigDecimal.valueOf(372.5));
-        } catch (EmptyTitleException e) {
-            e.printStackTrace();
-        } catch (AuctionPriceIsBelowZeroOrZeroException e) {
-            e.printStackTrace();
-        } catch (EmptyDescriptionException e) {
-            e.printStackTrace();
-        }
+        User defaultWinner = new User("defwin","defwin",4,"defwin","defwin","defwin","Nikt nie zalicytowal tej aukcji");
 
 
         TestCase.assertEquals(testSeller.getNick(), testAuction1.getSeller().getNick());
@@ -80,14 +67,14 @@ public class AuctionControllerTest {
         TestCase.assertEquals(testAuction1.getDescription(), "Description1");
         TestCase.assertEquals(testAuction1.getCategory(), category);
         TestCase.assertEquals(testAuction1.getPrice(), new BigDecimal(150));
-        TestCase.assertEquals(testAuction1.getWinner(), null);
+        TestCase.assertEquals(testAuction1.getWinner(), defaultWinner);
 
         TestCase.assertEquals(testSeller.getNick(), testAuction2.getSeller().getNick());
         TestCase.assertEquals(testAuction2.getTitle(), "Title2");
         TestCase.assertEquals(testAuction2.getDescription(), "Description2");
         TestCase.assertEquals(testAuction2.getCategory(), category);
         TestCase.assertEquals(testAuction2.getPrice(), new BigDecimal(372.5));
-        TestCase.assertEquals(testAuction2.getWinner(), null);
+        TestCase.assertEquals(testAuction2.getWinner(), defaultWinner);
         TestCase.assertEquals(database.getAllAuctionsByNumber().size(), 2);
 
         List<Auction> testList = new LinkedList<>();
@@ -97,7 +84,7 @@ public class AuctionControllerTest {
     }
 
     @Test
-    public void testViewSellersAuctions() throws EmptyTitleException, EmptyDescriptionException, AuctionPriceIsBelowZeroOrZeroException, NotFinalCategoryException {
+    public void testViewSellersAuctions() throws Exception {
         Auction testAuction1 = AuctionController.createAuction(testSeller, "Title1", "Description1", category, BigDecimal.valueOf(150.0));
         Auction testAuction2 = AuctionController.createAuction(testSeller, "Title2", "Description2", category, BigDecimal.valueOf(372.5));
 
@@ -108,7 +95,7 @@ public class AuctionControllerTest {
     }
 
     @Test
-    public void testViewWonAuctions() throws EmptyTitleException, EmptyDescriptionException, AuctionPriceIsBelowZeroOrZeroException, NotFinalCategoryException {
+    public void testViewWonAuctions() throws Exception {
         Auction testAuction1 = AuctionController.createAuction(testSeller, "Title1", "Description1", category, BigDecimal.valueOf(150.0));
         Auction testAuction2 = AuctionController.createAuction(testSeller, "Title2", "Description2", category, BigDecimal.valueOf(372.5));
 
