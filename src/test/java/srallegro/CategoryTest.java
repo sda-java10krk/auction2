@@ -68,7 +68,7 @@ public class CategoryTest {
     @Test
     public void testIfAuctionsAreAddedToCategoriesWhenCreated () throws Exception {
         CategoryController.createCategoryTree();
-        User testSeller = new User("", "", 12 - 12 - 1992, "", "", "ieterw", "Seller");
+        User testSeller = new User("", "", 12 - 12 - 1992, "", "piotrek@gmail.com", "ieterw", "Seller");
         Auction testAuction1 = AuctionController.createAuction(testSeller, "Stormtrooper1", "Descr", database.getCategoryByName("Stormtrooperzy"), new BigDecimal(10.0));
         Auction testAuction2 = AuctionController.createAuction(testSeller, "Stormtrooper2", "Descr", database.getCategoryByName("Stormtrooperzy"), new BigDecimal(10.0));
         Auction testAuction3 = AuctionController.createAuction(testSeller, "TV", "Descr", database.getCategoryByName("Telewizory"), new BigDecimal(10.0));
@@ -85,7 +85,7 @@ public class CategoryTest {
     public void testListAuctionsByCategory() throws Exception {
         CategoryController.createCategoryTree();
 
-        User testSeller = new User("", "", 12 - 12 - 1992, "", "", "ieterw", "Seller");
+        User testSeller = new User("", "", 12 - 12 - 1992, "", "tetdude@tested.com", "ieterw", "Seller");
         Auction testAuction1 = AuctionController.createAuction(testSeller, "Stormtrooper1", "Descr", database.getCategoryByName("Stormtrooperzy"), new BigDecimal(10.0));
         Auction testAuction2 = AuctionController.createAuction(testSeller, "Stormtrooper2", "Descr", database.getCategoryByName("Stormtrooperzy"), new BigDecimal(10.0));
         Auction testAuction3 = AuctionController.createAuction(testSeller, "Misiu1", "Descr", database.getCategoryByName("Misie pluszowe"), new BigDecimal(10.0));
@@ -115,7 +115,7 @@ public class CategoryTest {
     public void testNotFinalCategoryException() throws Exception {
         Database database = Database.getInstance();
         CategoryController.createCategoryTree();
-        User testSeller = new User("testttt", "testttt", 12 - 12 - 1992, "eeeee", "eeeee", "ieterw", "Seller");
+        User testSeller = new User("testttt", "testttt", 12 - 12 - 1992, "eeeee", "test69@yahoo.com", "ieterw", "Seller");
         Auction newAuction = AuctionController.createAuction(testSeller, "Title", "Descr", database.getCategoryByName("Zabawki"), new BigDecimal(23.0));
     }
 }

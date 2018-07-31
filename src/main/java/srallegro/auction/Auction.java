@@ -56,7 +56,7 @@ public class Auction {
         this.seller = seller;
         this.winner = winner;
         if(winner == null){
-            User defaultWinner = new User("defwin","defwin",4,"defwin","defwin","defwin","Nikt nie zalicytowal tej aukcji");
+            User defaultWinner = new User("defwin","defwin",4,"defwin","defwin@deffault.com","defwin","Nikt nie zalicytowal tej aukcji");
             setWinner(defaultWinner);
 
         }
