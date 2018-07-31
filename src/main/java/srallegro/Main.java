@@ -19,7 +19,6 @@ public class Main {
         DURING_REGISTRATION,
         LOGGED_IN,
         STOP,
-
     }
 
     public static void main(String[] args) throws Exception {
@@ -32,11 +31,7 @@ public class Main {
         while (state != State.STOP) {
             switch (state) {
                 case INIT: {
-                    System.out.println("Dzień dobry");
-                    System.out.println("Co chcesz zrobić");
-                    System.out.println("1 - Zaloguj się");
-                    System.out.println("2 - Zarejestruj się");
-                    System.out.println("0 - wyjdź");
+                    printMenu1();
                     String answer = sc.next();
                     switch (answer) {
                         case "1":
@@ -85,39 +80,11 @@ public class Main {
                     state = State.STOP;
                 }
                 case LOGGED_IN: {
-                    System.out.println("Co chcesz zrobić? \n 1. Wystaw przedmiot \n 2. Pokaż aukcje wg kategorii \n " +
-                            "3. Wyświetl moje aukcje \n 4. Wyświetl aukcje, które wygrałem \n 5. Wyloguj  sie ");
+                    printMenu2();
                     String answer = sc.next();
                     switch (answer) {
                         case "1": {
-                            System.out.println("Podaj tytuł aukcji");
-                            String title = sc.next();
-                            System.out.println("Podaj opis");
-                            String description = sc.next();
-                            System.out.println("Podaj cenę wywoławczą");
-                            BigDecimal price=BigDecimal.valueOf(1);
-                            boolean priceCheck = true;
-                            while (priceCheck) {
-                                try {
-                                    price = sc.nextBigDecimal();
-                                    priceCheck =false;
-                                } catch (InputMismatchException e) {
-                                    priceCheck = true;
-                                    System.out.println("Cena jest liczba");
-                                    price = BigDecimal.valueOf(1);
-                                    sc.nextLine();
-                                }
-                            }
-
-                          System.out.println("Wybierz kategorię");
-                            CategoryController.printCategories(allcategories, 0, out);
-                            String chosenCategory = sc.next();
-                            try {
-                                AuctionController.createAuction(currentUser, title, description, database.getCategoryByName(chosenCategory), price);
-                            } catch (NullPointerException npe) {
-                                System.out.println("Zła kategoria, npe");
-                            }
-
+                            AuctionController.createAuctionMain(currentUser);
                             break;
                         }
 
@@ -129,8 +96,6 @@ public class Main {
                             String chosenCategory = sc.next();
                             try {
                                 System.out.println(database.getCategoryByName(chosenCategory).getAuctions());
-
-
                             } catch (NullPointerException npe) {
                                 System.out.println("Zła kategoria, npe");
                             }
@@ -163,5 +128,18 @@ public class Main {
 
             }
         }
+    }
+
+    public static void printMenu1() {
+        System.out.println("Dzień dobry");
+        System.out.println("Co chcesz zrobić");
+        System.out.println("1 - Zaloguj się");
+        System.out.println("2 - Zarejestruj się");
+        System.out.println("0 - wyjdź");
+    }
+
+    public static void printMenu2() {
+        System.out.println("Co chcesz zrobić? \n 1. Wystaw przedmiot \n 2. Pokaż aukcje wg kategorii \n " +
+                "3. Wyświetl moje aukcje \n 4. Wyświetl aukcje, które wygrałem \n 5. Wyloguj  sie ");
     }
 }

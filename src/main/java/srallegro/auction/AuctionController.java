@@ -1,13 +1,19 @@
 package srallegro.auction;
 
 import srallegro.Category;
+import srallegro.CategoryController;
 import srallegro.user.Database;
 import srallegro.exception.*;
 import srallegro.user.User;
 
 import java.math.BigDecimal;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
+
+import static java.lang.System.out;
+import static java.lang.System.setOut;
 
 public class AuctionController {
 
@@ -66,9 +72,40 @@ public class AuctionController {
     }
 
     // tu będą sysouty do tworzenia aukcji, a zebrane z nich dane posłużą do wywołania na końcu createAuction.
-    public static Auction createAuctionMain() {
-
-        return null;
+    public static Auction createAuctionMain(User currentUser) throws Exception {
+        Category allcategories = CategoryController.createCategoryTree();
+        Database database = Database.getInstance();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Podaj tytuł aukcji");
+        String title = sc.next();
+        System.out.println("Podaj opis");
+        String description = sc.next();
+        System.out.println("Podaj cenę wywoławczą");
+        BigDecimal price=BigDecimal.valueOf(1);
+        boolean priceCheck = true;
+        while (priceCheck) {
+            try {
+                price = sc.nextBigDecimal();
+                priceCheck =false;
+            } catch (InputMismatchException e) {
+                priceCheck = true;
+                System.out.println("Cena jest liczba");
+                price = BigDecimal.valueOf(1);
+                sc.nextLine();
+            }
+        }
+        System.out.println("Wybierz kategorię");
+        CategoryController.printCategories(allcategories, 0, out);
+        String chosenCategory = sc.next();
+        Category chosenCat = null;
+        try {
+            chosenCat = database.getCategoryByName(chosenCategory);
+            Auction newAuction = createAuction(currentUser, title, description, chosenCat, price);
+            return newAuction;
+        } catch (NullPointerException npe) {
+            System.out.println("Nie ma takiej kategorii");
+            return null;
+        }
     }
 
     public static List<Auction> viewSellersAuctions(User loggedInUser) {
