@@ -72,4 +72,24 @@ public class UserControllerTest {
         database.addUserToAllUsers(testUser);
         User testUser2 = new User("rde","rdeg", 56,"konwaliowad","gdfh@sds.com","testbtest","mateusz");
     }
+
+    @Test (expected = IncorrectEmailFormatException.class)
+    public void testIfEmailExceptionIsThrownWhenEmailAddressIsRandom() throws Exception {
+        User testUser = new User("re","reg", 5,"konwaliowa","exceptionplease","testtest","mateusz");
+    }
+
+    @Test (expected = IncorrectEmailFormatException.class)
+    public void testIfEmailExceptionIsThrownWhenEmailAddressLacksAt() throws Exception {
+        User testUser = new User("re","reg", 5,"konwaliowa","exceptionplease.com","testtest","mateusz");
+    }
+
+    @Test (expected = IncorrectEmailFormatException.class)
+    public void testIfEmailExceptionIsThrownWhenEmailAddressLacksEnding() throws Exception {
+        User testUser = new User("re","reg", 5,"konwaliowa","exception@please","testtest","mateusz");
+    }
+
+    @Test (expected = IncorrectEmailFormatException.class)
+    public void testIfEmailExceptionIsThrownWhenWeirdDigitsAreUsed() throws Exception {
+        User testUser = new User("re","reg", 5,"konwaliowa","ęxceptióń@please??ł#%((]}żź?.ćóm","testtest","mateusz");
+    }
 }

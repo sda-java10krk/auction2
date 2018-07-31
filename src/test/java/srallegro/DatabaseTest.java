@@ -41,7 +41,7 @@ public class DatabaseTest {
     @Test
     public void testIfAuctionsAreStoredCorrectly() throws Exception {
         Category testCategory = new Category("Test");
-        User janek = new User("janek", "janek", 0, "janek", "janek", "janek", "janek");
+        User janek = new User("janek", "janek", 0, "janek", "janek@gmail.com", "janek", "janek");
         Auction testAuction1 = AuctionController.createAuction(janek, "Title1", "descr1", testCategory, BigDecimal.valueOf(10));
         Auction testAuction2 = AuctionController.createAuction(janek, "Title2", "descr2", testCategory, BigDecimal.valueOf(12.0));
         Auction testAuction3 = AuctionController.createAuction(janek, "Title3", "descr3", testCategory, BigDecimal.valueOf(13.0));
@@ -61,10 +61,10 @@ public class DatabaseTest {
     public void testIfUsersAreStoredCorrectly() throws Exception{
         Database database = Database.getInstance();
 
-        User janek = new User("janek", "janek", 0, "janek", "janek", "janek", "janek");
-        User janek2 = new User("janek", "janek", 0, "janek", "janek", "janek", "janek2");
-        User janek3 = new User("janek", "janek", 0, "janek", "janek", "janek", "janek3");
-        User janek4 = new User("piotrek", "janek", 0, "janek", "janek", "janek", "janek4");
+        User janek = new User("janek", "janek", 0, "janek", "janek@gmail.com", "janek", "janek");
+        User janek2 = new User("janek", "janek", 0, "janek", "janek@gmail.com", "janek", "janek2");
+        User janek3 = new User("janek", "janek", 0, "janek", "janek@gmail.com", "janek", "janek3");
+        User janek4 = new User("piotrek", "janek", 0, "janek", "janek@gmail.com", "janek", "janek4");
 
         database.addUserToAllUsers(janek);
         database.addUserToAllUsers(janek2);
