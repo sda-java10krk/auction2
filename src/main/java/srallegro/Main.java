@@ -95,31 +95,42 @@ public class Main {
                             System.out.println("Podaj opis");
                             String description = sc.next();
                             System.out.println("Podaj cenę wywoławczą");
-                            BigDecimal price = BigDecimal.valueOf(1);
-                            while (price == BigDecimal.valueOf(1)) {
+                            BigDecimal price=BigDecimal.valueOf(1);
+                            boolean priceCheck = true;
+                            while (priceCheck) {
                                 try {
                                     price = sc.nextBigDecimal();
+                                    priceCheck =false;
                                 } catch (InputMismatchException e) {
+                                    priceCheck = true;
                                     System.out.println("Cena jest liczba");
                                     price = BigDecimal.valueOf(1);
                                     sc.nextLine();
                                 }
                             }
 
-                                System.out.println("Wybierz kategorię");
+                          System.out.println("Wybierz kategorię");
                             CategoryController.printCategories(allcategories, 0, out);
-                                String chosenCat = sc.next();   //do zmiany
-                                Category cat = new Category("Robocza kategoria");   //do zmiany
-                                AuctionController.createAuction(currentUser, title, description, cat, price);
-                                break;
+                            String chosenCategory = sc.next();
+                            try {
+                                AuctionController.createAuction(currentUser, title, description, database.getCategoryByName(chosenCategory), price);
+                            } catch (NullPointerException npe) {
+                                System.out.println("Zła kategoria, npe");
                             }
 
+                            break;
+                        }
+
+                        //FIXME
+                        //tutaj przyda sie klasa viev bo kod jest zdublowany
                         case "2": {
                             CategoryController.printCategories(allcategories, 0, out);
                             System.out.println("Wybierz kategorię");
                             String chosenCategory = sc.next();
                             try {
                                 System.out.println(database.getCategoryByName(chosenCategory).getAuctions());
+
+
                             } catch (NullPointerException npe) {
                                 System.out.println("Zła kategoria, npe");
                             }

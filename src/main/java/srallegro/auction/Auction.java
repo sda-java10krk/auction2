@@ -53,6 +53,7 @@ public class Auction {
             throw new EmptyDescriptionException();
         }
         this.category = category;
+
         this.seller = seller;
         this.winner = winner;
         if(winner == null){
