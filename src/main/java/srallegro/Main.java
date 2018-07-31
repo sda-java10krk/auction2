@@ -95,12 +95,12 @@ public class Main {
                             System.out.println("Podaj opis");
                             String description = sc.next();
                             System.out.println("Podaj cenę wywoławczą");
-                            BigDecimal price=BigDecimal.valueOf(1);
+                            BigDecimal price = BigDecimal.valueOf(1);
                             boolean priceCheck = true;
                             while (priceCheck) {
                                 try {
                                     price = sc.nextBigDecimal();
-                                    priceCheck =false;
+                                    priceCheck = false;
                                 } catch (InputMismatchException e) {
                                     priceCheck = true;
                                     System.out.println("Cena jest liczba");
@@ -114,10 +114,16 @@ public class Main {
                             String chosenCategory = sc.next();
                             try {
                                 AuctionController.createAuction(currentUser, title, description, database.getCategoryByName(chosenCategory), price);
-                            } catch (NullPointerException npe) {
-                                System.out.println("Zła kategoria, npe");
+                            } catch (NotFinalCategoryException e) {
+                              chosenCategory = sc.next();
                             }
 
+//                            try {
+//                                AuctionController.createAuction(currentUser, title, description, database.getCategoryByName(chosenCategory), price);
+//                            } catch (NullPointerException npe) {
+//                                System.out.println("Nie ma takiej kategorii");
+//                                chosenCategory = sc.next();
+//                            }
                             break;
                         }
                         //FIXME
@@ -128,8 +134,6 @@ public class Main {
                             String chosenCategory = sc.next();
                             try {
                                 System.out.println(database.getCategoryByName(chosenCategory).getAuctions());
-
-
                             } catch (NullPointerException npe) {
                                 System.out.println("Zła kategoria, npe");
                             }

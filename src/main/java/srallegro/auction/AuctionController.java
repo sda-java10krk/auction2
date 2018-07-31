@@ -58,6 +58,11 @@ public class AuctionController {
         if (category.getSubcategories().size() > 0) {
             throw new NotFinalCategoryException();
         }
+//        try {
+//            category.getSubcategories().size() > 0;
+//        }catch (NotFinalCategoryException e){
+//            throw new NotFinalCategoryException() ;
+//        }
         database.addAuctionToAllAuctions(newAuction);
         currentUser.getMySellingList().add(newAuction);
         category.addAuction(newAuction);
