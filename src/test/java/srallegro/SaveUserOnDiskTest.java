@@ -28,7 +28,7 @@ public class SaveUserOnDiskTest {
         FileUtils.writeStringToFile(new File("TestDatabaseUser.csv"), "");
     }
 
-    public void testUserSaving() throws UserWithSameNicknameExists, PasswordTooShortException, EmptyNickException, BirthdayException, IOException {
+    public void testUserSaving() throws UserWithSameNicknameExists, PasswordTooShortException, EmptyNickException, BirthdayException, IOException, IncorrectEmailFormatException {
         User testUser = new User("RandomName", "RandomLastName", 19870101, "RandomAddress", "RandomMail", "RandomPassword", "RandomNick");
         SaveUserOnDisk.writeCsvFile("TestDatabaseUser.csv", testUser);
         BufferedReader fr = new BufferedReader(new FileReader("TestDatabaseUser.csv"));
@@ -36,7 +36,7 @@ public class SaveUserOnDiskTest {
     }
 
     @Test
-    public void testUsersLoading() throws UserWithSameNicknameExists, PasswordTooShortException, EmptyNickException, BirthdayException, IOException {
+    public void testUsersLoading() throws UserWithSameNicknameExists, PasswordTooShortException, EmptyNickException, BirthdayException, IOException, IncorrectEmailFormatException {
         Database database2 = Database.getInstance();
         User testUser = new User("RandomName", "RandomLastName", 19870101, "RandomAddress", "RandomMail", "RandomPassword", "RandomNick");
         SaveUserOnDisk.writeCsvFile("TestDatabaseUser.csv", testUser);

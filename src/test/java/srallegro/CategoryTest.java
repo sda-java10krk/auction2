@@ -68,7 +68,6 @@ public class CategoryTest {
     @Test
     public void testIfAuctionsAreAddedToCategoriesWhenCreated () throws Exception {
         CategoryController.createCategoryTree();
-
         User testSeller = new User("", "", 12 - 12 - 1992, "", "", "ieterw", "Seller");
         Auction testAuction1 = AuctionController.createAuction(testSeller, "Stormtrooper1", "Descr", database.getCategoryByName("Stormtrooperzy"), new BigDecimal(10.0));
         Auction testAuction2 = AuctionController.createAuction(testSeller, "Stormtrooper2", "Descr", database.getCategoryByName("Stormtrooperzy"), new BigDecimal(10.0));
@@ -110,5 +109,13 @@ public class CategoryTest {
         assertFalse(CategoryController.listAuctionsByCategory(database.getCategoryByName("Samochody")).contains(testAuction1));
         assertFalse(CategoryController.listAuctionsByCategory(database.getCategoryByName("Elektroniczne konie")).contains(testAuction1));
         assertFalse(CategoryController.listAuctionsByCategory(database.getCategoryByName("Zabawki sadomaso")).contains(testAuction1));
+    }
+
+    @Test (expected = NotFinalCategoryException.class)
+    public void testNotFinalCategoryException() throws Exception {
+        Database database = Database.getInstance();
+        CategoryController.createCategoryTree();
+        User testSeller = new User("testttt", "testttt", 12 - 12 - 1992, "eeeee", "eeeee", "ieterw", "Seller");
+        Auction newAuction = AuctionController.createAuction(testSeller, "Title", "Descr", database.getCategoryByName("Zabawki"), new BigDecimal(23.0));
     }
 }
