@@ -13,8 +13,6 @@ import java.io.*;
 
 import static org.junit.Assert.assertEquals;
 
-
-
 public class SaveUserOnDiskTest {
 
     Database database = Database.getInstance();
