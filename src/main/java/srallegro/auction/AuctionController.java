@@ -103,9 +103,10 @@ public class AuctionController {
             Auction newAuction = createAuction(currentUser, title, description, chosenCat, price);
             return newAuction;
         } catch (NullPointerException npe) {
-            System.out.println("Nie ma takiej kategorii");
-            return null;
+            System.out.println("Nie ma takiej kategorii, podaj kategorie finalna");
+            chosenCategory = sc.next();
         }
+        return null;
     }
 
     public static List<Auction> viewSellersAuctions(User loggedInUser) {
