@@ -8,13 +8,8 @@ import srallegro.user.LoadUserFromDisk;
 import srallegro.user.SaveUserOnDisk;
 import srallegro.user.User;
 
-<<<<<<< HEAD
-=======
-import javax.xml.crypto.Data;
-
->>>>>>> rb
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+
 
 
 public class SaveUserOnDiskTest {
