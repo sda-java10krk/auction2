@@ -1,9 +1,6 @@
 package srallegro.user;
 
-import srallegro.exception.BirthdayException;
-import srallegro.exception.EmptyNickException;
-import srallegro.exception.PasswordTooShortException;
-import srallegro.exception.UserWithSameNicknameExists;
+import srallegro.exception.*;
 
 
 import java.io.BufferedReader;
@@ -50,11 +47,12 @@ public class LoadUserFromDisk {
                 } else {
                     System.out.println("Nie udało się wczytać");
                 }
-
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (IncorrectEmailFormatException e) {
             e.printStackTrace();
         }
     }

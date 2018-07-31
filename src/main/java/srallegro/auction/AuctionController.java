@@ -65,6 +65,12 @@ public class AuctionController {
         return newAuction;
     }
 
+    // tu będą sysouty do tworzenia aukcji, a zebrane z nich dane posłużą do wywołania na końcu createAuction.
+    public static Auction createAuctionMain() {
+
+        return null;
+    }
+
     public static List<Auction> viewSellersAuctions(User loggedInUser) {
         return loggedInUser.getMySellingList();
     }

@@ -1,9 +1,6 @@
 package srallegro.user;
 
-import srallegro.exception.BirthdayException;
-import srallegro.exception.EmptyNickException;
-import srallegro.exception.PasswordTooShortException;
-import srallegro.exception.UserWithSameNicknameExists;
+import srallegro.exception.*;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -27,7 +24,7 @@ public class UserController {
         }
     }
 
-    public static User createUser() throws PasswordTooShortException, EmptyNickException, BirthdayException, InterruptedException, UserWithSameNicknameExists {
+    public static User createUser() throws PasswordTooShortException, EmptyNickException, BirthdayException, InterruptedException, UserWithSameNicknameExists, IncorrectEmailFormatException {
         Database database = Database.getInstance();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Podaj Imię");
@@ -95,7 +92,7 @@ public class UserController {
         return newUser;
     }
 
-    public static User createUser2(String name, String lastname, Integer birthday, String address, String email, String password, String nick) throws UserWithSameNicknameExists, PasswordTooShortException, EmptyNickException, BirthdayException {
+    public static User createUser2(String name, String lastname, Integer birthday, String address, String email, String password, String nick) throws UserWithSameNicknameExists, PasswordTooShortException, EmptyNickException, BirthdayException, IncorrectEmailFormatException {
         Database database = Database.getInstance();
         User newUser = new User(name, lastname, birthday, address, email, password, nick);
         database.addUserToAllUsers(newUser);

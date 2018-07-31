@@ -1,11 +1,8 @@
 package srallegro.user;
 
+import org.apache.commons.validator.routines.EmailValidator;
 import srallegro.auction.Auction;
-import srallegro.exception.BirthdayException;
-import srallegro.exception.EmptyNickException;
-
-import srallegro.exception.PasswordTooShortException;
-import srallegro.exception.UserWithSameNicknameExists;
+import srallegro.exception.*;
 
 
 import java.util.LinkedList;
@@ -43,7 +40,7 @@ public class User {
 
     Database database = Database.getInstance();
 
-    public User(String name, String lastName, Integer birthDay, String adress, String mail, String password, String nick) throws PasswordTooShortException, BirthdayException, EmptyNickException, UserWithSameNicknameExists {
+    public User(String name, String lastName, Integer birthDay, String adress, String mail, String password, String nick) throws PasswordTooShortException, BirthdayException, EmptyNickException, UserWithSameNicknameExists, IncorrectEmailFormatException {
         this.name = name;
         this.lastName = lastName;
         this.birthday = birthDay;
@@ -63,6 +60,10 @@ public class User {
         }
         if (nick.length() == 0) {
             throw new EmptyNickException();
+        }
+        boolean valid = EmailValidator.getInstance().isValid(mail);
+        if (!valid) {
+            throw new IncorrectEmailFormatException();
         }
     }
 
