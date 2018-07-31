@@ -112,18 +112,25 @@ public class Main {
                             System.out.println("Wybierz kategorię");
                             CategoryController.printCategories(allcategories, 0, out);
                             String chosenCategory = sc.next();
-                            try {
-                                AuctionController.createAuction(currentUser, title, description, database.getCategoryByName(chosenCategory), price);
-                            } catch (NotFinalCategoryException e) {
-                              chosenCategory = sc.next();
-                            }
+                            boolean auctionCheck =true;
 
-//                            try {
-//                                AuctionController.createAuction(currentUser, title, description, database.getCategoryByName(chosenCategory), price);
-//                            } catch (NullPointerException npe) {
-//                                System.out.println("Nie ma takiej kategorii");
-//                                chosenCategory = sc.next();
-//                            }
+                            while(auctionCheck) {
+
+                                try {
+                                    AuctionController.createAuction(currentUser, title, description, database.getCategoryByName(chosenCategory), price);
+                                    auctionCheck=false;
+
+//
+                                } catch (NotFinalCategoryException e) {
+                                    chosenCategory = sc.next();
+                                    auctionCheck=true;
+
+                                } catch (NullPointerException npe) {
+                                    System.out.println("Nie ma takiej kategorii, podaj kategorie finalna");
+                                    chosenCategory = sc.next();
+                                    auctionCheck=true;
+                                }
+                            }
                             break;
                         }
                         //FIXME
