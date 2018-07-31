@@ -116,9 +116,9 @@ public class Auction {
         return "srallegro.auction.auction{" +
                 "title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", category=" + category +
-                ", seller=" + seller +
-                ", winner=" + winner +
+                ", category=" + category.getName() +
+                ", seller=" + seller.getNick() +
+                ", winner=" + winner.getNick() +
                 ", price=" + price +
                 ", auction number= " + auctionNumber +
                 '}';
