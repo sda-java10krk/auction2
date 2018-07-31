@@ -64,6 +64,11 @@ public class AuctionController {
         if (category.getSubcategories().size() > 0) {
             throw new NotFinalCategoryException();
         }
+//        try {
+//            category.getSubcategories().size() > 0;
+//        }catch (NotFinalCategoryException e){
+//            throw new NotFinalCategoryException() ;
+//        }
         database.addAuctionToAllAuctions(newAuction);
         currentUser.getMySellingList().add(newAuction);
         category.addAuction(newAuction);
@@ -97,17 +102,28 @@ public class AuctionController {
         System.out.println("Wybierz kategorię");
         CategoryController.printCategories(allcategories, 0, out);
         String chosenCategory = sc.next();
-        Category chosenCat = null;
-        try {
-            chosenCat = database.getCategoryByName(chosenCategory);
-            Auction newAuction = createAuction(currentUser, title, description, chosenCat, price);
-            return newAuction;
-        } catch (NullPointerException npe) {
-            System.out.println("Nie ma takiej kategorii, podaj kategorie finalna");
-            chosenCategory = sc.next();
+        boolean auctionCheck =true;
+
+        while(auctionCheck) {
+
+            try {
+               Auction newAuction = AuctionController.createAuction(currentUser, title, description, database.getCategoryByName(chosenCategory), price);
+                //auctionCheck=false;
+                return newAuction;
+
+            } catch (NotFinalCategoryException e) {
+                chosenCategory = sc.next();
+                auctionCheck=true;
+
+            } catch (NullPointerException npe) {
+                System.out.println("Nie ma takiej kategorii, podaj kategorie finalna");
+                chosenCategory = sc.next();
+                auctionCheck=true;
+            }
         }
-        return null;
+return null ;
     }
+
 
     public static List<Auction> viewSellersAuctions(User loggedInUser) {
         return loggedInUser.getMySellingList();

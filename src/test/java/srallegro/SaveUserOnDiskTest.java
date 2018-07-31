@@ -23,22 +23,23 @@ public class SaveUserOnDiskTest {
         database.getAllAuctionsByNumber().clear();
         database.getAllCategoriesByName().clear();
 
+
         //czyści plik. Trzeba to robić, bo inaczej dubluje userów. Ale coś nie chce działać,
         //prawie zawsze psuje to wczytywanie userów z pliku.
         FileUtils.writeStringToFile(new File("TestDatabaseUser.csv"), "");
     }
-
+    @Test
     public void testUserSaving() throws UserWithSameNicknameExists, PasswordTooShortException, EmptyNickException, BirthdayException, IOException, IncorrectEmailFormatException {
-        User testUser = new User("RandomName", "RandomLastName", 19870101, "RandomAddress", "RandomMail", "RandomPassword", "RandomNick");
+        User testUser = new User("RandomName", "RandomLastName", 19870101, "RandomAddress", "RandomMail@gmail.com", "RandomPassword", "RandomNick");
         SaveUserOnDisk.writeCsvFile("TestDatabaseUser.csv", testUser);
         BufferedReader fr = new BufferedReader(new FileReader("TestDatabaseUser.csv"));
-        assertEquals("RandomName,RandomLastName,19870101,RandomAddress,RandomMail,RandomPassword,RandomNick", fr.readLine());
+        assertEquals("RandomName,RandomLastName,19870101,RandomAddress,RandomMail@gmail.com,RandomPassword,RandomNick", fr.readLine());
     }
 
     @Test
     public void testUsersLoading() throws UserWithSameNicknameExists, PasswordTooShortException, EmptyNickException, BirthdayException, IOException, IncorrectEmailFormatException {
         Database database2 = Database.getInstance();
-        User testUser = new User("RandomName", "RandomLastName", 19870101, "RandomAddress", "RandomMail", "RandomPassword", "RandomNick");
+        User testUser = new User("RandomName", "RandomLastName", 19870101, "RandomAddress", "RandomMail@gmail.com", "RandomPassword", "RandomNick");
         SaveUserOnDisk.writeCsvFile("TestDatabaseUser.csv", testUser);
         LoadUserFromDisk.readFileCSV("TestDatabaseUser.csv");
         Database database = Database.getInstance();
