@@ -84,6 +84,11 @@ public class Main {
                 case STOP: {
                     state = State.STOP;
                 }
+                case DURING_VIEVING_AUCTION: {
+                    printMenu3();
+                    break;
+
+                }
                 case LOGGED_IN: {
                     printMenu2();
                     String answer = sc.next();
@@ -97,7 +102,10 @@ public class Main {
                         //tutaj przyda sie klasa viev bo kod jest zdublowany
                         case "2": {
                             AuctionController.vievAuctionByCategories();
-                            printMenu3();
+                            state = State.DURING_VIEVING_AUCTION;
+
+                            break;
+
                         }
                         case "3": {
                             System.out.println(AuctionController.viewSellersAuctions(currentUser));
@@ -136,6 +144,6 @@ public class Main {
     }
 
     public static void printMenu3() {
-        System.out.println("Co chcesz zrobic ? \n 1.Zalicytuj \n 0.wróc ");
+        System.out.println("Co chcesz zrobic ? \n 1.Zalicytuj \n 2.Zobacz opis \n 0.wróc ");
     }
 }
