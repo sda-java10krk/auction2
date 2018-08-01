@@ -97,7 +97,7 @@ public class Main {
                         //tutaj przyda sie klasa viev bo kod jest zdublowany
                         case "2": {
 
-                     
+
                             AuctionController.vievAuctionByCategories();
                             printMenu3();
                             CategoryController.printCategories(allcategories, 0, out);

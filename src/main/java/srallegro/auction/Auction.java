@@ -113,14 +113,14 @@ public class Auction {
 
     @Override
     public String toString() {
-        return "srallegro.auction.auction{" +
+        return "\n" + "{" +
                 "title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", category=" + category.getName() +
                 ", seller=" + seller.getNick() +
                 ", winner=" + winner.getNick() +
-                ", price=" + price +
+                ", price=" + price + "PLN" +
                 ", auction number= " + auctionNumber +
-                '}';
+                '}' ;
     }
 }

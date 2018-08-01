@@ -80,9 +80,9 @@ public class AuctionController {
         Database database = Database.getInstance();
         Scanner sc = new Scanner(System.in);
         System.out.println("Podaj tytuł aukcji");
-        String title = sc.next();
+        String title = sc.nextLine();
         System.out.println("Podaj opis");
-        String description = sc.next();
+        String description = sc.nextLine();
         System.out.println("Podaj cenę wywoławczą");
         BigDecimal price=BigDecimal.valueOf(1);
         boolean priceCheck = true;
