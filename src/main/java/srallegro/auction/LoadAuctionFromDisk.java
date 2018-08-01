@@ -35,7 +35,7 @@ public class LoadAuctionFromDisk {
     private static final int AUCTION_NuMBER_AUCTION = 6;
     private static final int AUCTION_BIDS = 7;
 
-    public static void loadAuctionCSV(String fileName) throws EmptyTitleException, EmptyDescriptionException, AuctionPriceIsBelowZeroOrZeroException, EmptyCategoryNameException, UserWithSameNicknameExists, PasswordTooShortException, EmptyNickException, BirthdayException {
+    public static void loadAuctionCSV(String fileName) throws Exception {
 
         Database database = Database.getInstance();
         BufferedReader fileReader = null;
