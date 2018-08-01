@@ -20,9 +20,10 @@ public class Database {
         }
         return instance;
     }
-    private static Map<String, Category> allCategoriesByName = new HashMap<>();
-    private static Map<Integer, Auction> allAuctionsByNumber = new HashMap<>();
-    private static Map<String, User> allUsersByNickname = new HashMap<>();
+
+    private Map<String, Category> allCategoriesByName = new HashMap<>();
+    private Map<Integer, Auction> allAuctionsByNumber = new HashMap<>();
+    private Map<String, User> allUsersByNickname = new HashMap<>();
 
     //regarding Categories
     public void addCategoryToAllCategories (Category category) {
