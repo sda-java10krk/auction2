@@ -97,17 +97,8 @@ public class Main {
                         //tutaj przyda sie klasa viev bo kod jest zdublowany
                         case "2": {
 
-                     
                             AuctionController.vievAuctionByCategories();
                             printMenu3();
-                            CategoryController.printCategories(allcategories, 0, out);
-                            System.out.println("Wybierz kategorię");
-                            String chosenCategory = sc.next();
-                            try {
-                                System.out.println(CategoryController.listAuctionsByCategory(database.getCategoryByName(chosenCategory)));
-                            } catch (NullPointerException npe) {
-                                System.out.println("Zła kategoria, npe");
-                            }
 
                             break;
                         }
