@@ -100,45 +100,53 @@ public class AuctionController {
 
 //        System.out.println("Wybierz kategorię");
 //        CategoryController.printCategories(allcategories, 0, out);
-       String chosenCategory = sc.next();
+       //String chosenCategory = sc.next();
         Category category = vievAuctionByCategories();
         boolean auctionCheck =true;
+
+
 
         while(auctionCheck) {
 
             try {
                Auction newAuction = AuctionController.createAuction(currentUser, title, description, category, price);
-                //auctionCheck=false;
+                System.out.println("Wystawiłeś nową aukcję");
                 return newAuction;
 
             } catch (NotFinalCategoryException e) {
-                chosenCategory = sc.next();
+                category = vievAuctionByCategories();
+                System.out.println("podaj kategorie finalna");
+                //chosenCategory = sc.next();
                 auctionCheck=true;
 
             } catch (NullPointerException npe) {
-                System.out.println("Nie ma takiej kategorii, podaj kategorie finalna");
-                chosenCategory = sc.next();
+                System.out.println("Nie ma takiej kategorii (npe)");
+                category = vievAuctionByCategories();
+                //chosenCategory = sc.next();
                 auctionCheck=true;
             }
         }
-return null ;
+
+
+    return null;
     }
 
     public static Category vievAuctionByCategories () throws Exception {
         Scanner scanner = new Scanner(System.in);
         Database database = Database.getInstance();
-//        LoadUserFromDisk.readFileCSV("databaseUser.csv");
-//        LoadAuctionFromDisk.loadAuctionCSV("databaseAuction.csv");
        Category allcategories = CategoryController.createCategoryTree();
         CategoryController.printCategories(allcategories, 0, out);
         System.out.println("Wybierz kategorie");
-         String chosenCategory = scanner.next();
+         String chosenCategory = scanner.nextLine();
+
+         /*
         try {
             System.out.println(database.getCategoryByName(chosenCategory).getAuctions());
         } catch (NullPointerException npe) {
             System.out.println("Zła kategoria, npe");
             chosenCategory=scanner.next();
         }
+        */
 
         return database.getCategoryByName(chosenCategory);
     }
