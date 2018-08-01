@@ -26,7 +26,7 @@ public class SaveAuctionOnDisk {
             fileWriter.append(COMMA_SEPARATOR);
             fileWriter.append(auction.getDescription());
             fileWriter.append(COMMA_SEPARATOR);
-            fileWriter.append(auction.getCategory().toString());
+            fileWriter.append(String.valueOf(auction.getCategory()));
             fileWriter.append(COMMA_SEPARATOR);
             fileWriter.append(auction.getSeller().getNick());
             fileWriter.append(COMMA_SEPARATOR);

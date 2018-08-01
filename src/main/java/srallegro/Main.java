@@ -25,10 +25,11 @@ public class Main {
     }
 
     public static void main(String[] args) throws Exception {
+        Category allcategories = CategoryController.createCategoryTree();
         Database database = Database.getInstance();
         LoadUserFromDisk.readFileCSV("databaseUser.csv");
         LoadAuctionFromDisk.loadAuctionCSV("databaseAuction.csv");
-        Category allcategories = CategoryController.createCategoryTree();
+
         Scanner sc = new Scanner(System.in);
         User currentUser = null;
         State state = State.INIT;
@@ -95,12 +96,18 @@ public class Main {
                         //FIXME
                         //tutaj przyda sie klasa viev bo kod jest zdublowany
                         case "2": {
+
                      
                             AuctionController.vievAuctionByCategories();
                             printMenu3();
-
-
-
+                            CategoryController.printCategories(allcategories, 0, out);
+                            System.out.println("Wybierz kategorię");
+                            String chosenCategory = sc.next();
+                            try {
+                                System.out.println(CategoryController.listAuctionsByCategory(database.getCategoryByName(chosenCategory)));
+                            } catch (NullPointerException npe) {
+                                System.out.println("Zła kategoria, npe");
+                            }
 
                             break;
                         }

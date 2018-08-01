@@ -20,9 +20,9 @@ public class Database {
         }
         return instance;
     }
-    private static Map<String, Category> allCategoriesByName = new HashMap<>();
-    private static Map<Integer, Auction> allAuctionsByNumber = new HashMap<>();
-    private static Map<String, User> allUsersByNickname = new HashMap<>();
+    private Map<String, Category> allCategoriesByName = new HashMap<>();
+    private Map<Integer, Auction> allAuctionsByNumber = new HashMap<>();
+    private Map<String, User> allUsersByNickname = new HashMap<>();
 
     //regarding Categories
     public void addCategoryToAllCategories (Category category) {
@@ -38,7 +38,6 @@ public class Database {
         return null;
     }
     public Map<String, Category> getAllCategoriesByName () {
-
         return allCategoriesByName;
     }
     // regarding Auctions
@@ -65,7 +64,6 @@ public class Database {
         allUsersByNickname.put(user.getNick(), user);
     }
     public User getUserByNickname (String nickname) {
-
         try {
             User user = allUsersByNickname.get(nickname);
             return user;
