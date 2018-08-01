@@ -41,7 +41,7 @@ public class AuctionController {
         return auction.getPrice();
     }
 
-//zrobiic tak jak sprawdzanie daty urodzenia
+    //zrobiic tak jak sprawdzanie daty urodzenia
     public static Auction createAuction(User currentUser, String title, String description, Category category, BigDecimal price) throws Exception {
         Database database = Database.getInstance();
         //do bani ten system numerowania aukcji. Ale działa
@@ -74,7 +74,7 @@ public class AuctionController {
 
     // tu będą sysouty do tworzenia aukcji, a zebrane z nich dane posłużą do wywołania na końcu createAuction.
     public static Auction createAuctionMain(User currentUser) throws Exception {
- //       Category allcategories = CategoryController.createCategoryTree();
+        //       Category allcategories = CategoryController.createCategoryTree();
         Database database = Database.getInstance();
         Scanner sc = new Scanner(System.in);
         System.out.println("Podaj tytuł aukcji");
@@ -95,10 +95,9 @@ public class AuctionController {
                 sc.nextLine();
             }
         }
-
 //        System.out.println("Wybierz kategorię");
 //        CategoryController.printCategories(allcategories, 0, out);
-       //String chosenCategory = sc.next();
+        //String chosenCategory = sc.next();
         Category category = vievAuctionByCategories();
         boolean auctionCheck =true;
 
@@ -119,15 +118,13 @@ public class AuctionController {
                 category = vievAuctionByCategories();
                 auctionCheck=true;
             }
-            }
-
-return null ;
         }
 
-
+        return null ;
+    }
 
     public static int getAuctionNumber (Auction auction ) throws Exception{
-       int auctionNumber =auction.getAuctionNumber();
+        int auctionNumber =auction.getAuctionNumber();
         return auctionNumber;
     }
     public static Category vievAuctionByCategories () throws Exception {
@@ -136,7 +133,7 @@ return null ;
         Category allcategories = CategoryController.createCategoryTree();
         CategoryController.printCategories(allcategories, 0, out);
         System.out.println("Wybierz kategorie");
-         String chosenCategory = scanner.nextLine();
+        String chosenCategory = scanner.nextLine();
 
          /*
         try {
@@ -149,8 +146,6 @@ return null ;
 
         return database.getCategoryByName(chosenCategory);
     }
-
-
 
     public static List<Auction> viewSellersAuctions(User loggedInUser) {
         return loggedInUser.getMySellingList();
