@@ -35,7 +35,7 @@ public class LoadAuctionFromDisk {
     private static final int AUCTION_NuMBER_AUCTION = 6;
     private static final int AUCTION_BIDS = 7;
 
-    public static void loadAuctionCSV(String fileName) throws EmptyTitleException, EmptyDescriptionException, AuctionPriceIsBelowZeroOrZeroException, EmptyCategoryNameException, UserWithSameNicknameExists, PasswordTooShortException, EmptyNickException, BirthdayException {
+    public static void loadAuctionCSV(String fileName) throws Exception {
 
         Database database = Database.getInstance();
         BufferedReader fileReader = null;
@@ -49,6 +49,11 @@ public class LoadAuctionFromDisk {
                     Auction auction = new Auction(data[AUCTION_TITLE], data[AUCTION_DESCRIPTION],new Category(data[AUCTION_CATEGORY]), Database.getInstance().getAllUsersByNickname().get(data[AUCTION_NAME_SELLER]),Database.getInstance().getAllUsersByNickname().get(data[AUCTION_NAME_WINNER]),
                      new BigDecimal(data[AUCTION_PRICE]), Integer.parseInt(data[AUCTION_NuMBER_AUCTION]), Integer.parseInt(data[AUCTION_BIDS]));
                     database.addAuctionToAllAuctions(auction);
+                    database.getAllUsersByNickname().get(data[AUCTION_NAME_SELLER]).getMySellingList().add(auction);
+                    if (auction.getBids() >=3) {
+                        database.getAllUsersByNickname().get(data[AUCTION_NAME_WINNER]).getMyWonList().add(auction);
+                    }
+
                 }
             }
         } catch (FileNotFoundException e) {

@@ -27,7 +27,7 @@ public class SaveUserOnDiskTest {
         //prawie zawsze psuje to wczytywanie userów z pliku.
         FileUtils.writeStringToFile(new File("TestDatabaseUser.csv"), "");
     }
-
+    @Test
     public void testUserSaving() throws UserWithSameNicknameExists, PasswordTooShortException, EmptyNickException, BirthdayException, IOException, IncorrectEmailFormatException {
         User testUser = new User("RandomName", "RandomLastName", 19870101, "RandomAddress", "RandomMail", "RandomPassword", "RandomNick");
         SaveUserOnDisk.writeCsvFile("TestDatabaseUser.csv", testUser);
