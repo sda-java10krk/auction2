@@ -14,7 +14,7 @@ public class CategoryController {
 
 
     public static void printCategories(Category category, int level, PrintStream out) {
-        if (category.getName() != null) {
+          if (category.getName() != null) {
             out.print("+");
             for (int i = 0; i < level; i++) {
                 out.print("-");
@@ -24,6 +24,7 @@ public class CategoryController {
         for (Category subcategory : category.getSubcategories()) {
             printCategories(subcategory, level + 1, out);
         }
+
     }
 
 

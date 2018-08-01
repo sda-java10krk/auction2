@@ -109,12 +109,9 @@ public class Main {
                             break;
                         }
                         case "4": {
-                            for (Auction a : AuctionController.viewWonAuctions(currentUser)) {
-                                if (a.getBids() >= 3) {
-                                    System.out.println(a);
-                                }
-                                break;
-                            }
+                            System.out.println(AuctionController.viewWonAuctions(currentUser));
+                            break;
+
                         }
                         case "5": {
                             state = State.INIT;

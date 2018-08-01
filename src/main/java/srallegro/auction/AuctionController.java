@@ -4,6 +4,7 @@ import srallegro.Category;
 import srallegro.CategoryController;
 import srallegro.user.Database;
 import srallegro.exception.*;
+import srallegro.user.LoadUserFromDisk;
 import srallegro.user.User;
 
 import java.math.BigDecimal;
@@ -18,6 +19,7 @@ import static java.lang.System.setOut;
 public class AuctionController {
 
     public static BigDecimal bidUp(Auction auction, BigDecimal bidUp, User user) throws Exception {
+
         if (auction.getPrice().compareTo(BigDecimal.valueOf(0)) <= 0) {
             throw new AuctionPriceIsBelowZeroOrZeroException();
         }
@@ -64,11 +66,7 @@ public class AuctionController {
         if (category.getSubcategories().size() > 0) {
             throw new NotFinalCategoryException();
         }
-//        try {
-//            category.getSubcategories().size() > 0;
-//        }catch (NotFinalCategoryException e){
-//            throw new NotFinalCategoryException() ;
-//        }
+
         database.addAuctionToAllAuctions(newAuction);
         currentUser.getMySellingList().add(newAuction);
         category.addAuction(newAuction);
@@ -78,7 +76,7 @@ public class AuctionController {
 
     // tu będą sysouty do tworzenia aukcji, a zebrane z nich dane posłużą do wywołania na końcu createAuction.
     public static Auction createAuctionMain(User currentUser) throws Exception {
-        Category allcategories = CategoryController.createCategoryTree();
+ //       Category allcategories = CategoryController.createCategoryTree();
         Database database = Database.getInstance();
         Scanner sc = new Scanner(System.in);
         System.out.println("Podaj tytuł aukcji");
@@ -99,15 +97,17 @@ public class AuctionController {
                 sc.nextLine();
             }
         }
-        System.out.println("Wybierz kategorię");
-        CategoryController.printCategories(allcategories, 0, out);
-        String chosenCategory = sc.next();
+
+//        System.out.println("Wybierz kategorię");
+//        CategoryController.printCategories(allcategories, 0, out);
+       String chosenCategory = sc.next();
+        Category category = vievAuctionByCategories();
         boolean auctionCheck =true;
 
         while(auctionCheck) {
 
             try {
-               Auction newAuction = AuctionController.createAuction(currentUser, title, description, database.getCategoryByName(chosenCategory), price);
+               Auction newAuction = AuctionController.createAuction(currentUser, title, description, category, price);
                 //auctionCheck=false;
                 return newAuction;
 
@@ -123,6 +123,26 @@ public class AuctionController {
         }
 return null ;
     }
+
+    public static Category vievAuctionByCategories () throws Exception {
+        Scanner scanner = new Scanner(System.in);
+        Database database = Database.getInstance();
+//        LoadUserFromDisk.readFileCSV("databaseUser.csv");
+//        LoadAuctionFromDisk.loadAuctionCSV("databaseAuction.csv");
+       Category allcategories = CategoryController.createCategoryTree();
+        CategoryController.printCategories(allcategories, 0, out);
+        System.out.println("Wybierz kategorie");
+         String chosenCategory = scanner.next();
+        try {
+            System.out.println(database.getCategoryByName(chosenCategory).getAuctions());
+        } catch (NullPointerException npe) {
+            System.out.println("Zła kategoria, npe");
+            chosenCategory=scanner.next();
+        }
+
+        return database.getCategoryByName(chosenCategory);
+    }
+
 
 
     public static List<Auction> viewSellersAuctions(User loggedInUser) {
