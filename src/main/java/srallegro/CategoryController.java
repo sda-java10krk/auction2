@@ -5,7 +5,6 @@ import srallegro.user.Database;
 import srallegro.exception.EmptyCategoryNameException;
 
 import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 

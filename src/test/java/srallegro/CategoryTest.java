@@ -81,7 +81,7 @@ public class CategoryTest {
         assertEquals(database.getCategoryByName("Empetrójki").getAuctions().size(), 0);
         assertEquals(database.getCategoryByName("Zabawki").getAuctions().size(), 0);
     }
- 
+
     @Test
     public void testListAuctionsByCategory() throws Exception {
         CategoryController.createCategoryTree();
