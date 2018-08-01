@@ -19,6 +19,7 @@ public class Main {
         INIT,
         DURING_LOGIN,
         DURING_REGISTRATION,
+        DURING_VIEVING_AUCTION,
         LOGGED_IN,
         STOP,
     }
@@ -94,14 +95,13 @@ public class Main {
                         //FIXME
                         //tutaj przyda sie klasa viev bo kod jest zdublowany
                         case "2": {
-                            CategoryController.printCategories(allcategories, 0, out);
-                            System.out.println("Wybierz kategorię");
-                            String chosenCategory = sc.next();
-                            try {
-                                System.out.println(database.getCategoryByName(chosenCategory).getAuctions());
-                            } catch (NullPointerException npe) {
-                                System.out.println("Zła kategoria, npe");
-                            }
+                     
+                            AuctionController.vievAuctionByCategories();
+                            printMenu3();
+
+
+
+
                             break;
                         }
                         case "3": {
@@ -109,12 +109,9 @@ public class Main {
                             break;
                         }
                         case "4": {
-                            for (Auction a : AuctionController.viewWonAuctions(currentUser)) {
-                                if (a.getBids() >= 3) {
-                                    System.out.println(a);
-                                }
-                                break;
-                            }
+                            System.out.println(AuctionController.viewWonAuctions(currentUser));
+                            break;
+
                         }
                         case "5": {
                             state = State.INIT;
@@ -134,15 +131,16 @@ public class Main {
     }
 
     public static void printMenu1() {
-        System.out.println("Dzień dobry");
-        System.out.println("Co chcesz zrobić");
-        System.out.println("1 - Zaloguj się");
-        System.out.println("2 - Zarejestruj się");
-        System.out.println("0 - wyjdź");
+        System.out.println("Dzień dobry,\n Co chcesz zrobić ? \n 1 - Zaloguj się \n 2 - Zarejestruj się \n 0 - wyjdź");
+
     }
 
     public static void printMenu2() {
         System.out.println("Co chcesz zrobić? \n 1. Wystaw przedmiot \n 2. Pokaż aukcje wg kategorii \n " +
                 "3. Wyświetl moje aukcje \n 4. Wyświetl aukcje, które wygrałem \n 5. Wyloguj  sie ");
+    }
+
+    public static void printMenu3() {
+        System.out.println("Co chcesz zrobic ? \n 1.Zalicytuj \n 0.wróc ");
     }
 }
