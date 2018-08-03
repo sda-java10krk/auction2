@@ -115,7 +115,6 @@ public class Auction {
     public String toString() {
         return "\n" + "{" +
                 "title='" + title + '\'' +
-                ", description='" + description + '\'' +
                 ", category=" + category.getName() +
                 ", seller=" + seller.getNick() +
                 ", winner=" + winner.getNick() +

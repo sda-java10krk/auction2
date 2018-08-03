@@ -37,7 +37,9 @@ public class AuctionController {
                 System.out.println("aukcja zakonczona, zwyciezył " + user.getNick());
                 user.getMyWonList().add(auction);
             }
+
         }
+
         return auction.getPrice();
     }
 
@@ -73,7 +75,7 @@ public class AuctionController {
     }
 
     // tu będą sysouty do tworzenia aukcji, a zebrane z nich dane posłużą do wywołania na końcu createAuction.
-    public static Auction createAuctionMain(User currentUser) throws Exception {
+    public static Auction createAuctionMain(User currentUser, Category allcategories) throws Exception {
  //       Category allcategories = CategoryController.createCategoryTree();
         Database database = Database.getInstance();
         Scanner sc = new Scanner(System.in);
@@ -99,7 +101,7 @@ public class AuctionController {
 //        System.out.println("Wybierz kategorię");
 //        CategoryController.printCategories(allcategories, 0, out);
        //String chosenCategory = sc.next();
-        Category category = vievAuctionByCategories();
+        Category category = vievAuctionByCategories(allcategories);
         boolean auctionCheck =true;
 
         while(auctionCheck) {
@@ -111,12 +113,12 @@ public class AuctionController {
                 return newAuction;
 
             } catch (NotFinalCategoryException e) {
-                category = vievAuctionByCategories();
+                category = vievAuctionByCategories(allcategories);
                 auctionCheck = true;
 
             } catch (NullPointerException npe) {
                 System.out.println("Nie ma takiej kategorii, podaj kategorie finalna");
-                category = vievAuctionByCategories();
+                category = vievAuctionByCategories(allcategories);
                 auctionCheck=true;
             }
             }
@@ -130,22 +132,21 @@ return null ;
        int auctionNumber =auction.getAuctionNumber();
         return auctionNumber;
     }
-    public static Category vievAuctionByCategories () throws Exception {
+    public static Category vievAuctionByCategories (Category allcategories) throws Exception {
         Scanner scanner = new Scanner(System.in);
         Database database = Database.getInstance();
-        Category allcategories = CategoryController.createCategoryTree();
+
         CategoryController.printCategories(allcategories, 0, out);
         System.out.println("Wybierz kategorie");
          String chosenCategory = scanner.nextLine();
 
-         /*
         try {
             System.out.println(database.getCategoryByName(chosenCategory).getAuctions());
         } catch (NullPointerException npe) {
             System.out.println("Zła kategoria, npe");
             chosenCategory=scanner.next();
         }
-        */
+
 
         return database.getCategoryByName(chosenCategory);
     }

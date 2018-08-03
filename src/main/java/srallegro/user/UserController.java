@@ -89,6 +89,11 @@ public class UserController {
             }
         }
         User newUser = createUser2(userName, userLastName, userBirthday, userAdrdess, userMail, password, userNick);
+        if (newUser == null) {
+            System.out.println("Rejestracja nieudana. Spróbuj ponownie");
+        } else {
+            System.out.println("Zarejestrowano nowego użytkownika");
+        }
         return newUser;
     }
 
