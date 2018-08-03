@@ -3,15 +3,13 @@ package srallegro;
 import srallegro.auction.Auction;
 import srallegro.auction.AuctionController;
 import srallegro.auction.LoadAuctionFromDisk;
-import srallegro.auction.SaveAuctionOnDisk;
-import srallegro.exception.*;
 import srallegro.user.*;
 
 import java.math.BigDecimal;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import static java.lang.System.out;
+import static srallegro.Main.State.LOGGED_IN;
 
 public class Main {
 
@@ -62,17 +60,16 @@ public class Main {
                     String password = sc.next();
                     currentUser = UserController.login(login, password);
                     if (currentUser != null) {
-                        state = State.LOGGED_IN;
+                        state = LOGGED_IN;
                     } else {
                         state = State.DURING_LOGIN;
                     }
                     break;
                 }
-
                 case DURING_REGISTRATION: {
                     currentUser = UserController.createUser();
                     if (currentUser != null) {
-                        state = State.LOGGED_IN;
+                        state = LOGGED_IN;
                         break;
                     }
                     state = State.DURING_REGISTRATION;
@@ -90,10 +87,10 @@ public class Main {
                         System.out.println("Licytujesz przedmiot: " + currentAuction.getTitle() + ". Obecna kwota: " + currentAuction.getPrice() + ". Podaj kwotę");
                         BigDecimal price = new BigDecimal(sc.nextInt());
                         AuctionController.bidUp(currentAuction, price, currentUser);
+                        System.out.println("Wygrywasz tę aukcję!");
                     } else if (choice == 2) {
                         System.out.println(currentAuction.getDescription());
                         break;
-
                     }
                 }
                 case LOGGED_IN: {
@@ -107,8 +104,14 @@ public class Main {
                         case "2": {
                             CategoryController.printCategories(allcategories, 0, out);
                             System.out.println("Wybierz kategorię");
-                            String chosenCat = sc.next();   // ??? jak zmienie na nextLine to się psuje!
-                            System.out.println(CategoryController.listAuctionsByCategory(database.getCategoryByName(chosenCat)));
+                            sc.nextLine();
+                            String chosenCat = sc.nextLine();
+                            try {
+                                System.out.println(CategoryController.listAuctionsByCategory(database.getCategoryByName(chosenCat)));
+                            } catch (NullPointerException npe) {
+                                System.out.println("Nie ma takiej kategorii");
+                                state = state.LOGGED_IN;
+                            }
                             state = State.DURING_VIEVING_AUCTION;
                             break;
                         }
@@ -127,7 +130,7 @@ public class Main {
                         }
                         default: {
                             System.out.println("Zła odpowiedź");
-                            state = State.LOGGED_IN;
+                            state = LOGGED_IN;
                             break;
                         }
                     }

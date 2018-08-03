@@ -2,13 +2,10 @@ package srallegro;
 
 import org.junit.Before;
 import org.junit.Test;
-import srallegro.auction.Auction;
 import srallegro.exception.*;
 import srallegro.user.Database;
 import srallegro.user.User;
 import srallegro.user.UserController;
-
-import java.math.BigDecimal;
 
 import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.assertEquals;

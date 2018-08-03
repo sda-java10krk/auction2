@@ -1,16 +1,12 @@
 package srallegro.auction;
 
-import srallegro.Category;
-import srallegro.exception.*;
 import srallegro.user.Database;
-import srallegro.user.User;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
 
 public class LoadAuctionFromDisk {
     private static LoadAuctionFromDisk instance;
@@ -63,6 +59,5 @@ public class LoadAuctionFromDisk {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 }

@@ -3,7 +3,6 @@ package srallegro.user;
 import srallegro.Category;
 import srallegro.auction.Auction;
 
-import java.io.*;
 import java.util.*;
 
 

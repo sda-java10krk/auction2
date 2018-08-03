@@ -1,8 +1,8 @@
 package srallegro;
 
 import srallegro.auction.Auction;
-import srallegro.user.Database;
 import srallegro.exception.EmptyCategoryNameException;
+import srallegro.user.Database;
 
 import java.io.PrintStream;
 import java.util.LinkedList;
@@ -23,7 +23,6 @@ public class CategoryController {
         for (Category subcategory : category.getSubcategories()) {
             printCategories(subcategory, level + 1, out);
         }
-
     }
 
 

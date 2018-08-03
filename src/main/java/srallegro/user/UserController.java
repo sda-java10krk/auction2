@@ -88,7 +88,12 @@ public class UserController {
                 password2 = scanner.next();
             }
         }
-        User newUser = createUser2(userName, userLastName, userBirthday, userAdrdess, userMail, password, userNick);
+        User newUser = null;
+        try {
+            newUser = createUser2(userName, userLastName, userBirthday, userAdrdess, userMail, password, userNick);
+        } catch (IncorrectEmailFormatException ie) {
+            System.out.println("Błędny e-mail!");
+        }
         if (newUser == null) {
             System.out.println("Rejestracja nieudana. Spróbuj ponownie");
         } else {

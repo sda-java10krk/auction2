@@ -6,7 +6,6 @@ import java.util.List;
 
 import srallegro.auction.Auction;
 import srallegro.exception.EmptyCategoryNameException;
-import srallegro.exception.EmptyTitleException;
 
 
 public class Category {
