@@ -6,6 +6,7 @@ import srallegro.user.Database;
 import srallegro.exception.*;
 import srallegro.user.User;
 
+import java.io.FileWriter;
 import java.math.BigDecimal;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -17,7 +18,6 @@ import static java.lang.System.out;
 public class AuctionController {
 
     public static BigDecimal bidUp(Auction auction, BigDecimal bidUp, User user) throws Exception {
-
         if (auction.getPrice().compareTo(BigDecimal.valueOf(0)) <= 0) {
             throw new AuctionPriceIsBelowZeroOrZeroException();
         }
@@ -29,16 +29,20 @@ public class AuctionController {
             throw new PriceTooLowException();
 
         } else {
+
             auction.setPrice(newPrice);
             auction.setWinner(user);
             auction.setBids(auction.getBids() + 1);
+         //   SaveAuctionOnDisk.writeCsvFile("databaseAuction", auction );
 
             if (auction.getBids() == 3) {
                 System.out.println("aukcja zakonczona, zwyciezył " + user.getNick());
                 user.getMyWonList().add(auction);
             }
         }
+        SaveAuctionOnDisk.writeCsvFile("databaseAuction.csv", auction);
         return auction.getPrice();
+
     }
 
     //zrobiic tak jak sprawdzanie daty urodzenia
@@ -51,7 +55,7 @@ public class AuctionController {
             auctNumber = rd.nextInt(10000);
         }
 
-        Auction newAuction = new Auction(title, description, category, currentUser,null, price, auctNumber, 0);
+        Auction newAuction = new Auction(title, description, category, currentUser, null, price, auctNumber, 0);
         if (title.length() == 0) {
             throw new EmptyTitleException();
         }
@@ -82,12 +86,12 @@ public class AuctionController {
         System.out.println("Podaj opis");
         String description = sc.nextLine();
         System.out.println("Podaj cenę wywoławczą");
-        BigDecimal price=BigDecimal.valueOf(1);
+        BigDecimal price = BigDecimal.valueOf(1);
         boolean priceCheck = true;
         while (priceCheck) {
             try {
                 price = sc.nextBigDecimal();
-                priceCheck =false;
+                priceCheck = false;
             } catch (InputMismatchException e) {
                 priceCheck = true;
                 System.out.println("Cena jest liczba");
@@ -99,9 +103,9 @@ public class AuctionController {
 //        CategoryController.printCategories(allcategories, 0, out);
         //String chosenCategory = sc.next();
         Category category = vievAuctionByCategories();
-        boolean auctionCheck =true;
+        boolean auctionCheck = true;
 
-        while(auctionCheck) {
+        while (auctionCheck) {
 
             try {
                 Auction newAuction = AuctionController.createAuction(currentUser, title, description, category, price);
@@ -116,18 +120,19 @@ public class AuctionController {
             } catch (NullPointerException npe) {
                 System.out.println("Nie ma takiej kategorii, podaj kategorie finalna");
                 category = vievAuctionByCategories();
-                auctionCheck=true;
+                auctionCheck = true;
             }
         }
 
-        return null ;
+        return null;
     }
 
-    public static int getAuctionNumber (Auction auction ) throws Exception{
-        int auctionNumber =auction.getAuctionNumber();
+    public static int getAuctionNumber(Auction auction) throws Exception {
+        int auctionNumber = auction.getAuctionNumber();
         return auctionNumber;
     }
-    public static Category vievAuctionByCategories () throws Exception {
+
+    public static Category vievAuctionByCategories() throws Exception {
         Scanner scanner = new Scanner(System.in);
         Database database = Database.getInstance();
         Category allcategories = CategoryController.createCategoryTree();

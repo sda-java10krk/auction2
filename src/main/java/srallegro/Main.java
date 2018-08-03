@@ -87,7 +87,6 @@ public class Main {
                 case DURING_VIEVING_AUCTION: {
                     printMenu3();
                     break;
-
                 }
                 case LOGGED_IN: {
                     printMenu2();
@@ -97,15 +96,12 @@ public class Main {
                             AuctionController.createAuctionMain(currentUser);
                             break;
                         }
-
                         //FIXME
                         //tutaj przyda sie klasa viev bo kod jest zdublowany
                         case "2": {
                             AuctionController.vievAuctionByCategories();
                             state = State.DURING_VIEVING_AUCTION;
-
                             break;
-
                         }
                         case "3": {
                             System.out.println(AuctionController.viewSellersAuctions(currentUser));
@@ -114,7 +110,6 @@ public class Main {
                         case "4": {
                             System.out.println(AuctionController.viewWonAuctions(currentUser));
                             break;
-
                         }
                         case "5": {
                             state = State.INIT;
@@ -128,7 +123,6 @@ public class Main {
                     }
                     break;
                 }
-
             }
         }
     }
