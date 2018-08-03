@@ -106,7 +106,7 @@ public class Main {
                             AuctionController.createAuctionMain(currentUser, allcategories);
                             break;
                         }
-                        
+
                         case "2": {
                             CategoryController.printCategories(allcategories, 0, out);
                             System.out.println("Wybierz kategorię");
