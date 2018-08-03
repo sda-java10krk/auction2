@@ -24,6 +24,7 @@ public class Database {
     private Map<Integer, Auction> allAuctionsByNumber = new HashMap<>();
     private Map<String, User> allUsersByNickname = new HashMap<>();
 
+
     //regarding Categories
     public void addCategoryToAllCategories (Category category) {
         allCategoriesByName.put(category.getName(), category);

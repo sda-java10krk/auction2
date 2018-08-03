@@ -85,6 +85,7 @@ public class Main {
                     System.out.println("Podaj nr aukcji, która Cię interesuje");
                     Auction currentAuction = database.getAuctionByNumber(sc.nextInt());
                     printMenu3();
+
                     int choice = sc.nextInt();
                     if (choice == 1) {
                         System.out.println("Licytujesz przedmiot: " + currentAuction.getTitle() + ". Obecna kwota: " + currentAuction.getPrice() + ". Podaj kwotę");
@@ -95,6 +96,7 @@ public class Main {
                         break;
 
                     }
+
                 }
                 case LOGGED_IN: {
                     printMenu2();
@@ -104,6 +106,7 @@ public class Main {
                             AuctionController.createAuctionMain(currentUser, allcategories);
                             break;
                         }
+                        
                         case "2": {
                             CategoryController.printCategories(allcategories, 0, out);
                             System.out.println("Wybierz kategorię");
@@ -119,7 +122,6 @@ public class Main {
                         case "4": {
                             System.out.println(AuctionController.viewWonAuctions(currentUser));
                             break;
-
                         }
                         case "5": {
                             state = State.INIT;
@@ -133,7 +135,6 @@ public class Main {
                     }
                     break;
                 }
-
             }
         }
     }
