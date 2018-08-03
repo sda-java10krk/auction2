@@ -113,13 +113,13 @@ public class Auction {
 
     @Override
     public String toString() {
-        return '\n' +
-                "Tytył:" + title +
-                ", Opis:'" + description + '\'' +
-                ", Kategoria:" + category.getName() +
-                ", Sprzedawca:" + seller.getNick() +
-                ", Wygrał:" + winner.getNick() +
-                ", Cena:" + price + "PLN" +
-                ", nr aukcji: " + auctionNumber ;
+        return "\n" + "{" +
+                "title='" + title + '\'' +
+                ", category=" + category.getName() +
+                ", seller=" + seller.getNick() +
+                ", winner=" + winner.getNick() +
+                ", price=" + price + "PLN" +
+                ", auction number= " + auctionNumber +
+                '}' ;
     }
 }

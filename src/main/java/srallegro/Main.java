@@ -64,7 +64,6 @@ public class Main {
                     if (currentUser != null) {
                         state = State.LOGGED_IN;
                     } else {
-                        System.out.println("Nie udało się zalogować");
                         state = State.DURING_LOGIN;
                     }
                     break;
@@ -73,11 +72,9 @@ public class Main {
                 case DURING_REGISTRATION: {
                     currentUser = UserController.createUser();
                     if (currentUser != null) {
-                        System.out.println("Zarejestrowano użytkownika.");
                         state = State.LOGGED_IN;
                         break;
                     }
-                    System.out.println("Proba zalogowania nieudana, spobój ponownie");
                     state = State.DURING_REGISTRATION;
                     break;
                 }
@@ -85,27 +82,35 @@ public class Main {
                     state = State.STOP;
                 }
                 case DURING_VIEVING_AUCTION: {
+                    System.out.println("Podaj nr aukcji, która Cię interesuje");
+                    Auction currentAuction = database.getAuctionByNumber(sc.nextInt());
                     printMenu3();
-                    break;
+                    int choice = sc.nextInt();
+                    if (choice == 1) {
+                        System.out.println("Licytujesz przedmiot: " + currentAuction.getTitle() + ". Obecna kwota: " + currentAuction.getPrice() + ". Podaj kwotę");
+                        BigDecimal price = new BigDecimal(sc.nextInt());
+                        AuctionController.bidUp(currentAuction, price, currentUser);
+                    } else if (choice == 2) {
+                        System.out.println(currentAuction.getDescription());
+                        break;
 
+                    }
                 }
                 case LOGGED_IN: {
                     printMenu2();
                     String answer = sc.next();
                     switch (answer) {
                         case "1": {
-                            AuctionController.createAuctionMain(currentUser);
+                            AuctionController.createAuctionMain(currentUser, allcategories);
                             break;
                         }
-
-                        //FIXME
-                        //tutaj przyda sie klasa viev bo kod jest zdublowany
                         case "2": {
-                            AuctionController.vievAuctionByCategories();
+                            CategoryController.printCategories(allcategories, 0, out);
+                            System.out.println("Wybierz kategorię");
+                            String chosenCat = sc.next();   // ??? jak zmienie na nextLine to się psuje!
+                            System.out.println(CategoryController.listAuctionsByCategory(database.getCategoryByName(chosenCat)));
                             state = State.DURING_VIEVING_AUCTION;
-
                             break;
-
                         }
                         case "3": {
                             System.out.println(AuctionController.viewSellersAuctions(currentUser));

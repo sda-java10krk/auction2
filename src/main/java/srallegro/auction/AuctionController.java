@@ -41,7 +41,7 @@ public class AuctionController {
         return auction.getPrice();
     }
 
-    //zrobiic tak jak sprawdzanie daty urodzenia
+//zrobiic tak jak sprawdzanie daty urodzenia
     public static Auction createAuction(User currentUser, String title, String description, Category category, BigDecimal price) throws Exception {
         Database database = Database.getInstance();
         //do bani ten system numerowania aukcji. Ale działa
@@ -73,8 +73,8 @@ public class AuctionController {
     }
 
     // tu będą sysouty do tworzenia aukcji, a zebrane z nich dane posłużą do wywołania na końcu createAuction.
-    public static Auction createAuctionMain(User currentUser) throws Exception {
-        //       Category allcategories = CategoryController.createCategoryTree();
+    public static Auction createAuctionMain(User currentUser, Category allcategories) throws Exception {
+ //       Category allcategories = CategoryController.createCategoryTree();
         Database database = Database.getInstance();
         Scanner sc = new Scanner(System.in);
         System.out.println("Podaj tytuł aukcji");
@@ -95,10 +95,11 @@ public class AuctionController {
                 sc.nextLine();
             }
         }
+
 //        System.out.println("Wybierz kategorię");
 //        CategoryController.printCategories(allcategories, 0, out);
-        //String chosenCategory = sc.next();
-        Category category = vievAuctionByCategories();
+       //String chosenCategory = sc.next();
+        Category category = vievAuctionByCategories(allcategories);
         boolean auctionCheck =true;
 
         while(auctionCheck) {
@@ -110,39 +111,40 @@ public class AuctionController {
                 return newAuction;
 
             } catch (NotFinalCategoryException e) {
-                category = vievAuctionByCategories();
+                category = vievAuctionByCategories(allcategories);
                 auctionCheck = true;
 
             } catch (NullPointerException npe) {
                 System.out.println("Nie ma takiej kategorii, podaj kategorie finalna");
-                category = vievAuctionByCategories();
+                category = vievAuctionByCategories(allcategories);
                 auctionCheck=true;
             }
+            }
+
+return null ;
         }
 
-        return null ;
-    }
+
 
     public static int getAuctionNumber (Auction auction ) throws Exception{
-        int auctionNumber =auction.getAuctionNumber();
+       int auctionNumber =auction.getAuctionNumber();
         return auctionNumber;
     }
-    public static Category vievAuctionByCategories () throws Exception {
+    public static Category vievAuctionByCategories (Category allcategories) throws Exception {
         Scanner scanner = new Scanner(System.in);
         Database database = Database.getInstance();
-        Category allcategories = CategoryController.createCategoryTree();
+
         CategoryController.printCategories(allcategories, 0, out);
         System.out.println("Wybierz kategorie");
-        String chosenCategory = scanner.nextLine();
+         String chosenCategory = scanner.nextLine();
 
-         /*
         try {
             System.out.println(database.getCategoryByName(chosenCategory).getAuctions());
         } catch (NullPointerException npe) {
             System.out.println("Zła kategoria, npe");
             chosenCategory=scanner.next();
         }
-        */
+
 
         return database.getCategoryByName(chosenCategory);
     }
